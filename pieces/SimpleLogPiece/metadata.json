@@ -3,7 +3,7 @@
     "description": "some description",
     "dependency": {
         "dockerfile": "",
-        "requirements_file": "requirements_0"
+        "requirements_file": "requirements_0.txt"
     },
     "tags": [
         "Example"
