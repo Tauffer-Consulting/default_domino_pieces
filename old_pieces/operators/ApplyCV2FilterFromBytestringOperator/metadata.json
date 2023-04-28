@@ -1,0 +1,18 @@
+{
+    "name": "ApplyCV2FilterFromBytestringOperator",
+    "description": "Apply filter effect to bytestring Image",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "Apply CV2"
+    ],
+    "style": {
+        "node_label": "Apply cv2 filter from bytestring",
+        "node_type": "source",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "fas fa-database"
+    }
+}

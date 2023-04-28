@@ -1,0 +1,7 @@
+FROM taufferconsulting/flowui-airflow-pod-dev:gpu
+
+
+# Need to copy operators source code
+COPY config.toml flowui/operators_repository/
+COPY operators flowui/operators_repository/operators
+COPY .flowui flowui/operators_repository/.flowui

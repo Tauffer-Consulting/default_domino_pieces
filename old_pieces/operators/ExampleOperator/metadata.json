@@ -1,0 +1,19 @@
+{
+    "name": "ExampleOperator",
+    "description": "some description",
+    "dependency": {
+        "dockerfile": "Dockerfile_gpu",
+        "requirements_file": ""
+    },
+    "tags": [
+        "Example"
+    ],
+    "style": {
+        "node_label": "Example Operator",
+        "node_type": "default",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "fas fa-database"
+    }
+}

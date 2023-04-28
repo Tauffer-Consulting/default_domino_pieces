@@ -1,0 +1,15 @@
+{
+    "name": "ApiFetchExampleOperator",
+    "description": "some description",
+    "tags": [
+        "Example"
+    ],
+    "style": {
+        "node_label": "Api Fetch Example Operator",
+        "node_type": "default",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "fas fa-database"
+    }
+}

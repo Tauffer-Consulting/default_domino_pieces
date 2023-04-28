@@ -1,0 +1,12 @@
+{
+    "name": "ReportGeneratorOperator",
+    "description": "some description",
+    "tags": [
+        "Example"
+    ],
+    "style": {
+        "node_label": "Generate Report",
+        "node_type": "sink",
+        "icon_class_name": "fa-solid fa-file-invoice"
+    }
+}

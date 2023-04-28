@@ -1,0 +1,16 @@
+{
+    "name": "UploadPhotoToS3Operator",
+    "description": "some description",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "Example"
+    ],
+    "style": {
+        "node_label": "Upload photo to S3",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        }
+    }
+}

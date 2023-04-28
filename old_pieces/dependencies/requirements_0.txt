@@ -1,0 +1,5 @@
+Pillow
+boto3
+PyGithub
+numpy
+requests

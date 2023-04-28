@@ -1,0 +1,13 @@
+FROM taufferconsulting/flowui-airflow-pod:latest
+
+# Install specific requirements
+RUN apt update
+RUN apt install ffmpeg -y
+
+# Need to copy operators source code
+COPY config.toml flowui/operators_repository/
+COPY operators flowui/operators_repository/operators
+COPY .flowui flowui/operators_repository/.flowui
+
+# Install specific python dependencies
+RUN pip install --no-cache-dir youtube_dl
