@@ -1,11 +1,11 @@
 [repository]
 # The name of the github organization / person owner, e.g. tauffer-consulting.
 # Must be in lower-case letters
-REGISTRY_NAME = "enter-your-registry-name-here"
+REGISTRY_NAME = "tauffer-consulting"
 
 # The name of this Pieces repository
-REPOSITORY_NAME = "enter-your-repository-name-here"
+REPOSITORY_NAME = "default_domino_pieces"
 
 # The version of this Pieces release
 # Attention: changing this will create a new release
-VERSION = "0.1.0"
+VERSION = "0.0.1"

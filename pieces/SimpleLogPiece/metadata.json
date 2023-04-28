@@ -1,0 +1,19 @@
+{
+    "name": "ExamplePiece",
+    "description": "some description",
+    "dependency": {
+        "dockerfile": "",
+        "requirements_file": "requirements_0"
+    },
+    "tags": [
+        "Example"
+    ],
+    "style": {
+        "node_label": "Example Piece",
+        "node_type": "default",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "fas fa-database"
+    }
+}
