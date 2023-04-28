@@ -1,14 +1,15 @@
 {
     "group0": {
         "dependency": {
-            "dockerfile": null,
+            "dockerfile": "",
             "requirements_file": "requirements_0.txt"
         },
         "pieces": [
-            "ExampleSimplePiece"
+            "SimpleLogPiece"
         ],
         "secrets": [
-            "EXAMPLE_OPERATOR_SECRET_1"
-        ]
+            "EXAMPLE_VAR"
+        ],
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.0.1-group0"
     }
 }
