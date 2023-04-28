@@ -3,7 +3,7 @@ from .models import InputModel, OutputModel
 import time
 from pathlib import Path
 
-class ExamplePiece(BasePiece):
+class SimpleLogPiece(BasePiece):
 
     def piece_function(self, input_model: InputModel):
         # The BasePiece class provides a set of convenience self variables ready to be used

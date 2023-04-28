@@ -1,5 +1,5 @@
 {
-    "name": "ExamplePiece",
+    "name": "SimpleLogPiece",
     "description": "some description",
     "dependency": {
         "dockerfile": "",
