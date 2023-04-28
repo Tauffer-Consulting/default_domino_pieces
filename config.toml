@@ -7,5 +7,5 @@ REGISTRY_NAME = "tauffer-consulting"
 REPOSITORY_NAME = "default_domino_pieces"
 
 # The version of this Pieces release
-# Attention: changing this will create a new release
+# Attention: changing this will create a new release in github
 VERSION = "0.0.1"
