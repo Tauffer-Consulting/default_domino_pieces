@@ -1,0 +1,110 @@
+{
+    "ExampleSimplePiece": {
+        "name": "ExampleSimplePiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "Example"
+        ],
+        "style": {
+            "node_label": "Simple Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fas fa-database",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "This is an example of a simple Domino Piece",
+        "container_resources": {
+            "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+            },
+            "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+            }
+        },
+        "input_schema": {
+            "title": "InputModel",
+            "type": "object",
+            "properties": {
+                "distribution_name": {
+                    "description": "Name of the distribution to sample from",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/DistributionType"
+                        }
+                    ]
+                },
+                "distribution_mean": {
+                    "title": "Distribution Mean",
+                    "description": "Distribution mean",
+                    "type": "number"
+                },
+                "distribution_sd": {
+                    "title": "Distribution Sd",
+                    "description": "Distribution standard deviation",
+                    "default": 1.0,
+                    "exclusiveMinimum": 0.0,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "distribution_name",
+                "distribution_mean"
+            ],
+            "definitions": {
+                "DistributionType": {
+                    "title": "DistributionType",
+                    "description": "An enumeration.",
+                    "enum": [
+                        "gaussian",
+                        "poisson"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "Output message to log",
+                    "type": "string"
+                },
+                "sample_result": {
+                    "title": "Sample Result",
+                    "description": "The result of this Piece's processing",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "message",
+                "sample_result"
+            ]
+        },
+        "secrets_schema": {
+            "title": "SecretsModel",
+            "type": "object",
+            "properties": {
+                "EXAMPLE_OPERATOR_SECRET_1": {
+                    "title": "Example Operator Secret 1",
+                    "description": "A secret necessary to run this Piece",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "EXAMPLE_OPERATOR_SECRET_1"
+            ]
+        }
+    }
+}

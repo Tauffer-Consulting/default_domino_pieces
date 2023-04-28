@@ -1,0 +1,13 @@
+FROM taufferconsulting/domino-airflow-pod:0.0.1
+
+# Install specific requirements to run OpenCV
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+
+# Need to copy pieces source code
+COPY config.toml domino/pieces_repository/
+COPY pieces domino/pieces_repository/pieces
+COPY .domino domino/pieces_repository/.domino
+
+# Install specific dependencies in domino_env virtual environment
+RUN pip install --no-cache-dir opencv-python scipy

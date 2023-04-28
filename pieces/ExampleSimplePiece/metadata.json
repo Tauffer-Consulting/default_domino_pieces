@@ -1,0 +1,24 @@
+{
+    "name": "ExampleSimplePiece",
+    "description": "This is an example of a simple Domino Piece",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "container_resources": {
+        "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+        },
+        "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+        }
+    },
+    "tags": [
+        "Example"
+    ],
+    "style": {
+        "node_label": "Simple Piece",
+        "icon_class_name": "fas fa-database"
+    }
+}
