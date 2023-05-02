@@ -12,8 +12,8 @@ class SimpleLogPiece(BasePiece):
         """
         self.logger.info(secret_msg)
 
-        print("Sleeeping")
-        time.sleep(60)
+        # print("Sleeeping")
+        # time.sleep(60)
 
         self.logger.info("Writing file to shared_storage")
         with open(str(Path(self.results_path)/"test.txt"), "w") as f:
