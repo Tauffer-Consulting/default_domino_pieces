@@ -5,7 +5,8 @@ REGISTRY_NAME = "tauffer-consulting"
 
 # The name of this Pieces repository
 REPOSITORY_NAME = "default_domino_pieces"
+REPOSITORY_LABEL = "Default Pieces Repository"
 
 # The version of this Pieces release
 # Attention: changing this will create a new release
-VERSION = "0.0.6"
+VERSION = "0.0.7"
