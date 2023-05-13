@@ -67,6 +67,7 @@
             "required": [
                 "EXAMPLE_VAR"
             ]
-        }
+        },
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
     }
 }
