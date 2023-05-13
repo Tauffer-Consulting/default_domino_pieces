@@ -22,12 +22,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.8"
-    
-      # - name: Pip install from branch
-      #   run: |
-      #     git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github".insteadOf https://github
-      #     python -m pip install -U pip
-      #     pip install --no-cache-dir git+https://github.com/Tauffer-Consulting/flowui.git@renaming
 
       - name: Pip install packages
         run: |
@@ -44,7 +38,7 @@ jobs:
       - name: Run organize, build and publish images
         env:
           GHCR_USERNAME: ${{ github.actor }}
-        run: domino piece organize --build-images --publish-images --registry-token=${{ secrets.GITHUB_TOKEN }}
+        run: domino piece organize --build-images --publish-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
 
       - name: Commit files
         run: |
