@@ -2,14 +2,12 @@
     "group0": {
         "dependency": {
             "dockerfile": "",
-            "requirements_file": "requirements_0.txt"
+            "requirements_file": ""
         },
         "pieces": [
             "SimpleLogPiece"
         ],
-        "secrets": [
-            "EXAMPLE_VAR"
-        ],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.0.8-group0"
+        "secrets": [],
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.0.9-group0"
     }
 }
