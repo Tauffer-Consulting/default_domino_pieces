@@ -1,19 +1,20 @@
 {
     "name": "SimpleLogPiece",
-    "description": "some description",
+    "description": "A Piece that simply logs its input",
     "dependency": {
         "dockerfile": "",
-        "requirements_file": "requirements_0.txt"
+        "requirements_file": ""
     },
     "tags": [
-        "Example"
+        "Log",
+        "Default"
     ],
     "style": {
-        "node_label": "Example Piece",
+        "node_label": "Simple Log Piece",
         "node_type": "default",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },
-        "icon_class_name": "fas fa-database"
+        "icon_class_name": "far fa-file-alt"
     }
 }

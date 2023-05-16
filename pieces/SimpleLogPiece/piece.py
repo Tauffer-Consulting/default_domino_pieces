@@ -1,39 +1,34 @@
 from domino.base_piece import BasePiece
 from .models import InputModel, OutputModel
-import time
 from pathlib import Path
+
 
 class SimpleLogPiece(BasePiece):
 
     def piece_function(self, input_model: InputModel):
-        # The BasePiece class provides a set of convenience self variables ready to be used
-        secret_msg = f"""
-        Example Piece secret: {self.secrets}
-        """
-        self.logger.info(secret_msg)
-
-        # print("Sleeeping")
-        # time.sleep(60)
-
-        self.logger.info("Writing file to shared_storage")
-        with open(str(Path(self.results_path)/"test.txt"), "w") as f:
-            f.write("This is a test file")
-
-        input_msg = f"""
-        Example Piece input arguments: {input_model}
-        """
-        self.logger.info(input_msg)
-
-        msg = """
-        #############################################################################
+        # Log input
+        msg = f"""
         #############################################################################\n
-        Example Piece Successfully Completed!\n
+        Logging input:\n
+        {input_model.input_msg}\n
         #############################################################################\n
-        #############################################################################
         """
         self.logger.info(msg)
 
+        # Write log file
+        self.logger.info("Writing log file to shared_storage...")
+        file_path = str(Path(self.results_path)/"log.txt")
+        with open(file_path, "w") as f:
+            f.write(msg)
+
+        # Set display result
+        self.display_result = {
+            "file_type": "txt",
+            "file_path": file_path
+        }
+
+        # Return output
         return OutputModel(
             message="Task successfully completed!",
-            output_arg_1="something else"
+            output_msg=f"Logged: {input_model.input_msg}"
         )

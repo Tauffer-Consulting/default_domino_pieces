@@ -3,34 +3,23 @@ from pydantic import BaseModel, Field
 
 class InputModel(BaseModel):
     """
-    Example Operator
+    SimpleLogPiece Input Model
     """
 
-    input_arg_1: str = Field(
-        default='default',
-        description='description'
+    input_msg: str = Field(
+        default="",
+        description='Input to be logged'
     )
 
 
 class OutputModel(BaseModel):
     """
-    Example Operator
+    SimpleLogPiece Output Model
     """
     message: str = Field(
         default="",
         description="Output message to log"
     )
-    output_arg_1: str = Field(
-        default='default',
-        description='description'
-    )
-
-
-class SecretsModel(BaseModel):
-    """
-    Example Operator Secrets
-    """
-
-    EXAMPLE_VAR: str = Field(
-        description="Example secret var"
+    output_msg: str = Field(
+        description='Value that was logged'
     )
