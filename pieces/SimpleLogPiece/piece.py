@@ -8,11 +8,11 @@ class SimpleLogPiece(BasePiece):
     def piece_function(self, input_model: InputModel):
         # Log input
         msg = f"""
-        #############################################################################\n
-        Logging input:\n
-        {input_model.input_msg}\n
-        #############################################################################\n
-        """
+#############################################################################\n
+Logging input:\n
+{input_model.input_msg}\n
+#############################################################################\n
+"""
         self.logger.info(msg)
 
         # Write log file
