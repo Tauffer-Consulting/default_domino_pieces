@@ -5,9 +5,10 @@
             "requirements_file": ""
         },
         "pieces": [
+            "SleepPiece",
             "SimpleLogPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.0.9-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.1.0-group0"
     }
 }
