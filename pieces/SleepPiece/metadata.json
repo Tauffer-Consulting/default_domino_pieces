@@ -1,0 +1,20 @@
+{
+    "name": "SleepPiece",
+    "description": "A Piece that executes a Python sleep function for a user-defined duration",
+    "dependency": {
+        "dockerfile": "",
+        "requirements_file": ""
+    },
+    "tags": [
+        "Sleep",
+        "Default"
+    ],
+    "style": {
+        "node_label": "Sleep Piece",
+        "node_type": "default",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "far fa-hourglass-start"
+    }
+}
