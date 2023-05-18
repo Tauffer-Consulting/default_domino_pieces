@@ -2,8 +2,8 @@
     "SleepPiece": {
         "name": "SleepPiece",
         "dependency": {
-            "dockerfile": "",
-            "requirements_file": ""
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
         },
         "tags": [
             "Sleep",
@@ -51,15 +51,125 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
     },
+    "GetDateTimePiece": {
+        "name": "GetDateTimePiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "datetime",
+            "default"
+        ],
+        "style": {
+            "node_label": "Get Datetime",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "far fa-calendar",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that gets current system date and time.",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "GetDateTimePiece Input Model",
+            "type": "object",
+            "properties": {
+                "use_timezone": {
+                    "title": "Use Timezone",
+                    "description": "Whether to use a timezone for the timestamp.",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "timezone": {
+                    "description": "Timezone to use for timestamp.",
+                    "default": "(UTC+00) - UTC",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/TZOptions"
+                        }
+                    ]
+                }
+            },
+            "definitions": {
+                "TZOptions": {
+                    "title": "TZOptions",
+                    "description": "An enumeration.",
+                    "enum": [
+                        "(UTC-11) - Pacific/Pago_Pago",
+                        "(UTC-10) - US/Hawaii",
+                        "(UTC-09) - Pacific/Gambier",
+                        "(UTC-08) - US/Alaska",
+                        "(UTC-07) - US/Pacific",
+                        "(UTC-06) - US/Mountain",
+                        "(UTC-05) - US/Central",
+                        "(UTC-04) - US/Eastern",
+                        "(UTC-03) - Canada/Atlantic",
+                        "(UTC-02) - Atlantic/South_Georgia",
+                        "(UTC-01) - Atlantic/Cape_Verde",
+                        "(UTC+00) - UTC",
+                        "(UTC+01) - Europe/London",
+                        "(UTC+02) - Europe/Zurich",
+                        "(UTC+03) - Indian/Mayotte",
+                        "(UTC+04) - Asia/Tehran",
+                        "(UTC+05) - Asia/Kathmandu",
+                        "(UTC+06) - Indian/Cocos",
+                        "(UTC+07) - Indian/Christmas",
+                        "(UTC+08) - Australia/Eucla",
+                        "(UTC+09) - Australia/Darwin",
+                        "(UTC+10) - Australia/Lord_Howe",
+                        "(UTC+11) - Pacific/Pohnpei",
+                        "(UTC+12) - Pacific/Chatham",
+                        "(UTC+13) - Pacific/Tongatapu",
+                        "(UTC+14) - Pacific/Kiritimati"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "GetDateTimePiece Output Model",
+            "type": "object",
+            "properties": {
+                "date": {
+                    "title": "Date",
+                    "description": "Date of the timestamp, in ISO format.",
+                    "type": "string"
+                },
+                "time": {
+                    "title": "Time",
+                    "description": "Time of the timestamp, in ISO format.",
+                    "type": "string"
+                },
+                "datetime": {
+                    "title": "Datetime",
+                    "description": "Datetime of the timestamp, in ISO format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "date",
+                "time",
+                "datetime"
+            ]
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
+    },
     "SimpleLogPiece": {
         "name": "SimpleLogPiece",
         "dependency": {
-            "dockerfile": "",
-            "requirements_file": ""
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
         },
         "tags": [
-            "Log",
-            "Default"
+            "log",
+            "default"
         ],
         "style": {
             "node_label": "Simple Log Piece",
