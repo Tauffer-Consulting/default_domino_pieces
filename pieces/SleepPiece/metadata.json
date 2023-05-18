@@ -2,8 +2,7 @@
     "name": "SleepPiece",
     "description": "A Piece that executes a Python sleep function for a user-defined duration",
     "dependency": {
-        "dockerfile": "",
-        "requirements_file": ""
+        "requirements_file": "requirements_0.txt"
     },
     "tags": [
         "Sleep",
@@ -11,7 +10,6 @@
     ],
     "style": {
         "node_label": "Sleep Piece",
-        "node_type": "default",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },

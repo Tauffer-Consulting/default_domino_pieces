@@ -1,18 +1,18 @@
 {
-    "name": "SimpleLogPiece",
-    "description": "A Piece that simply logs its input",
+    "name": "GetDateTimePiece",
+    "description": "A Piece that gets current system date and time.",
     "dependency": {
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "log",
+        "datetime",
         "default"
     ],
     "style": {
-        "node_label": "Simple Log Piece",
+        "node_label": "Get Datetime",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },
-        "icon_class_name": "far fa-file-alt"
+        "icon_class_name": "far fa-calendar"
     }
 }
