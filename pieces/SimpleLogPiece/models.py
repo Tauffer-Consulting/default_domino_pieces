@@ -5,10 +5,25 @@ class InputModel(BaseModel):
     """
     SimpleLogPiece Input Model
     """
-
-    input_msg: str = Field(
+    input_str: str = Field(
         default="",
-        description='Input to be logged'
+        description='Input string to be logged.'
+    )
+    input_int: int = Field(
+        default=0,
+        description='Input integer to be logged.'
+    )
+    input_float: float = Field(
+        default=0.0,
+        description='Input float to be logged.'
+    )
+    input_bool: bool = Field(
+        default=False,
+        description='Input boolean to be logged.'
+    )
+    input_list: list = Field(
+        default=[],
+        description='Input list to be logged.'
     )
 
 

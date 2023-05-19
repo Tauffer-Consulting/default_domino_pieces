@@ -6,11 +6,15 @@ from pathlib import Path
 class SimpleLogPiece(BasePiece):
 
     def piece_function(self, input_model: InputModel):
-        # Log input
+        # Log inputs
         msg = f"""
 #############################################################################\n
-Logging input:\n
-{input_model.input_msg}\n
+Logged inputs:\n
+Input string: {input_model.input_str}\n
+Input integer: {input_model.input_int}\n
+Input float: {input_model.input_float}\n
+Input boolean: {input_model.input_bool}\n
+Input list: {input_model.input_list}\n
 #############################################################################\n
 """
         self.logger.info(msg)
@@ -30,5 +34,5 @@ Logging input:\n
         # Return output
         return OutputModel(
             message="Task successfully completed!",
-            output_msg=f"Logged: {input_model.input_msg}"
+            output_msg=msg
         )
