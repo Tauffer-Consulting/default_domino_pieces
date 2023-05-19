@@ -189,11 +189,36 @@
             "description": "SimpleLogPiece Input Model",
             "type": "object",
             "properties": {
-                "input_msg": {
-                    "title": "Input Msg",
-                    "description": "Input to be logged",
+                "input_str": {
+                    "title": "Input Str",
+                    "description": "Input string to be logged.",
                     "default": "",
                     "type": "string"
+                },
+                "input_int": {
+                    "title": "Input Int",
+                    "description": "Input integer to be logged.",
+                    "default": 0,
+                    "type": "integer"
+                },
+                "input_float": {
+                    "title": "Input Float",
+                    "description": "Input float to be logged.",
+                    "default": 0.0,
+                    "type": "number"
+                },
+                "input_bool": {
+                    "title": "Input Bool",
+                    "description": "Input boolean to be logged.",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "input_list": {
+                    "title": "Input List",
+                    "description": "Input list to be logged.",
+                    "default": [],
+                    "type": "array",
+                    "items": {}
                 }
             }
         },
