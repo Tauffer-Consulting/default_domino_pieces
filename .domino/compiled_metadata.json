@@ -288,12 +288,40 @@
                         }
                     ]
                 },
+                "input_date": {
+                    "title": "Input Date",
+                    "description": "Input date to be logged.",
+                    "default": "",
+                    "widget": "date",
+                    "type": "string"
+                },
+                "input_time": {
+                    "title": "Input Time",
+                    "description": "Input time to be logged.",
+                    "default": "",
+                    "widget": "time",
+                    "type": "string"
+                },
+                "input_datetime": {
+                    "title": "Input Datetime",
+                    "description": "Input datetime to be logged.",
+                    "default": "",
+                    "widget": "datetime",
+                    "type": "string"
+                },
                 "input_list": {
                     "title": "Input List",
                     "description": "Input list to be logged.",
                     "default": [],
                     "type": "array",
                     "items": {}
+                },
+                "input_code": {
+                    "title": "Input Code",
+                    "description": "Input code to be logged.",
+                    "default": "\ndef main(input_args):\n    return input_args\n",
+                    "widget": "codeeditor",
+                    "type": "string"
                 }
             },
             "definitions": {
