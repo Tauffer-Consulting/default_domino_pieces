@@ -30,9 +30,32 @@ class InputModel(BaseModel):
         default=InputEnum.option1,
         description='Input enum to be logged.'
     )
+    input_date: str = Field(
+        default="",
+        description='Input date to be logged.',
+        widget="date"
+    )
+    input_time: str = Field(
+        default="",
+        description='Input time to be logged.',
+        widget="time"
+    )
+    input_datetime: str = Field(
+        default="",
+        description='Input datetime to be logged.',
+        widget="datetime"
+    )
     input_list: list = Field(
         default=[],
         description='Input list to be logged.'
+    )
+    input_code: str = Field(
+        default="""
+def main(input_args):
+    return input_args
+""",
+        description='Input code to be logged.',
+        widget="codeeditor"
     )
 
 

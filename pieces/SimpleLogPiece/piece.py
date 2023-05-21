@@ -15,6 +15,11 @@ Input integer: {input_model.input_int}\n
 Input float: {input_model.input_float}\n
 Input boolean: {input_model.input_bool}\n
 Input list: {input_model.input_list}\n
+Input enum: {input_model.input_enum}\n
+Input date: {input_model.input_date}\n
+Input time: {input_model.input_time}\n
+Input datetime: {input_model.input_datetime}\n
+Input code: {input_model.input_code}\n
 #############################################################################\n
 """
         self.logger.info(msg)
