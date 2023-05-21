@@ -213,12 +213,33 @@
                     "default": false,
                     "type": "boolean"
                 },
+                "input_enum": {
+                    "description": "Input enum to be logged.",
+                    "default": "option1",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/InputEnum"
+                        }
+                    ]
+                },
                 "input_list": {
                     "title": "Input List",
                     "description": "Input list to be logged.",
                     "default": [],
                     "type": "array",
                     "items": {}
+                }
+            },
+            "definitions": {
+                "InputEnum": {
+                    "title": "InputEnum",
+                    "description": "An enumeration.",
+                    "enum": [
+                        "option1",
+                        "option2",
+                        "option3"
+                    ],
+                    "type": "string"
                 }
             }
         },
