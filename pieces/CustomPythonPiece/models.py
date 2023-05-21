@@ -1,4 +1,28 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, Extra
+from typing import List
+from enum import Enum
+
+
+class OutputArgsType(str, Enum):
+    """
+    OutputArgsType Enum
+    """
+    string = 'string'
+    integer = 'integer'
+    float = 'float'
+    boolean = 'boolean'
+    array = 'array'
+    
+
+class OutputArgsModel(BaseModel):
+    name: str = Field(
+        default=None,
+        description='Name of the output arg.'
+    )
+    type: OutputArgsType = Field(
+        default=OutputArgsType.string,
+        description='Type of the output arg.'
+    )
 
 
 class InputModel(BaseModel):
@@ -7,7 +31,8 @@ class InputModel(BaseModel):
     """
     input_args: list = Field(
         default=[],
-        description='Input args.'
+        description='Input args.',
+        from_upstream="always"
     )
     script: str = Field(
         default="""
@@ -15,19 +40,19 @@ def main(input_args):
     return input_args
 """,
         description='Python script.',
-        widget="codeeditor"
+        widget="codeeditor",
+        from_upstream="never"
     )
-    output_args: list = Field(
+    output_args: List[OutputArgsModel] = Field(
         default=[],
-        description='Output args.'
+        description='Output args.',
+        from_upstream="never"
     )
 
 
-class OutputModel(BaseModel):
+class OutputModel(BaseModel, extra=Extra.allow):
     """
     CustomPythonPiece Output Model
     """
-    error: str = Field(
-        default=None,
-        description='Error message.'
-    )
+    # ref: https://stackoverflow.com/a/75381426/11483674
+    pass

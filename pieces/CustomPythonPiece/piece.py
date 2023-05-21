@@ -1,6 +1,6 @@
 from domino.base_piece import BasePiece
 from .models import InputModel, OutputModel
-from pathlib import Path
+import importlib.util
 
 
 class CustomPythonPiece(BasePiece):
@@ -11,19 +11,21 @@ class CustomPythonPiece(BasePiece):
         self.logger.info(input_model.output_args)
         self.logger.info(input_model.script)
 
-        # Write log file
-        # self.logger.info("Writing log file to shared_storage...")
-        # file_path = str(Path(self.results_path)/"log.txt")
-        # with open(file_path, "w") as f:
-        #     f.write(msg)
+        # Save the script as a local Python file
+        script_file = "custom_script.py"
+        with open(script_file, "w") as file:
+            file.write(input_model.script)
 
-        # Set display result
-        # self.display_result = {
-        #     "file_type": "txt",
-        #     "file_path": file_path
-        # }
+        # Import the custom function from the script file
+        spec = importlib.util.spec_from_file_location("custom_script", script_file)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        # Call the imported function with the input variables list
+        output_args = getattr(module, "custom_function")(input_model.input_args)
+
+        # Log output
+        self.logger.info(output_args)
 
         # Return output
-        return OutputModel(
-            error=None,
-        )
+        return OutputModel(**output_args)
