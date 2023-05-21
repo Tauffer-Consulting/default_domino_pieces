@@ -1,4 +1,70 @@
 {
+    "CustomPythonPiece": {
+        "name": "CustomPythonPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "python",
+            "default"
+        ],
+        "style": {
+            "node_label": "Custom Python Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fab fa-python",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Run your custom Python code.",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "CustomPythonPiece Input Model",
+            "type": "object",
+            "properties": {
+                "input_args": {
+                    "title": "Input Args",
+                    "description": "Input args.",
+                    "default": [],
+                    "type": "array",
+                    "items": {}
+                },
+                "script": {
+                    "title": "Script",
+                    "description": "Python script.",
+                    "default": "\ndef main(input_args):\n    return input_args\n",
+                    "widget": "codeeditor",
+                    "type": "string"
+                },
+                "output_args": {
+                    "title": "Output Args",
+                    "description": "Output args.",
+                    "default": [],
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "CustomPythonPiece Output Model",
+            "type": "object",
+            "properties": {
+                "error": {
+                    "title": "Error",
+                    "description": "Error message.",
+                    "type": "string"
+                }
+            }
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
+    },
     "SleepPiece": {
         "name": "SleepPiece",
         "dependency": {
