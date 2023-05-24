@@ -356,9 +356,15 @@
                 "input_array": {
                     "title": "Input Array",
                     "description": "Input array to be logged.",
-                    "default": [],
+                    "default": [
+                        "default_1",
+                        "default_2",
+                        "default_3"
+                    ],
                     "type": "array",
-                    "items": {}
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "definitions": {
