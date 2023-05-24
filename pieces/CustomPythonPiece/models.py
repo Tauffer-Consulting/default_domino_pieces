@@ -37,16 +37,27 @@ class InputModel(BaseModel):
         from_upstream="always"
     )
     script: str = Field(
-        default="""
-def main(input_args):
-    return input_args
+        default="""# Do not modify the function definition line 
+def custom_function(input_args: list):
+    # Write your code here
+    print(input_args)
+
+    # Return the output of the function as an object,
+    # Matching the Output Args defined in the Form below
+    return {
+        "out_arg_1": "this is a string", 
+        "out_arg_2": 420
+    }
 """,
         description='Python script.',
         widget="codeeditor",
         from_upstream="never"
     )
     output_args: List[OutputArgsModel] = Field(
-        default=[],
+        default=[
+            OutputArgsModel(name="output_arg_1", type=OutputArgsType.string),
+            OutputArgsModel(name="output_arg_2", type=OutputArgsType.integer),
+        ],
         description='Output args.',
         from_upstream="never"
     )
