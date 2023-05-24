@@ -45,17 +45,9 @@ class InputModel(BaseModel):
         description='Input datetime to be logged.',
         widget="datetime"
     )
-    input_list: list = Field(
+    input_array: list = Field(
         default=[],
-        description='Input list to be logged.'
-    )
-    input_code: str = Field(
-        default="""
-def main(input_args):
-    return input_args
-""",
-        description='Input code to be logged.',
-        widget="codeeditor"
+        description='Input array to be logged.'
     )
 
 

@@ -17,11 +17,13 @@ class OutputArgsType(str, Enum):
 class OutputArgsModel(BaseModel):
     name: str = Field(
         default=None,
-        description='Name of the output arg.'
+        description='Name of the output arg.',
+        from_upstream="never"
     )
     type: OutputArgsType = Field(
         default=OutputArgsType.string,
-        description='Type of the output arg.'
+        description='Type of the output arg.',
+        from_upstream="never"
     )
 
 
