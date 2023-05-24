@@ -38,7 +38,7 @@
                 "script": {
                     "title": "Script",
                     "description": "Python script.",
-                    "default": "\ndef main(input_args):\n    return input_args\n",
+                    "default": "# Do not modify the function definition line \ndef custom_function(input_args: list):\n    # Write your code here\n    print(input_args)\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"out_arg_1\": \"this is a string\", \n        \"out_arg_2\": 420\n    }\n",
                     "widget": "codeeditor",
                     "from_upstream": "never",
                     "type": "string"
@@ -46,7 +46,16 @@
                 "output_args": {
                     "title": "Output Args",
                     "description": "Output args.",
-                    "default": [],
+                    "default": [
+                        {
+                            "name": "output_arg_1",
+                            "type": "string"
+                        },
+                        {
+                            "name": "output_arg_2",
+                            "type": "integer"
+                        }
+                    ],
                     "from_upstream": "never",
                     "type": "array",
                     "items": {
