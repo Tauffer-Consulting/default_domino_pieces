@@ -74,11 +74,13 @@
                         "name": {
                             "title": "Name",
                             "description": "Name of the output arg.",
+                            "from_upstream": "never",
                             "type": "string"
                         },
                         "type": {
                             "description": "Type of the output arg.",
                             "default": "string",
+                            "from_upstream": "never",
                             "allOf": [
                                 {
                                     "$ref": "#/definitions/OutputArgsType"
@@ -342,19 +344,12 @@
                     "widget": "datetime",
                     "type": "string"
                 },
-                "input_list": {
-                    "title": "Input List",
-                    "description": "Input list to be logged.",
+                "input_array": {
+                    "title": "Input Array",
+                    "description": "Input array to be logged.",
                     "default": [],
                     "type": "array",
                     "items": {}
-                },
-                "input_code": {
-                    "title": "Input Code",
-                    "description": "Input code to be logged.",
-                    "default": "\ndef main(input_args):\n    return input_args\n",
-                    "widget": "codeeditor",
-                    "type": "string"
                 }
             },
             "definitions": {
