@@ -1,10 +1,13 @@
 from pydantic import BaseModel, Field
 from enum import Enum
+from typing import List
+
 
 class InputEnum(str, Enum):
     option1 = "option1"
     option2 = "option2"
     option3 = "option3"
+
 
 class InputModel(BaseModel):
     """
@@ -45,8 +48,8 @@ class InputModel(BaseModel):
         description='Input datetime to be logged.',
         widget="datetime"
     )
-    input_array: list = Field(
-        default=[],
+    input_array: List[str] = Field(
+        default=["default_1", "default_2", "default_3"],
         description='Input array to be logged.'
     )
 
