@@ -31,6 +31,7 @@
                     "title": "Input Args",
                     "description": "Input args.",
                     "default": [],
+                    "from_upstream": "always",
                     "type": "array",
                     "items": {}
                 },
@@ -39,14 +40,52 @@
                     "description": "Python script.",
                     "default": "\ndef main(input_args):\n    return input_args\n",
                     "widget": "codeeditor",
+                    "from_upstream": "never",
                     "type": "string"
                 },
                 "output_args": {
                     "title": "Output Args",
                     "description": "Output args.",
                     "default": [],
+                    "from_upstream": "never",
                     "type": "array",
-                    "items": {}
+                    "items": {
+                        "$ref": "#/definitions/OutputArgsModel"
+                    }
+                }
+            },
+            "definitions": {
+                "OutputArgsType": {
+                    "title": "OutputArgsType",
+                    "description": "OutputArgsType Enum",
+                    "enum": [
+                        "string",
+                        "integer",
+                        "float",
+                        "boolean",
+                        "array"
+                    ],
+                    "type": "string"
+                },
+                "OutputArgsModel": {
+                    "title": "OutputArgsModel",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "description": "Name of the output arg.",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Type of the output arg.",
+                            "default": "string",
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/OutputArgsType"
+                                }
+                            ]
+                        }
+                    }
                 }
             }
         },
@@ -54,13 +93,7 @@
             "title": "OutputModel",
             "description": "CustomPythonPiece Output Model",
             "type": "object",
-            "properties": {
-                "error": {
-                    "title": "Error",
-                    "description": "Error message.",
-                    "type": "string"
-                }
-            }
+            "properties": {}
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
