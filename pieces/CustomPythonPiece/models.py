@@ -17,13 +17,21 @@ class OutputArgsType(str, Enum):
 class OutputArgsModel(BaseModel):
     name: str = Field(
         default=None,
-        description='Name of the output arg.',
+        description='Name of the output argument.',
         from_upstream="never"
     )
     type: OutputArgsType = Field(
         default=OutputArgsType.string,
-        description='Type of the output arg.',
+        description='Type of the output argument.',
         from_upstream="never"
+    )
+
+
+class InputArgsModel(BaseModel):
+    input_arg: str = Field(
+        default=None,
+        description='Input argument.',
+        from_upstream="always"
     )
 
 
@@ -31,10 +39,10 @@ class InputModel(BaseModel):
     """
     CustomPythonPiece Input Model
     """
-    input_args: list = Field(
-        default=[],
-        description='Input args.',
-        from_upstream="always"
+    input_args: List[InputArgsModel] = Field(
+        default=[InputArgsModel(input_arg="")],
+        description='Input arguments.',
+        from_upstream="never"
     )
     script: str = Field(
         default="""# Do not modify the function definition line 
@@ -58,7 +66,7 @@ def custom_function(input_args: list):
             OutputArgsModel(name="output_arg_1", type=OutputArgsType.string),
             OutputArgsModel(name="output_arg_2", type=OutputArgsType.integer),
         ],
-        description='Output args.',
+        description='Output arguments.',
         from_upstream="never"
     )
 
