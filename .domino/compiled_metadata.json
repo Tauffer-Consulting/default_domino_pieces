@@ -302,19 +302,19 @@
                 "input_str": {
                     "title": "Input Str",
                     "description": "Input string to be logged.",
-                    "default": "",
+                    "default": "default value",
                     "type": "string"
                 },
                 "input_int": {
                     "title": "Input Int",
                     "description": "Input integer to be logged.",
-                    "default": 0,
+                    "default": 10,
                     "type": "integer"
                 },
                 "input_float": {
                     "title": "Input Float",
                     "description": "Input float to be logged.",
-                    "default": 0.0,
+                    "default": 10.5,
                     "type": "number"
                 },
                 "input_bool": {
@@ -335,21 +335,21 @@
                 "input_date": {
                     "title": "Input Date",
                     "description": "Input date to be logged.",
-                    "default": "",
+                    "default": "2023-01-01",
                     "widget": "date",
                     "type": "string"
                 },
                 "input_time": {
                     "title": "Input Time",
                     "description": "Input time to be logged.",
-                    "default": "",
+                    "default": "16:20",
                     "widget": "time",
                     "type": "string"
                 },
                 "input_datetime": {
                     "title": "Input Datetime",
                     "description": "Input datetime to be logged.",
-                    "default": "",
+                    "default": "2023-01-01T16:20",
                     "widget": "datetime",
                     "type": "string"
                 },
@@ -387,13 +387,13 @@
             "properties": {
                 "message": {
                     "title": "Message",
-                    "description": "Output message to log",
+                    "description": "Output message to log.",
                     "default": "",
                     "type": "string"
                 },
                 "output_msg": {
                     "title": "Output Msg",
-                    "description": "Value that was logged",
+                    "description": "Value that was logged.",
                     "type": "string"
                 }
             },
