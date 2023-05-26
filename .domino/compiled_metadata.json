@@ -29,11 +29,17 @@
             "properties": {
                 "input_args": {
                     "title": "Input Args",
-                    "description": "Input args.",
-                    "default": [],
-                    "from_upstream": "always",
+                    "description": "Input arguments.",
+                    "default": [
+                        {
+                            "input_arg": ""
+                        }
+                    ],
+                    "from_upstream": "never",
                     "type": "array",
-                    "items": {}
+                    "items": {
+                        "$ref": "#/definitions/InputArgsModel"
+                    }
                 },
                 "script": {
                     "title": "Script",
@@ -45,7 +51,7 @@
                 },
                 "output_args": {
                     "title": "Output Args",
-                    "description": "Output args.",
+                    "description": "Output arguments.",
                     "default": [
                         {
                             "name": "output_arg_1",
@@ -64,6 +70,18 @@
                 }
             },
             "definitions": {
+                "InputArgsModel": {
+                    "title": "InputArgsModel",
+                    "type": "object",
+                    "properties": {
+                        "input_arg": {
+                            "title": "Input Arg",
+                            "description": "Input argument.",
+                            "from_upstream": "always",
+                            "type": "string"
+                        }
+                    }
+                },
                 "OutputArgsType": {
                     "title": "OutputArgsType",
                     "description": "OutputArgsType Enum",
@@ -82,12 +100,12 @@
                     "properties": {
                         "name": {
                             "title": "Name",
-                            "description": "Name of the output arg.",
+                            "description": "Name of the output argument.",
                             "from_upstream": "never",
                             "type": "string"
                         },
                         "type": {
-                            "description": "Type of the output arg.",
+                            "description": "Type of the output argument.",
                             "default": "string",
                             "from_upstream": "never",
                             "allOf": [
