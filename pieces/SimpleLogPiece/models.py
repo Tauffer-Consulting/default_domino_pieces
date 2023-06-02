@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from enum import Enum
-from typing import List
+from typing import List, Optional
+from datetime import datetime, time, date
 
 
 class InputEnum(str, Enum):
@@ -33,20 +34,17 @@ class InputModel(BaseModel):
         default=InputEnum.option1,
         description='Input enum to be logged.'
     )
-    input_date: str = Field(
+    input_date: date = Field(
         default="2023-01-01",
-        description='Input date to be logged.',
-        widget="date"
+        description='Input date to be logged.'
     )
-    input_time: str = Field(
+    input_time: time = Field(
         default="16:20",
         description='Input time to be logged.',
-        widget="time"
     )
-    input_datetime: str = Field(
+    input_datetime: datetime = Field(
         default="2023-01-01T16:20",
-        description='Input datetime to be logged.',
-        widget="datetime"
+        description='Input datetime to be logged.'
     )
     input_array: List[str] = Field(
         default=["default_1", "default_2", "default_3"],
@@ -55,7 +53,7 @@ class InputModel(BaseModel):
     input_code: str = Field(
         default="print('Hello world!')",
         description='Input code to be logged.',
-        widget="code"
+        widget="codeeditor"
     )
 
 
@@ -69,4 +67,37 @@ class OutputModel(BaseModel):
     )
     output_msg: str = Field(
         description='Value that was logged.'
+    )
+
+    # Outputs types
+    output_str: Optional[str] = Field(
+        description='Output string to be logged.'
+    )
+    output_int: Optional[int] = Field(
+        description='Output integer to be logged.'
+    )
+    output_float: Optional[float] = Field(
+        description='Output float to be logged.'
+    )
+    output_bool: Optional[bool] = Field(
+        description='Output boolean to be logged.'
+    )
+    output_enum: InputEnum = Field(
+        description='Output enum to be logged.'
+    )
+    output_date: date = Field(
+        description='Output date to be logged.'
+    )
+    output_time: time = Field(
+        description='Output time to be logged.',
+    )
+    output_datetime: datetime = Field(
+        description='Output datetime to be logged.'
+    )
+    output_array: List[str] = Field(
+        description='Output array to be logged.'
+    )
+    output_code: str = Field(
+        description='Input code to be logged.',
+        widget="codeeditor"
     )
