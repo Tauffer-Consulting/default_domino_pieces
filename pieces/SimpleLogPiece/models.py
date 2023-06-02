@@ -52,6 +52,11 @@ class InputModel(BaseModel):
         default=["default_1", "default_2", "default_3"],
         description='Input array to be logged.'
     )
+    input_code: str = Field(
+        default="print('Hello world!')",
+        description='Input code to be logged.',
+        widget="code"
+    )
 
 
 class OutputModel(BaseModel):
