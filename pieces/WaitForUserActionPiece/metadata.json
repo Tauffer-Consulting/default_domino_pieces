@@ -1,16 +1,15 @@
 {
-    "name": "WaitForUserActionPiece",
-    "description": "A Piece that waits for user action, before continuing or stopping the workflow.",
+    "name": "SleepPiece",
+    "description": "A Piece that executes a Python sleep function for a user-defined duration",
     "dependency": {
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "wait",
-        "user action",
-        "default"
+        "Sleep",
+        "Default"
     ],
     "style": {
-        "node_label": "Wait for user action",
+        "node_label": "Sleep Piece",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },
