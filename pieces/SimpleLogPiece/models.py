@@ -82,9 +82,6 @@ class OutputModel(BaseModel):
     output_bool: Optional[bool] = Field(
         description='Output boolean to be logged.'
     )
-    output_enum: InputEnum = Field(
-        description='Output enum to be logged.'
-    )
     output_date: date = Field(
         description='Output date to be logged.'
     )
