@@ -11,6 +11,6 @@
             "SimpleLogPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.3.8-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.3.9-group0"
     }
 }
