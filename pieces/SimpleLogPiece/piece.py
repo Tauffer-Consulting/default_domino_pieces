@@ -45,7 +45,6 @@ Input code: {input_model.input_code}\n
             output_float=input_model.input_float,
             output_bool=input_model.input_bool,
             output_array=input_model.input_array,
-            output_enum=input_model.input_enum,
             output_date=input_model.input_date,
             output_time=input_model.input_time,
             output_datetime=input_model.input_datetime,
