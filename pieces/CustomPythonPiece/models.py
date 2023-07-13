@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field, Extra
 from domino.models import OutputModifierModel, OutputModifierItemType
 from typing import List
-from enum import Enum
 
 
 class InputArgsModel(BaseModel):
