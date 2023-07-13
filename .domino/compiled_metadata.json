@@ -441,14 +441,6 @@
                     "description": "Output boolean to be logged.",
                     "type": "boolean"
                 },
-                "output_enum": {
-                    "description": "Output enum to be logged.",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/InputEnum"
-                        }
-                    ]
-                },
                 "output_date": {
                     "title": "Output Date",
                     "description": "Output date to be logged.",
@@ -484,25 +476,12 @@
             },
             "required": [
                 "output_msg",
-                "output_enum",
                 "output_date",
                 "output_time",
                 "output_datetime",
                 "output_array",
                 "output_code"
-            ],
-            "definitions": {
-                "InputEnum": {
-                    "title": "InputEnum",
-                    "description": "An enumeration.",
-                    "enum": [
-                        "option1",
-                        "option2",
-                        "option3"
-                    ],
-                    "type": "string"
-                }
-            }
+            ]
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
