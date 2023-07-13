@@ -1,30 +1,7 @@
 from pydantic import BaseModel, Field, Extra
+from domino.models import OutputModifierModel, OutputModifierItemType
 from typing import List
 from enum import Enum
-
-
-class OutputArgsType(str, Enum):
-    """
-    OutputArgsType Enum
-    """
-    string = 'string'
-    integer = 'integer'
-    float = 'float'
-    boolean = 'boolean'
-    array = 'array'
-    
-
-class OutputArgsModel(BaseModel):
-    name: str = Field(
-        default=None,
-        description='Name of the output argument.',
-        from_upstream="never"
-    )
-    type: OutputArgsType = Field(
-        default=OutputArgsType.string,
-        description='Type of the output argument.',
-        from_upstream="never"
-    )
 
 
 class InputArgsModel(BaseModel):
@@ -61,10 +38,10 @@ def custom_function(input_args: list):
         widget="codeeditor",
         from_upstream="never"
     )
-    output_args: List[OutputArgsModel] = Field(
+    output_args: List[OutputModifierModel] = Field(
         default=[
-            OutputArgsModel(name="output_arg_1", type=OutputArgsType.string),
-            OutputArgsModel(name="output_arg_2", type=OutputArgsType.integer),
+            OutputModifierModel(name="output_arg_1", type=OutputModifierItemType.string, description="An example string output"),
+            OutputModifierModel(name="output_arg_2", type=OutputModifierItemType.integer, description="An example integer output"),
         ],
         description='Output arguments.',
         from_upstream="never"
