@@ -5,10 +5,10 @@
             "requirements_file": "requirements_0.txt"
         },
         "pieces": [
-            "CustomPythonPiece",
+            "SimpleLogPiece",
             "GetDateTimePiece",
-            "SleepPiece",
-            "SimpleLogPiece"
+            "CustomPythonPiece",
+            "SleepPiece"
         ],
         "secrets": [],
         "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.3.9-group0"
