@@ -43,15 +43,16 @@ jobs:
 
         run: |
           domino piece organize --build-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
-          echo printing PIECES_IMAGES_MAP $PIECES_IMAGES_MAP
-          echo "PIECES_IMAGES_MAP=$PIECES_IMAGES_MAP" >> "$GITHUB_ENV"
-          echo "action_state=yellow" >> "$GITHUB_ENV"
+
+      - name: Install Tests Dependencies
+        run: pip install pytest
 
       - name: Run tests over built images
-        run: echo "${{ env.action_state }}"
+        run: |
+          pytest -s
       
-      - name: Publish images
-        run: echo "publish images ${{ env.PIECES_IMAGES_MAP }}"
+      # - name: Publish images
+      #   run: echo "publish images ${{ env.PIECES_IMAGES_MAP }}"
 
       # - name: Run organize, build and publish images
       #   env:
