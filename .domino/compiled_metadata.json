@@ -1,294 +1,4 @@
 {
-    "CustomPythonPiece": {
-        "name": "CustomPythonPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "python",
-            "default"
-        ],
-        "style": {
-            "node_label": "Custom Python Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#b3cde8"
-            },
-            "useIcon": true,
-            "icon_class_name": "fab fa-python",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Run your custom Python code.",
-        "input_schema": {
-            "title": "InputModel",
-            "description": "CustomPythonPiece Input Model",
-            "type": "object",
-            "properties": {
-                "input_args": {
-                    "title": "Input Args",
-                    "description": "Input arguments.",
-                    "default": [
-                        {
-                            "input_arg": ""
-                        }
-                    ],
-                    "from_upstream": "never",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/InputArgsModel"
-                    }
-                },
-                "script": {
-                    "title": "Script",
-                    "description": "Python script.",
-                    "default": "# Do not modify the function definition line \ndef custom_function(input_args: list):\n    # Write your code here\n    print(input_args)\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"out_arg_1\": \"this is a string\", \n        \"out_arg_2\": 420\n    }\n",
-                    "widget": "codeeditor",
-                    "from_upstream": "never",
-                    "type": "string"
-                },
-                "output_args": {
-                    "title": "Output Args",
-                    "description": "Output arguments.",
-                    "default": [
-                        {
-                            "name": "output_arg_1",
-                            "type": "string"
-                        },
-                        {
-                            "name": "output_arg_2",
-                            "type": "integer"
-                        }
-                    ],
-                    "from_upstream": "never",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/OutputArgsModel"
-                    }
-                }
-            },
-            "definitions": {
-                "InputArgsModel": {
-                    "title": "InputArgsModel",
-                    "type": "object",
-                    "properties": {
-                        "input_arg": {
-                            "title": "Input Arg",
-                            "description": "Input argument.",
-                            "from_upstream": "always",
-                            "type": "string"
-                        }
-                    }
-                },
-                "OutputArgsType": {
-                    "title": "OutputArgsType",
-                    "description": "OutputArgsType Enum",
-                    "enum": [
-                        "string",
-                        "integer",
-                        "float",
-                        "boolean",
-                        "array"
-                    ],
-                    "type": "string"
-                },
-                "OutputArgsModel": {
-                    "title": "OutputArgsModel",
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "title": "Name",
-                            "description": "Name of the output argument.",
-                            "from_upstream": "never",
-                            "type": "string"
-                        },
-                        "type": {
-                            "description": "Type of the output argument.",
-                            "default": "string",
-                            "from_upstream": "never",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputArgsType"
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "CustomPythonPiece Output Model",
-            "type": "object",
-            "properties": {}
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
-    },
-    "GetDateTimePiece": {
-        "name": "GetDateTimePiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "datetime",
-            "default"
-        ],
-        "style": {
-            "node_label": "Get Datetime",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#b3cde8"
-            },
-            "useIcon": true,
-            "icon_class_name": "far fa-calendar",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that gets current system date and time.",
-        "input_schema": {
-            "title": "InputModel",
-            "description": "GetDateTimePiece Input Model",
-            "type": "object",
-            "properties": {
-                "use_timezone": {
-                    "title": "Use Timezone",
-                    "description": "Whether to use a timezone for the timestamp.",
-                    "default": false,
-                    "type": "boolean"
-                },
-                "timezone": {
-                    "description": "Timezone to use for timestamp.",
-                    "default": "(UTC+00) - UTC",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/TZOptions"
-                        }
-                    ]
-                }
-            },
-            "definitions": {
-                "TZOptions": {
-                    "title": "TZOptions",
-                    "description": "An enumeration.",
-                    "enum": [
-                        "(UTC-11) - Pacific/Pago_Pago",
-                        "(UTC-10) - US/Hawaii",
-                        "(UTC-09) - Pacific/Gambier",
-                        "(UTC-08) - US/Alaska",
-                        "(UTC-07) - US/Pacific",
-                        "(UTC-06) - US/Mountain",
-                        "(UTC-05) - US/Central",
-                        "(UTC-04) - US/Eastern",
-                        "(UTC-03) - Canada/Atlantic",
-                        "(UTC-02) - Atlantic/South_Georgia",
-                        "(UTC-01) - Atlantic/Cape_Verde",
-                        "(UTC+00) - UTC",
-                        "(UTC+01) - Europe/London",
-                        "(UTC+02) - Europe/Zurich",
-                        "(UTC+03) - Indian/Mayotte",
-                        "(UTC+04) - Asia/Tehran",
-                        "(UTC+05) - Asia/Kathmandu",
-                        "(UTC+06) - Indian/Cocos",
-                        "(UTC+07) - Indian/Christmas",
-                        "(UTC+08) - Australia/Eucla",
-                        "(UTC+09) - Australia/Darwin",
-                        "(UTC+10) - Australia/Lord_Howe",
-                        "(UTC+11) - Pacific/Pohnpei",
-                        "(UTC+12) - Pacific/Chatham",
-                        "(UTC+13) - Pacific/Tongatapu",
-                        "(UTC+14) - Pacific/Kiritimati"
-                    ],
-                    "type": "string"
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "GetDateTimePiece Output Model",
-            "type": "object",
-            "properties": {
-                "date": {
-                    "title": "Date",
-                    "description": "Date of the timestamp, in ISO format.",
-                    "type": "string"
-                },
-                "time": {
-                    "title": "Time",
-                    "description": "Time of the timestamp, in ISO format.",
-                    "type": "string"
-                },
-                "datetime": {
-                    "title": "Datetime",
-                    "description": "Datetime of the timestamp, in ISO format.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "date",
-                "time",
-                "datetime"
-            ]
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
-    },
-    "SleepPiece": {
-        "name": "SleepPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "Sleep",
-            "Default"
-        ],
-        "style": {
-            "node_label": "Sleep Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#b3cde8"
-            },
-            "useIcon": true,
-            "icon_class_name": "far fa-hourglass-start",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that executes a Python sleep function for a user-defined duration",
-        "input_schema": {
-            "title": "InputModel",
-            "description": "Sleep Piece Input Model",
-            "type": "object",
-            "properties": {
-                "sleep_time": {
-                    "title": "Sleep Time",
-                    "description": "Number of seconds to sleep",
-                    "default": 1,
-                    "type": "number"
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "Sleep Piece Output Model",
-            "type": "object",
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "description": "Sleep piece executed",
-                    "default": "",
-                    "type": "string"
-                }
-            }
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
-    },
     "SimpleLogPiece": {
         "name": "SimpleLogPiece",
         "dependency": {
@@ -485,5 +195,295 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
+    },
+    "GetDateTimePiece": {
+        "name": "GetDateTimePiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "datetime",
+            "default"
+        ],
+        "style": {
+            "node_label": "Get Datetime",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "far fa-calendar",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that gets current system date and time.",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "GetDateTimePiece Input Model",
+            "type": "object",
+            "properties": {
+                "use_timezone": {
+                    "title": "Use Timezone",
+                    "description": "Whether to use a timezone for the timestamp.",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "timezone": {
+                    "description": "Timezone to use for timestamp.",
+                    "default": "(UTC+00) - UTC",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/TZOptions"
+                        }
+                    ]
+                }
+            },
+            "definitions": {
+                "TZOptions": {
+                    "title": "TZOptions",
+                    "description": "An enumeration.",
+                    "enum": [
+                        "(UTC-11) - Pacific/Pago_Pago",
+                        "(UTC-10) - US/Hawaii",
+                        "(UTC-09) - Pacific/Gambier",
+                        "(UTC-08) - US/Alaska",
+                        "(UTC-07) - US/Pacific",
+                        "(UTC-06) - US/Mountain",
+                        "(UTC-05) - US/Central",
+                        "(UTC-04) - US/Eastern",
+                        "(UTC-03) - Canada/Atlantic",
+                        "(UTC-02) - Atlantic/South_Georgia",
+                        "(UTC-01) - Atlantic/Cape_Verde",
+                        "(UTC+00) - UTC",
+                        "(UTC+01) - Europe/London",
+                        "(UTC+02) - Europe/Zurich",
+                        "(UTC+03) - Indian/Mayotte",
+                        "(UTC+04) - Asia/Tehran",
+                        "(UTC+05) - Asia/Kathmandu",
+                        "(UTC+06) - Indian/Cocos",
+                        "(UTC+07) - Indian/Christmas",
+                        "(UTC+08) - Australia/Eucla",
+                        "(UTC+09) - Australia/Darwin",
+                        "(UTC+10) - Australia/Lord_Howe",
+                        "(UTC+11) - Pacific/Pohnpei",
+                        "(UTC+12) - Pacific/Chatham",
+                        "(UTC+13) - Pacific/Tongatapu",
+                        "(UTC+14) - Pacific/Kiritimati"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "GetDateTimePiece Output Model",
+            "type": "object",
+            "properties": {
+                "date": {
+                    "title": "Date",
+                    "description": "Date of the timestamp, in ISO format.",
+                    "type": "string"
+                },
+                "time": {
+                    "title": "Time",
+                    "description": "Time of the timestamp, in ISO format.",
+                    "type": "string"
+                },
+                "datetime": {
+                    "title": "Datetime",
+                    "description": "Datetime of the timestamp, in ISO format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "date",
+                "time",
+                "datetime"
+            ]
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
+    },
+    "CustomPythonPiece": {
+        "name": "CustomPythonPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "python",
+            "default"
+        ],
+        "style": {
+            "node_label": "Custom Python Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fab fa-python",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Run your custom Python code.",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "CustomPythonPiece Input Model",
+            "type": "object",
+            "properties": {
+                "input_args": {
+                    "title": "Input Args",
+                    "description": "Input arguments.",
+                    "default": [
+                        {
+                            "input_arg": ""
+                        }
+                    ],
+                    "from_upstream": "never",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InputArgsModel"
+                    }
+                },
+                "script": {
+                    "title": "Script",
+                    "description": "Python script.",
+                    "default": "# Do not modify the function definition line \ndef custom_function(input_args: list):\n    # Write your code here\n    print(input_args)\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"out_arg_1\": \"this is a string\", \n        \"out_arg_2\": 420\n    }\n",
+                    "widget": "codeeditor",
+                    "from_upstream": "never",
+                    "type": "string"
+                },
+                "output_args": {
+                    "title": "Output Args",
+                    "description": "Output arguments.",
+                    "default": [
+                        {
+                            "name": "output_arg_1",
+                            "type": "string"
+                        },
+                        {
+                            "name": "output_arg_2",
+                            "type": "integer"
+                        }
+                    ],
+                    "from_upstream": "never",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OutputArgsModel"
+                    }
+                }
+            },
+            "definitions": {
+                "InputArgsModel": {
+                    "title": "InputArgsModel",
+                    "type": "object",
+                    "properties": {
+                        "input_arg": {
+                            "title": "Input Arg",
+                            "description": "Input argument.",
+                            "from_upstream": "always",
+                            "type": "string"
+                        }
+                    }
+                },
+                "OutputArgsType": {
+                    "title": "OutputArgsType",
+                    "description": "OutputArgsType Enum",
+                    "enum": [
+                        "string",
+                        "integer",
+                        "float",
+                        "boolean",
+                        "array"
+                    ],
+                    "type": "string"
+                },
+                "OutputArgsModel": {
+                    "title": "OutputArgsModel",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "description": "Name of the output argument.",
+                            "from_upstream": "never",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Type of the output argument.",
+                            "default": "string",
+                            "from_upstream": "never",
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/OutputArgsType"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "CustomPythonPiece Output Model",
+            "type": "object",
+            "properties": {}
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
+    },
+    "SleepPiece": {
+        "name": "SleepPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "Sleep",
+            "Default"
+        ],
+        "style": {
+            "node_label": "Sleep Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "far fa-hourglass-start",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that executes a Python sleep function for a user-defined duration",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "Sleep Piece Input Model",
+            "type": "object",
+            "properties": {
+                "sleep_time": {
+                    "title": "Sleep Time",
+                    "description": "Number of seconds to sleep",
+                    "default": 1,
+                    "type": "number"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "Sleep Piece Output Model",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "Sleep piece executed",
+                    "default": "",
+                    "type": "string"
+                }
+            }
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
     }
 }
