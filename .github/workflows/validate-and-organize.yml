@@ -44,9 +44,10 @@ jobs:
         run: |
           domino piece organize --build-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
           echo "PIECES_IMAGES_MAP=$PIECES_IMAGES_MAP" >> "$GITHUB_ENV"
+          echo "action_state=yellow" >> "$GITHUB_ENV"
 
       - name: Run tests over built images
-        run: echo "running tests ${{ env.PIECES_IMAGES_MAP }}"
+        run: echo "${{ env.action_state }}"
       
       - name: Publish images
         run: echo "publish images ${{ env.PIECES_IMAGES_MAP }}"
