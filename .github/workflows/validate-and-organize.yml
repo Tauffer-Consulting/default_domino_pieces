@@ -43,6 +43,7 @@ jobs:
 
         run: |
           domino piece organize --build-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
+          echo printing PIECES_IMAGES_MAP $PIECES_IMAGES_MAP
           echo "PIECES_IMAGES_MAP=$PIECES_IMAGES_MAP" >> "$GITHUB_ENV"
           echo "action_state=yellow" >> "$GITHUB_ENV"
 
