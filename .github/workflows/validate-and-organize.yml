@@ -46,10 +46,10 @@ jobs:
           echo "PIECES_IMAGES_MAP=$PIECES_IMAGES_MAP" >> "$GITHUB_ENV"
 
       - name: Run tests over built images
-        run: echo running tests $PIECES_IMAGES_MAP
+        run: echo running tests ${PIECES_IMAGES_MAP}
       
       - name: Publish images
-        run: echo publish images $PIECES_IMAGES_MAP
+        run: echo publish images ${PIECES_IMAGES_MAP}
 
       # - name: Run organize, build and publish images
       #   env:
