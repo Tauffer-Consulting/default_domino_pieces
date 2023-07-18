@@ -3,9 +3,9 @@ name: Validate and organize repo, build and publish Docker images
 on:
   push:
     branches:
-      - use-outputmodifiermodel
-    # paths:
-    #   - 'config.toml'
+      - main
+    paths:
+      - 'config.toml'
 
 jobs:
   validate-and-organize:
@@ -53,21 +53,21 @@ jobs:
           GHCR_USERNAME: ${{ github.actor }}
         run: domino piece publish-images --registry-token ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     GIT_STATUS=$(git status -s)
-      #     [[ ! -z "$GIT_STATUS" ]] && git add .domino/* && git commit -m "auto-organize" -a || echo "No changes to commit"
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          GIT_STATUS=$(git status -s)
+          [[ ! -z "$GIT_STATUS" ]] && git add .domino/* && git commit -m "auto-organize" -a || echo "No changes to commit"
 
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
-      # - name: Create Release
-      #   env:
-      #     GITHUB_REPOSITORY: ${{ github.repository }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: domino piece release
+      - name: Create Release
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: domino piece release
