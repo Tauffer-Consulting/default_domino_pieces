@@ -5,21 +5,21 @@ from pathlib import Path
 
 class SimpleLogPiece(BasePiece):
 
-    def piece_function(self, input_model: InputModel):
+    def piece_function(self, input_data: InputModel):
         # Log inputs
         msg = f"""
 #############################################################################\n
 Logged inputs:\n
-Input string: {input_model.input_str}\n
-Input integer: {input_model.input_int}\n
-Input float: {input_model.input_float}\n
-Input boolean: {input_model.input_bool}\n
-Input array: {input_model.input_array}\n
-Input enum: {input_model.input_enum}\n
-Input date: {input_model.input_date}\n
-Input time: {input_model.input_time}\n
-Input datetime: {input_model.input_datetime}\n
-Input code: {input_model.input_code}\n
+Input string: {input_data.input_str}\n
+Input integer: {input_data.input_int}\n
+Input float: {input_data.input_float}\n
+Input boolean: {input_data.input_bool}\n
+Input array: {input_data.input_array}\n
+Input enum: {input_data.input_enum}\n
+Input date: {input_data.input_date}\n
+Input time: {input_data.input_time}\n
+Input datetime: {input_data.input_datetime}\n
+Input code: {input_data.input_code}\n
 #############################################################################\n
 """
         self.logger.info(msg)
@@ -40,13 +40,14 @@ Input code: {input_model.input_code}\n
         return OutputModel(
             message="Task successfully completed!",
             output_msg=msg,
-            output_str=input_model.input_str,
-            output_int=input_model.input_int,
-            output_float=input_model.input_float,
-            output_bool=input_model.input_bool,
-            output_array=input_model.input_array,
-            output_date=input_model.input_date,
-            output_time=input_model.input_time,
-            output_datetime=input_model.input_datetime,
-            output_code=input_model.input_code
+            output_str=input_data.input_str,
+            output_int=input_data.input_int,
+            output_float=input_data.input_float,
+            output_bool=input_data.input_bool,
+            output_array=input_data.input_array,
+            output_enum=input_data.input_enum,
+            output_date=input_data.input_date,
+            output_time=input_data.input_time,
+            output_datetime=input_data.input_datetime,
+            output_code=input_data.input_code
         )

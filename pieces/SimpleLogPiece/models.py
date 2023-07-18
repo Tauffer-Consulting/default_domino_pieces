@@ -39,11 +39,11 @@ class InputModel(BaseModel):
         description='Input date to be logged.'
     )
     input_time: time = Field(
-        default="16:20",
+        default="16:20:00",
         description='Input time to be logged.',
     )
     input_datetime: datetime = Field(
-        default="2023-01-01T16:20",
+        default="2023-01-01T16:20:00",
         description='Input datetime to be logged.'
     )
     input_array: List[str] = Field(

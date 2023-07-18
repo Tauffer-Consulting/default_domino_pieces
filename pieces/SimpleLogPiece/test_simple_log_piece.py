@@ -9,8 +9,8 @@ def test_simple_log_piece():
         input_bool=False,
         input_enum="option1",
         input_date="2023-01-01",
-        input_time="16:20",
-        input_datetime="2023-01-01T16:20",
+        input_time="16:20:00",
+        input_datetime="2023-01-01T16:20:00",
         input_array=["default_1", "default_2", "default_3"],
         input_code="print('Hello world!')"
     )
@@ -29,13 +29,13 @@ def test_simple_log_piece():
         output_float=input_data.get("input_float"),
         output_bool=input_data.get("input_bool"),
         output_array=input_data.get("input_array"),
-        output_date=datetime.strptime(input_data.get("input_date"), '%Y-%m-%d').date(),
-        output_time=datetime.strptime(input_data.get("input_time"), "%H:%M").time(),
-        output_datetime=datetime.strptime(input_data.get("input_datetime"), "%Y-%m-%dT%H:%M").replace(tzinfo=None),
+        output_date=input_data.get("input_date"),
+        output_time=input_data.get("input_time"),
+        output_datetime=input_data.get("input_datetime"),
         output_code=input_data.get("input_code")
     )
 
-    for key, value in piece_output.dict().items():
+    for key, value in piece_output.items():
         if key in ['message', 'output_msg']:
             continue
         assert value == mock_output[key]

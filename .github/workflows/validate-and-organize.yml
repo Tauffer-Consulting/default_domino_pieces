@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'config.toml'
+    paths:
+      - 'config.toml'
 
 jobs:
   validate-and-organize:
@@ -38,42 +38,36 @@ jobs:
         run: pip list | grep domino
 
       - name: Run organize and build images
-        env:
-          GHCR_USERNAME: ${{ github.actor }}
-
         run: |
-          domino piece organize --build-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
+          domino piece organize --build-images --source-url=https://github.com/${{github.repository}}
 
       - name: Install Tests Dependencies
         run: pip install pytest
 
       - name: Run tests over built images
         run: |
-          pytest -s
+          pytest
       
-      # - name: Publish images
-      #   run: echo "publish images ${{ env.PIECES_IMAGES_MAP }}"
+      - name: Publish images
+        env:
+          GHCR_USERNAME: ${{ github.actor }}
+        run: domino piece publish-images --registry-token ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Run organize, build and publish images
-      #   env:
-      #     GHCR_USERNAME: ${{ github.actor }}
-      #   run: domino piece organize --build-images --publish-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          GIT_STATUS=$(git status -s)
+          [[ ! -z "$GIT_STATUS" ]] && git add .domino/* && git commit -m "auto-organize" -a || echo "No changes to commit"
 
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     GIT_STATUS=$(git status -s)
-      #     [[ ! -z "$GIT_STATUS" ]] && git add .domino/* && git commit -m "auto-organize" -a || echo "No changes to commit"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: ${{ github.ref }}
-
-      # - name: Create Release
-      #   env:
-      #     GITHUB_REPOSITORY: ${{ github.repository }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: domino piece release
+      - name: Create Release
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: domino piece release
