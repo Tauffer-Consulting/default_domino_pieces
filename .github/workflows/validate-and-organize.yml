@@ -3,7 +3,7 @@ name: Validate and organize repo, build and publish Docker images
 on:
   push:
     branches:
-      - main
+      - use-outputmodifiermodel
     # paths:
     #   - 'config.toml'
 
@@ -38,26 +38,20 @@ jobs:
         run: pip list | grep domino
 
       - name: Run organize and build images
-        env:
-          GHCR_USERNAME: ${{ github.actor }}
-
         run: |
-          domino piece organize --build-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
+          domino piece organize --build-images --source-url=https://github.com/${{github.repository}}
 
       - name: Install Tests Dependencies
         run: pip install pytest
 
       - name: Run tests over built images
         run: |
-          pytest -s
+          pytest
       
-      # - name: Publish images
-      #   run: echo "publish images ${{ env.PIECES_IMAGES_MAP }}"
-
-      # - name: Run organize, build and publish images
-      #   env:
-      #     GHCR_USERNAME: ${{ github.actor }}
-      #   run: domino piece organize --build-images --publish-images --registry-token=${{ secrets.GITHUB_TOKEN }} --source-url=https://github.com/${{github.repository}}
+      - name: Publish images
+        env:
+          GHCR_USERNAME: ${{ github.actor }}
+        run: domino piece publish-images --registry-token ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Commit files
       #   run: |
