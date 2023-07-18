@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+dry_run_results/*
 
 # C extensions
 *.so
