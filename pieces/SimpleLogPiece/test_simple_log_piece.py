@@ -1,5 +1,5 @@
 from domino.testing import piece_dry_run
-from datetime import datetime
+
 
 def test_simple_log_piece():
     input_data = dict(
