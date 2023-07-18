@@ -7,10 +7,10 @@ import base64
 
 class GetDateTimePiece(BasePiece):
 
-    def piece_function(self, input_model: InputModel):
+    def piece_function(self, input_data: InputModel):
         
-        if input_model.use_timezone:
-            timezone = input_model.timezone
+        if input_data.use_timezone:
+            timezone = input_data.timezone
             timezone = timezone.split(' - ')[0].replace('(', '').replace(')', '').strip()
             timezone = pytz.timezone(timezone)
             date = datetime.now(timezone).date().isoformat()

@@ -5,16 +5,16 @@ import importlib.util
 
 class CustomPythonPiece(BasePiece):
 
-    def piece_function(self, input_model: InputModel):
+    def piece_function(self, input_data: InputModel):
         # Log inputs
-        self.logger.info(input_model.input_args)
-        self.logger.info(input_model.output_args)
-        self.logger.info(input_model.script)
+        self.logger.info(input_data.input_args)
+        self.logger.info(input_data.output_args)
+        self.logger.info(input_data.script)
 
         # Save the script as a local Python file
         script_file = "custom_script.py"
         with open(script_file, "w") as file:
-            file.write(input_model.script)
+            file.write(input_data.script)
 
         # Import the custom function from the script file
         spec = importlib.util.spec_from_file_location("custom_script", script_file)
@@ -22,7 +22,7 @@ class CustomPythonPiece(BasePiece):
         spec.loader.exec_module(module)
 
         # Call the imported function with the input variables list
-        output_args = getattr(module, "custom_function")(input_model.input_args)
+        output_args = getattr(module, "custom_function")(input_data.input_args)
 
         # Log output
         self.logger.info(output_args)
