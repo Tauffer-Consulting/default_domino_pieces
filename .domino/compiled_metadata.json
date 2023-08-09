@@ -1,4 +1,140 @@
 {
+    "CustomPythonPiece": {
+        "name": "CustomPythonPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "python",
+            "default"
+        ],
+        "style": {
+            "node_label": "Custom Python Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fab fa-python",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Run your custom Python code.",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "CustomPythonPiece Input Model",
+            "type": "object",
+            "properties": {
+                "input_args": {
+                    "title": "Input Args",
+                    "description": "Input arguments.",
+                    "default": [
+                        {
+                            "input_arg": ""
+                        }
+                    ],
+                    "from_upstream": "never",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InputArgsModel"
+                    }
+                },
+                "script": {
+                    "title": "Script",
+                    "description": "Python script.",
+                    "default": "# Do not modify the function definition line \ndef custom_function(input_args: list):\n    # Write your code here\n    print(input_args)\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"out_arg_1\": \"this is a string\", \n        \"out_arg_2\": 420\n    }\n",
+                    "widget": "codeeditor",
+                    "from_upstream": "never",
+                    "type": "string"
+                },
+                "output_args": {
+                    "title": "Output Args",
+                    "description": "Output arguments.",
+                    "default": [
+                        {
+                            "name": "output_arg_1",
+                            "description": "An example string output",
+                            "type": "string"
+                        },
+                        {
+                            "name": "output_arg_2",
+                            "description": "An example integer output",
+                            "type": "integer"
+                        }
+                    ],
+                    "from_upstream": "never",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OutputModifierModel"
+                    }
+                }
+            },
+            "definitions": {
+                "InputArgsModel": {
+                    "title": "InputArgsModel",
+                    "type": "object",
+                    "properties": {
+                        "input_arg": {
+                            "title": "Input Arg",
+                            "description": "Input argument.",
+                            "from_upstream": "always",
+                            "type": "string"
+                        }
+                    }
+                },
+                "OutputModifierItemType": {
+                    "title": "OutputModifierItemType",
+                    "description": "OutputArgsType Enum",
+                    "enum": [
+                        "string",
+                        "integer",
+                        "float",
+                        "boolean",
+                        "array"
+                    ],
+                    "type": "string"
+                },
+                "OutputModifierModel": {
+                    "title": "OutputModifierModel",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "description": "Name of the output argument.",
+                            "from_upstream": "never",
+                            "type": "string"
+                        },
+                        "description": {
+                            "title": "Description",
+                            "description": "Description of the output argument.",
+                            "from_upstream": "never",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Type of the output argument.",
+                            "default": "string",
+                            "from_upstream": "never",
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/OutputModifierItemType"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "CustomPythonPiece Output Model",
+            "type": "object",
+            "properties": {}
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
+    },
     "SimpleLogPiece": {
         "name": "SimpleLogPiece",
         "dependency": {
@@ -70,14 +206,14 @@
                 "input_time": {
                     "title": "Input Time",
                     "description": "Input time to be logged.",
-                    "default": "16:20",
+                    "default": "16:20:00",
                     "type": "string",
                     "format": "time"
                 },
                 "input_datetime": {
                     "title": "Input Datetime",
                     "description": "Input datetime to be logged.",
-                    "default": "2023-01-01T16:20",
+                    "default": "2023-01-01T16:20:00",
                     "type": "string",
                     "format": "date-time"
                 },
@@ -305,134 +441,6 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
-    },
-    "CustomPythonPiece": {
-        "name": "CustomPythonPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "python",
-            "default"
-        ],
-        "style": {
-            "node_label": "Custom Python Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#b3cde8"
-            },
-            "useIcon": true,
-            "icon_class_name": "fab fa-python",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Run your custom Python code.",
-        "input_schema": {
-            "title": "InputModel",
-            "description": "CustomPythonPiece Input Model",
-            "type": "object",
-            "properties": {
-                "input_args": {
-                    "title": "Input Args",
-                    "description": "Input arguments.",
-                    "default": [
-                        {
-                            "input_arg": ""
-                        }
-                    ],
-                    "from_upstream": "never",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/InputArgsModel"
-                    }
-                },
-                "script": {
-                    "title": "Script",
-                    "description": "Python script.",
-                    "default": "# Do not modify the function definition line \ndef custom_function(input_args: list):\n    # Write your code here\n    print(input_args)\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"out_arg_1\": \"this is a string\", \n        \"out_arg_2\": 420\n    }\n",
-                    "widget": "codeeditor",
-                    "from_upstream": "never",
-                    "type": "string"
-                },
-                "output_args": {
-                    "title": "Output Args",
-                    "description": "Output arguments.",
-                    "default": [
-                        {
-                            "name": "output_arg_1",
-                            "type": "string"
-                        },
-                        {
-                            "name": "output_arg_2",
-                            "type": "integer"
-                        }
-                    ],
-                    "from_upstream": "never",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/OutputArgsModel"
-                    }
-                }
-            },
-            "definitions": {
-                "InputArgsModel": {
-                    "title": "InputArgsModel",
-                    "type": "object",
-                    "properties": {
-                        "input_arg": {
-                            "title": "Input Arg",
-                            "description": "Input argument.",
-                            "from_upstream": "always",
-                            "type": "string"
-                        }
-                    }
-                },
-                "OutputArgsType": {
-                    "title": "OutputArgsType",
-                    "description": "OutputArgsType Enum",
-                    "enum": [
-                        "string",
-                        "integer",
-                        "float",
-                        "boolean",
-                        "array"
-                    ],
-                    "type": "string"
-                },
-                "OutputArgsModel": {
-                    "title": "OutputArgsModel",
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "title": "Name",
-                            "description": "Name of the output argument.",
-                            "from_upstream": "never",
-                            "type": "string"
-                        },
-                        "type": {
-                            "description": "Type of the output argument.",
-                            "default": "string",
-                            "from_upstream": "never",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputArgsType"
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "CustomPythonPiece Output Model",
-            "type": "object",
-            "properties": {}
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
     },
     "SleepPiece": {
         "name": "SleepPiece",
