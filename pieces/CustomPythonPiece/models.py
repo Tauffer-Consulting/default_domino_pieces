@@ -3,10 +3,15 @@ from domino.models import OutputModifierModel, OutputModifierItemType
 from typing import List
 
 
-class InputArgsModel(BaseModel):
-    input_arg: str = Field(
+class InputKwargsModel(BaseModel):
+    kwarg_name: str = Field(
         default=None,
-        description='Input argument.',
+        description='Argument name.',
+        from_upstream="never"
+    )
+    kwarg_value: str = Field(
+        default=None,
+        description='Argument value.',
         from_upstream="always"
     )
 
@@ -15,22 +20,26 @@ class InputModel(BaseModel):
     """
     CustomPythonPiece Input Model
     """
-    input_args: List[InputArgsModel] = Field(
-        default=[InputArgsModel(input_arg="")],
+    input_args: List[InputKwargsModel] = Field(
+        default=[
+            InputKwargsModel(kwarg_value="", kwarg_name="kwarg_2"),
+            InputKwargsModel(kwarg_value="", kwarg_name="kwarg_1"),
+        ],
         description='Input arguments.',
         from_upstream="never"
     )
     script: str = Field(
         default="""# Do not modify the function definition line 
-def custom_function(input_args: list):
+def custom_function(kwarg_1, kwarg_2):
     # Write your code here
-    print(input_args)
+    print(f"First argument: {kwarg_1}")
+    print(f"Second argument: {kwarg_2}")
 
     # Return the output of the function as an object,
     # Matching the Output Args defined in the Form below
     return {
-        "out_arg_1": "this is a string", 
-        "out_arg_2": 420
+        "output_1": "this is a string", 
+        "output_2": 420
     }
 """,
         description='Python script.',
@@ -39,8 +48,8 @@ def custom_function(input_args: list):
     )
     output_args: List[OutputModifierModel] = Field(
         default=[
-            OutputModifierModel(name="output_arg_1", type=OutputModifierItemType.string, description="An example string output"),
-            OutputModifierModel(name="output_arg_2", type=OutputModifierItemType.integer, description="An example integer output"),
+            OutputModifierModel(name="output_1", type=OutputModifierItemType.string, description="An example string output"),
+            OutputModifierModel(name="output_2", type=OutputModifierItemType.integer, description="An example integer output"),
         ],
         description='Output arguments.',
         from_upstream="never"

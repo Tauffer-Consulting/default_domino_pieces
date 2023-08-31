@@ -22,7 +22,8 @@ class CustomPythonPiece(BasePiece):
         spec.loader.exec_module(module)
 
         # Call the imported function with the input variables list
-        output_args = getattr(module, "custom_function")(input_data.input_args)
+        input_kwargs = {arg.kwarg_name: arg.kwarg_value for arg in input_data.input_args}
+        output_args = getattr(module, "custom_function")(**input_kwargs)
 
         # Log output
         self.logger.info(output_args)
