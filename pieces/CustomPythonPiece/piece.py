@@ -7,9 +7,11 @@ class CustomPythonPiece(BasePiece):
 
     def piece_function(self, input_data: InputModel):
         # Log inputs
-        self.logger.info(input_data.input_args)
-        self.logger.info(input_data.output_args)
-        self.logger.info(input_data.script)
+        self.logger.info(f"""
+Input model:\n{input_data.input_args}\n
+Output model:\n{input_data.output_args}\n
+Script:\n{input_data.script}\n
+""")
 
         # Save the script as a local Python file
         script_file = "custom_script.py"

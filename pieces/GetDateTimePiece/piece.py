@@ -24,7 +24,7 @@ class GetDateTimePiece(BasePiece):
         self.logger.info(f"Date: {date}\nTime: {time}\nDatetime: {datetime_}")
 
         # Set display result
-        raw_content = f"Date: {date}\Time: {time}\nDatetime: {datetime_}"
+        raw_content = f"Date: {date}\nTime: {time}\nDatetime: {datetime_}"
         base64_content = base64.b64encode(raw_content.encode("utf-8")).decode("utf-8")
         self.display_result = {
             "file_type": "txt",
