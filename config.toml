@@ -9,4 +9,4 @@ REPOSITORY_LABEL = "Default Pieces Repository"
 
 # The version of this Pieces release
 # Attention: changing this will create a new release
-VERSION = "0.3.12" 
+VERSION = "0.3.13"
