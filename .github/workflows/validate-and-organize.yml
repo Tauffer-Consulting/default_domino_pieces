@@ -50,7 +50,7 @@ jobs:
 
       - name: Run tests over built images
         run: |
-          pytest
+          pytest -s
       
       - name: Publish images
         env:
