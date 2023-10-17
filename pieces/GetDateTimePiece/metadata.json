@@ -13,6 +13,6 @@
         "node_style": {
             "backgroundColor": "#b3cde8"
         },
-        "icon_class_name": "far fa-calendar"
+        "icon_class_name": "fa:calendar-o"
     }
 }
