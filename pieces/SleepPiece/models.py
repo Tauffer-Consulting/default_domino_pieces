@@ -8,6 +8,7 @@ class InputModel(BaseModel):
 
     sleep_time: float = Field(
         default=1,
+        required=True,
         description="Number of seconds to sleep"
     )
 
