@@ -178,6 +178,7 @@
                     "title": "Sleep Time",
                     "description": "Number of seconds to sleep",
                     "default": 1,
+                    "required": true,
                     "type": "number"
                 }
             }
