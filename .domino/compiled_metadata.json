@@ -230,29 +230,34 @@
                     "title": "Input Str",
                     "description": "Input string to be logged.",
                     "default": "default value",
+                    "required": true,
                     "type": "string"
                 },
                 "input_int": {
                     "title": "Input Int",
                     "description": "Input integer to be logged.",
                     "default": 10,
+                    "required": true,
                     "type": "integer"
                 },
                 "input_float": {
                     "title": "Input Float",
                     "description": "Input float to be logged.",
                     "default": 10.5,
+                    "required": true,
                     "type": "number"
                 },
                 "input_bool": {
                     "title": "Input Bool",
                     "description": "Input boolean to be logged.",
                     "default": false,
+                    "required": true,
                     "type": "boolean"
                 },
                 "input_enum": {
                     "description": "Input enum to be logged.",
                     "default": "option1",
+                    "required": true,
                     "allOf": [
                         {
                             "$ref": "#/definitions/InputEnum"
@@ -263,6 +268,7 @@
                     "title": "Input Date",
                     "description": "Input date to be logged.",
                     "default": "2023-01-01",
+                    "required": true,
                     "type": "string",
                     "format": "date"
                 },
@@ -270,6 +276,7 @@
                     "title": "Input Time",
                     "description": "Input time to be logged.",
                     "default": "16:20:00",
+                    "required": true,
                     "type": "string",
                     "format": "time"
                 },
@@ -277,6 +284,7 @@
                     "title": "Input Datetime",
                     "description": "Input datetime to be logged.",
                     "default": "2023-01-01T16:20:00",
+                    "required": true,
                     "type": "string",
                     "format": "date-time"
                 },
@@ -288,6 +296,7 @@
                         "default_2",
                         "default_3"
                     ],
+                    "required": true,
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -297,6 +306,7 @@
                     "title": "Input Code",
                     "description": "Input code to be logged.",
                     "default": "print('Hello world!')",
+                    "required": true,
                     "widget": "codeeditor",
                     "type": "string"
                 }
