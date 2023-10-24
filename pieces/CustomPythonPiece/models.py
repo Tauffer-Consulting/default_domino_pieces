@@ -20,13 +20,14 @@ class InputModel(BaseModel):
     """
     CustomPythonPiece Input Model
     """
+    
     input_args: List[InputKwargsModel] = Field(
         default=[
             InputKwargsModel(kwarg_value="", kwarg_name="kwarg_2"),
             InputKwargsModel(kwarg_value="", kwarg_name="kwarg_1"),
         ],
         description='Input arguments.',
-        from_upstream="never"
+        from_upstream="never",
     )
     script: str = Field(
         default="""# Do not modify the function definition line 
@@ -62,3 +63,8 @@ class OutputModel(BaseModel, extra=Extra.allow):
     """
     # ref: https://stackoverflow.com/a/75381426/11483674
     pass
+
+
+if __name__ == '__main__':
+    model = InputModel.schema_json()
+    print(model)
