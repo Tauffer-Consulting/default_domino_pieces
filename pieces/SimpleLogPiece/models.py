@@ -9,59 +9,48 @@ class InputEnum(str, Enum):
     option2 = "option2"
     option3 = "option3"
 
-
 class InputModel(BaseModel):
     """
     SimpleLogPiece Input Model
     """
     input_str: str = Field(
         default="default value",
-        required=True,
         description='Input string to be logged.'
     )
     input_int: int = Field(
         default=10,
-        required=True,
         description='Input integer to be logged.'
     )
     input_float: float = Field(
         default=10.5,
-        required=True,
         description='Input float to be logged.'
     )
     input_bool: bool = Field(
         default=False,
-        required=True,
         description='Input boolean to be logged.'
     )
     input_enum: InputEnum = Field(
         default=InputEnum.option1,
-        required=True,
         description='Input enum to be logged.'
     )
     input_date: date = Field(
         default="2023-01-01",
-        required=True,
         description='Input date to be logged.'
     )
     input_time: time = Field(
         default="16:20:00",
-        required=True,
         description='Input time to be logged.',
     )
     input_datetime: datetime = Field(
         default="2023-01-01T16:20:00",
-        required=True,
         description='Input datetime to be logged.'
     )
     input_array: List[str] = Field(
         default=["default_1", "default_2", "default_3"],
-        required=True,
         description='Input array to be logged.'
     )
     input_code: str = Field(
         default="print('Hello world!')",
-        required=True,
         description='Input code to be logged.',
         widget="codeeditor"
     )
@@ -108,3 +97,4 @@ class OutputModel(BaseModel):
         description='Input code to be logged.',
         widget="codeeditor"
     )
+
