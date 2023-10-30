@@ -11,7 +11,7 @@ class GetDateTimePiece(BasePiece):
         
         if input_data.use_timezone:
             timezone = input_data.timezone
-            timezone = timezone.split(' - ')[0].replace('(', '').replace(')', '').strip()
+            timezone = timezone.split(' - ')[1].strip()
             timezone = pytz.timezone(timezone)
             date = datetime.now(timezone).date().isoformat()
             time = datetime.now(timezone).time().isoformat()

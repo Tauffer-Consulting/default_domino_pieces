@@ -4,7 +4,8 @@ from datetime import datetime
 
 def test_get_datetime_piece():
     input_data = dict(
-        use_timezone=False
+        use_timezone=True,
+        timezone='(UTC-03) - Canada/Atlantic'
     )
 
     piece_output = piece_dry_run(
@@ -18,3 +19,8 @@ def test_get_datetime_piece():
     assert 'datetime' in piece_output
 
     assert piece_output['date'] == datetime.now().date().isoformat()
+    dt = datetime.fromisoformat(piece_output['datetime'])
+    timezone = dt.tzinfo
+    assert str(timezone) == 'UTC-03:00'
+
+    
