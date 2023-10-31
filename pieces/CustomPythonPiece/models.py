@@ -1,6 +1,6 @@
-from pydantic import BaseModel, Field, Extra, Union
+from pydantic import BaseModel, Field, Extra
 from domino.models import OutputModifierModel, OutputModifierItemType
-from typing import List
+from typing import List, Union
 
 
 class InputKwargsModel(BaseModel):
