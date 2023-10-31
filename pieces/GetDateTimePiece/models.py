@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from enum import Enum
+from datetime import date as dt_date, datetime as dt_datetime, time as dt_time
 
 
 class TZOptions(str, Enum):
@@ -49,12 +50,12 @@ class OutputModel(BaseModel):
     """
     GetDateTimePiece Output Model
     """
-    date: str = Field(
+    date: dt_date = Field(
         description='Date of the timestamp, in ISO format.'
     )
-    time: str = Field(
+    time: dt_time = Field(
         description='Time of the timestamp, in ISO format.'
     )
-    datetime: str = Field(
+    datetime: dt_datetime = Field(
         description='Datetime of the timestamp, in ISO format.'
     )

@@ -13,13 +13,13 @@ class GetDateTimePiece(BasePiece):
             timezone = input_data.timezone
             timezone = timezone.split(' - ')[1].strip()
             timezone = pytz.timezone(timezone)
-            date = datetime.now(timezone).date().isoformat()
-            time = datetime.now(timezone).time().isoformat()
-            datetime_ = datetime.now(timezone).isoformat()
+            date = datetime.now(timezone).date()#.isoformat()
+            time = datetime.now(timezone).time()#.isoformat()
+            datetime_ = datetime.now(timezone)#.isoformat()
         else:
-            date = datetime.now().date().isoformat()
-            time = datetime.now().time().isoformat()
-            datetime_ = datetime.now().isoformat()
+            date = datetime.now().date()#.isoformat()
+            time = datetime.now().time()#.isoformat()
+            datetime_ = datetime.now()#.isoformat()
 
         self.logger.info(f"Date: {date}\nTime: {time}\nDatetime: {datetime_}")
 
