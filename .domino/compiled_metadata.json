@@ -87,17 +87,20 @@
                 "date": {
                     "title": "Date",
                     "description": "Date of the timestamp, in ISO format.",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 },
                 "time": {
                     "title": "Time",
                     "description": "Time of the timestamp, in ISO format.",
-                    "type": "string"
+                    "type": "string",
+                    "format": "time"
                 },
                 "datetime": {
                     "title": "Datetime",
                     "description": "Datetime of the timestamp, in ISO format.",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time"
                 }
             },
             "required": [
@@ -255,6 +258,59 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
+    },
+    "SleepPiece": {
+        "name": "SleepPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "Sleep",
+            "Default"
+        ],
+        "style": {
+            "node_label": "Sleep Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid:hourglass-start",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that executes a Python sleep function for a user-defined duration",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "Sleep Piece Input Model",
+            "type": "object",
+            "properties": {
+                "sleep_time": {
+                    "title": "Sleep Time",
+                    "description": "Number of seconds to sleep",
+                    "default": 1,
+                    "required": true,
+                    "type": "number"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "Sleep Piece Output Model",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "Sleep piece executed",
+                    "default": "",
+                    "type": "string"
+                }
+            }
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
     },
     "SimpleLogPiece": {
         "name": "SimpleLogPiece",
@@ -452,58 +508,5 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
-    },
-    "SleepPiece": {
-        "name": "SleepPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "Sleep",
-            "Default"
-        ],
-        "style": {
-            "node_label": "Sleep Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#b3cde8"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-solid:hourglass-start",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that executes a Python sleep function for a user-defined duration",
-        "input_schema": {
-            "title": "InputModel",
-            "description": "Sleep Piece Input Model",
-            "type": "object",
-            "properties": {
-                "sleep_time": {
-                    "title": "Sleep Time",
-                    "description": "Number of seconds to sleep",
-                    "default": 1,
-                    "required": true,
-                    "type": "number"
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "Sleep Piece Output Model",
-            "type": "object",
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "description": "Sleep piece executed",
-                    "default": "",
-                    "type": "string"
-                }
-            }
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
     }
 }
