@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, Extra
+from pydantic import BaseModel, Field, Extra, Union
 from domino.models import OutputModifierModel, OutputModifierItemType
 from typing import List
 
@@ -9,7 +9,7 @@ class InputKwargsModel(BaseModel):
         description='Argument name.',
         from_upstream="never"
     )
-    kwarg_value: str = Field(
+    kwarg_value: Union[str, list, int, float, bool, dict] = Field(
         default=None,
         description='Argument value.',
         from_upstream="always"
