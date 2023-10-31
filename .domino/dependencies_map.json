@@ -7,10 +7,10 @@
         "pieces": [
             "GetDateTimePiece",
             "CustomPythonPiece",
-            "SleepPiece",
-            "SimpleLogPiece"
+            "SimpleLogPiece",
+            "SleepPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.4.4-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.4.5-group0"
     }
 }
