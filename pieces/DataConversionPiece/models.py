@@ -10,9 +10,6 @@ class DataFormatOption(str, Enum):
 
 
 class InputModel(BaseModel):
-    """
-    GetDateTimePiece Input Model
-    """
     input_data: str = Field(
         description='Input data to be converted. Can be a file path or data as string.'
 
@@ -29,9 +26,6 @@ class InputModel(BaseModel):
 
 
 class OutputModel(BaseModel):
-    """
-    GetDateTimePiece Output Model
-    """
     output_file_path: str = Field(
         description='Path to the converted file.'
     )
