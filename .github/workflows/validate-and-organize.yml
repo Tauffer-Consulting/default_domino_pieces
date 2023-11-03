@@ -42,7 +42,7 @@ jobs:
           domino piece organize --build-images --source-url=https://github.com/${{github.repository}}
 
       - name: Install Tests Dependencies
-        run: pip install pytest
+        run: pip install -r requirements-tests.txt
 
       - name: Run tests over built images
         run: |
