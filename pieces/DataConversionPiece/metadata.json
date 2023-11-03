@@ -1,0 +1,19 @@
+{
+    "name": "DataConversionPiece",
+    "description": "Convert data from one format to another",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "data",
+        "conversion",
+        "default"
+    ],
+    "style": {
+        "node_label": "Data Conversion Piece",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "icon-park-outline:file-conversion"
+    }
+}
