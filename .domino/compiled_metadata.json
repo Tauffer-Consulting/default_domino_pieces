@@ -1,4 +1,87 @@
 {
+    "DataConversionPiece": {
+        "name": "DataConversionPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "data",
+            "conversion",
+            "default"
+        ],
+        "style": {
+            "node_label": "Data Conversion Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "icon-park-outline:file-conversion",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Convert data from one format to another",
+        "input_schema": {
+            "$defs": {
+                "DataFormatOption": {
+                    "enum": [
+                        "csv",
+                        "json"
+                    ],
+                    "title": "DataFormatOption",
+                    "type": "string"
+                }
+            },
+            "properties": {
+                "input_data": {
+                    "description": "Input data to be converted. Can be a file path or data as string.",
+                    "title": "Input Data",
+                    "type": "string"
+                },
+                "input_data_format": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/DataFormatOption"
+                        }
+                    ],
+                    "default": "csv",
+                    "description": "Input data format to be converted."
+                },
+                "output_data_format": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/DataFormatOption"
+                        }
+                    ],
+                    "default": "json",
+                    "description": "Output data format."
+                }
+            },
+            "required": [
+                "input_data"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "output_file_path": {
+                    "description": "Path to the converted file.",
+                    "title": "Output File Path",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_file_path"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/DataConversionPiece"
+    },
     "GetDateTimePiece": {
         "name": "GetDateTimePiece",
         "dependency": {
@@ -23,30 +106,8 @@
         },
         "description": "A Piece that gets current system date and time.",
         "input_schema": {
-            "title": "InputModel",
-            "description": "GetDateTimePiece Input Model",
-            "type": "object",
-            "properties": {
-                "use_timezone": {
-                    "title": "Use Timezone",
-                    "description": "Whether to use a timezone for the timestamp.",
-                    "default": false,
-                    "type": "boolean"
-                },
-                "timezone": {
-                    "description": "Timezone to use for timestamp.",
-                    "default": "(UTC+00) - UTC",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/TZOptions"
-                        }
-                    ]
-                }
-            },
-            "definitions": {
+            "$defs": {
                 "TZOptions": {
-                    "title": "TZOptions",
-                    "description": "An enumeration.",
                     "enum": [
                         "(UTC-11) - Pacific/Pago_Pago",
                         "(UTC-10) - US/Hawaii",
@@ -75,39 +136,60 @@
                         "(UTC+13) - Pacific/Tongatapu",
                         "(UTC+14) - Pacific/Kiritimati"
                     ],
+                    "title": "TZOptions",
                     "type": "string"
                 }
-            }
+            },
+            "description": "GetDateTimePiece Input Model",
+            "properties": {
+                "use_timezone": {
+                    "default": false,
+                    "description": "Whether to use a timezone for the timestamp.",
+                    "title": "Use Timezone",
+                    "type": "boolean"
+                },
+                "timezone": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TZOptions"
+                        }
+                    ],
+                    "default": "(UTC+00) - UTC",
+                    "description": "Timezone to use for timestamp."
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
         },
         "output_schema": {
-            "title": "OutputModel",
             "description": "GetDateTimePiece Output Model",
-            "type": "object",
             "properties": {
                 "date": {
-                    "title": "Date",
                     "description": "Date of the timestamp, in ISO format.",
-                    "type": "string",
-                    "format": "date"
+                    "format": "date",
+                    "title": "Date",
+                    "type": "string"
                 },
                 "time": {
-                    "title": "Time",
                     "description": "Time of the timestamp, in ISO format.",
-                    "type": "string",
-                    "format": "time"
+                    "format": "time",
+                    "title": "Time",
+                    "type": "string"
                 },
                 "datetime": {
-                    "title": "Datetime",
                     "description": "Datetime of the timestamp, in ISO format.",
-                    "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "title": "Datetime",
+                    "type": "string"
                 }
             },
             "required": [
                 "date",
                 "time",
                 "datetime"
-            ]
+            ],
+            "title": "OutputModel",
+            "type": "object"
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
@@ -136,81 +218,24 @@
         },
         "description": "Run your custom Python code.",
         "input_schema": {
-            "title": "InputModel",
-            "description": "CustomPythonPiece Input Model",
-            "type": "object",
-            "properties": {
-                "input_args": {
-                    "title": "Input Args",
-                    "description": "Input arguments.",
-                    "default": [
-                        {
-                            "kwarg_name": "kwarg_2",
-                            "kwarg_value": ""
-                        },
-                        {
-                            "kwarg_name": "kwarg_1",
-                            "kwarg_value": ""
-                        }
-                    ],
-                    "from_upstream": "never",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/InputKwargsModel"
-                    }
-                },
-                "script": {
-                    "title": "Script",
-                    "description": "Python script.",
-                    "default": "# Do not modify the function definition line \ndef custom_function(kwarg_1, kwarg_2):\n    # Write your code here\n    print(f\"First argument: {kwarg_1}\")\n    print(f\"Second argument: {kwarg_2}\")\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"output_1\": \"this is a string\", \n        \"output_2\": 420\n    }\n",
-                    "widget": "codeeditor",
-                    "from_upstream": "never",
-                    "type": "string"
-                },
-                "output_args": {
-                    "title": "Output Args",
-                    "description": "Output arguments.",
-                    "default": [
-                        {
-                            "name": "output_1",
-                            "description": "An example string output",
-                            "type": "string"
-                        },
-                        {
-                            "name": "output_2",
-                            "description": "An example integer output",
-                            "type": "integer"
-                        }
-                    ],
-                    "from_upstream": "never",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/OutputModifierModel"
-                    }
-                }
-            },
-            "definitions": {
+            "$defs": {
                 "InputKwargsModel": {
-                    "title": "InputKwargsModel",
-                    "type": "object",
                     "properties": {
                         "kwarg_name": {
-                            "title": "Kwarg Name",
+                            "default": null,
                             "description": "Argument name.",
                             "from_upstream": "never",
+                            "title": "Kwarg Name",
                             "type": "string"
                         },
                         "kwarg_value": {
-                            "title": "Kwarg Value",
-                            "description": "Argument value.",
-                            "from_upstream": "always",
                             "anyOf": [
                                 {
                                     "type": "string"
                                 },
                                 {
-                                    "type": "array",
-                                    "items": {}
+                                    "items": {},
+                                    "type": "array"
                                 },
                                 {
                                     "type": "integer"
@@ -224,12 +249,17 @@
                                 {
                                     "type": "object"
                                 }
-                            ]
+                            ],
+                            "default": null,
+                            "description": "Argument value.",
+                            "from_upstream": "always",
+                            "title": "Kwarg Value"
                         }
-                    }
+                    },
+                    "title": "InputKwargsModel",
+                    "type": "object"
                 },
                 "OutputModifierItemType": {
-                    "title": "OutputModifierItemType",
                     "description": "OutputArgsType Enum",
                     "enum": [
                         "string",
@@ -238,243 +268,102 @@
                         "boolean",
                         "array"
                     ],
+                    "title": "OutputModifierItemType",
                     "type": "string"
                 },
                 "OutputModifierModel": {
-                    "title": "OutputModifierModel",
-                    "type": "object",
                     "properties": {
                         "name": {
-                            "title": "Name",
+                            "default": null,
                             "description": "Name of the output argument.",
                             "from_upstream": "never",
+                            "title": "Name",
                             "type": "string"
                         },
                         "description": {
-                            "title": "Description",
+                            "default": null,
                             "description": "Description of the output argument.",
                             "from_upstream": "never",
+                            "title": "Description",
                             "type": "string"
                         },
                         "type": {
-                            "description": "Type of the output argument.",
-                            "default": "string",
-                            "from_upstream": "never",
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/OutputModifierItemType"
+                                    "$ref": "#/$defs/OutputModifierItemType"
                                 }
-                            ]
+                            ],
+                            "default": "string",
+                            "description": "Type of the output argument.",
+                            "from_upstream": "never"
                         }
-                    }
+                    },
+                    "title": "OutputModifierModel",
+                    "type": "object"
                 }
-            }
+            },
+            "description": "CustomPythonPiece Input Model",
+            "properties": {
+                "input_args": {
+                    "default": [
+                        {
+                            "kwarg_name": "kwarg_2",
+                            "kwarg_value": ""
+                        },
+                        {
+                            "kwarg_name": "kwarg_1",
+                            "kwarg_value": ""
+                        }
+                    ],
+                    "description": "Input arguments.",
+                    "from_upstream": "never",
+                    "items": {
+                        "$ref": "#/$defs/InputKwargsModel"
+                    },
+                    "title": "Input Args",
+                    "type": "array"
+                },
+                "script": {
+                    "default": "# Do not modify the function definition line \ndef custom_function(kwarg_1, kwarg_2):\n    # Write your code here\n    print(f\"First argument: {kwarg_1}\")\n    print(f\"Second argument: {kwarg_2}\")\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"output_1\": \"this is a string\", \n        \"output_2\": 420\n    }\n",
+                    "description": "Python script.",
+                    "from_upstream": "never",
+                    "title": "Script",
+                    "type": "string"
+                },
+                "output_args": {
+                    "default": [
+                        {
+                            "description": "An example string output",
+                            "name": "output_1",
+                            "type": "string"
+                        },
+                        {
+                            "description": "An example integer output",
+                            "name": "output_2",
+                            "type": "integer"
+                        }
+                    ],
+                    "description": "Output arguments.",
+                    "from_upstream": "never",
+                    "items": {
+                        "$ref": "#/$defs/OutputModifierModel"
+                    },
+                    "title": "Output Args",
+                    "type": "array"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
         },
         "output_schema": {
-            "title": "OutputModel",
+            "additionalProperties": true,
             "description": "CustomPythonPiece Output Model",
-            "type": "object",
-            "properties": {}
+            "properties": {},
+            "title": "OutputModel",
+            "type": "object"
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
-    },
-    "SimpleLogPiece": {
-        "name": "SimpleLogPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "log",
-            "default"
-        ],
-        "style": {
-            "node_label": "Simple Log Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#b3cde8"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-solid:file-alt",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that simply logs its input",
-        "input_schema": {
-            "title": "InputModel",
-            "description": "SimpleLogPiece Input Model",
-            "type": "object",
-            "properties": {
-                "input_str": {
-                    "title": "Input Str",
-                    "description": "Input string to be logged.",
-                    "default": "default value",
-                    "type": "string"
-                },
-                "input_int": {
-                    "title": "Input Int",
-                    "description": "Input integer to be logged.",
-                    "default": 10,
-                    "type": "integer"
-                },
-                "input_float": {
-                    "title": "Input Float",
-                    "description": "Input float to be logged.",
-                    "default": 10.5,
-                    "type": "number"
-                },
-                "input_bool": {
-                    "title": "Input Bool",
-                    "description": "Input boolean to be logged.",
-                    "default": false,
-                    "type": "boolean"
-                },
-                "input_enum": {
-                    "description": "Input enum to be logged.",
-                    "default": "option1",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/InputEnum"
-                        }
-                    ]
-                },
-                "input_date": {
-                    "title": "Input Date",
-                    "description": "Input date to be logged.",
-                    "default": "2023-01-01",
-                    "type": "string",
-                    "format": "date"
-                },
-                "input_time": {
-                    "title": "Input Time",
-                    "description": "Input time to be logged.",
-                    "default": "16:20:00",
-                    "type": "string",
-                    "format": "time"
-                },
-                "input_datetime": {
-                    "title": "Input Datetime",
-                    "description": "Input datetime to be logged.",
-                    "default": "2023-01-01T16:20:00",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "input_array": {
-                    "title": "Input Array",
-                    "description": "Input array to be logged.",
-                    "default": [
-                        "default_1",
-                        "default_2",
-                        "default_3"
-                    ],
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "input_code": {
-                    "title": "Input Code",
-                    "description": "Input code to be logged.",
-                    "default": "print('Hello world!')",
-                    "widget": "codeeditor",
-                    "type": "string"
-                }
-            },
-            "definitions": {
-                "InputEnum": {
-                    "title": "InputEnum",
-                    "description": "An enumeration.",
-                    "enum": [
-                        "option1",
-                        "option2",
-                        "option3"
-                    ],
-                    "type": "string"
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "SimpleLogPiece Output Model",
-            "type": "object",
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "description": "Output message to log.",
-                    "default": "",
-                    "type": "string"
-                },
-                "output_msg": {
-                    "title": "Output Msg",
-                    "description": "Value that was logged.",
-                    "type": "string"
-                },
-                "output_str": {
-                    "title": "Output Str",
-                    "description": "Output string to be logged.",
-                    "type": "string"
-                },
-                "output_int": {
-                    "title": "Output Int",
-                    "description": "Output integer to be logged.",
-                    "type": "integer"
-                },
-                "output_float": {
-                    "title": "Output Float",
-                    "description": "Output float to be logged.",
-                    "type": "number"
-                },
-                "output_bool": {
-                    "title": "Output Bool",
-                    "description": "Output boolean to be logged.",
-                    "type": "boolean"
-                },
-                "output_date": {
-                    "title": "Output Date",
-                    "description": "Output date to be logged.",
-                    "type": "string",
-                    "format": "date"
-                },
-                "output_time": {
-                    "title": "Output Time",
-                    "description": "Output time to be logged.",
-                    "type": "string",
-                    "format": "time"
-                },
-                "output_datetime": {
-                    "title": "Output Datetime",
-                    "description": "Output datetime to be logged.",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "output_array": {
-                    "title": "Output Array",
-                    "description": "Output array to be logged.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "output_code": {
-                    "title": "Output Code",
-                    "description": "Input code to be logged.",
-                    "widget": "codeeditor",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "output_msg",
-                "output_date",
-                "output_time",
-                "output_datetime",
-                "output_array",
-                "output_code"
-            ]
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
     },
     "SleepPiece": {
         "name": "SleepPiece",
@@ -500,33 +389,370 @@
         },
         "description": "A Piece that executes a Python sleep function for a user-defined duration",
         "input_schema": {
-            "title": "InputModel",
             "description": "Sleep Piece Input Model",
-            "type": "object",
             "properties": {
                 "sleep_time": {
-                    "title": "Sleep Time",
-                    "description": "Number of seconds to sleep",
                     "default": 1,
+                    "description": "Number of seconds to sleep",
                     "required": true,
+                    "title": "Sleep Time",
                     "type": "number"
                 }
-            }
+            },
+            "title": "InputModel",
+            "type": "object"
         },
         "output_schema": {
-            "title": "OutputModel",
             "description": "Sleep Piece Output Model",
-            "type": "object",
             "properties": {
                 "message": {
-                    "title": "Message",
-                    "description": "Sleep piece executed",
                     "default": "",
+                    "description": "Sleep piece executed",
+                    "title": "Message",
                     "type": "string"
                 }
-            }
+            },
+            "title": "OutputModel",
+            "type": "object"
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
+    },
+    "SaveImagePiece": {
+        "name": "SaveImagePiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "image",
+            "default"
+        ],
+        "style": {
+            "node_label": "Save Image Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "material-symbols:image-outline",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Save base64 as image file to results folder.",
+        "input_schema": {
+            "properties": {
+                "base64_data": {
+                    "description": "Input data to be saved as image.",
+                    "title": "Base64 Data",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "base64_data"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "output_image_path": {
+                    "description": "Output file path of the saved image.",
+                    "title": "Output Image Path",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_image_path"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SaveImagePiece"
+    },
+    "SimpleLogPiece": {
+        "name": "SimpleLogPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "log",
+            "default"
+        ],
+        "style": {
+            "node_label": "Simple Log Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid:file-alt",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that simply logs its input",
+        "input_schema": {
+            "$defs": {
+                "InputEnum": {
+                    "enum": [
+                        "option1",
+                        "option2",
+                        "option3"
+                    ],
+                    "title": "InputEnum",
+                    "type": "string"
+                }
+            },
+            "description": "SimpleLogPiece Input Model",
+            "properties": {
+                "input_str": {
+                    "default": "default value",
+                    "description": "Input string to be logged.",
+                    "title": "Input Str",
+                    "type": "string"
+                },
+                "input_int": {
+                    "default": 10,
+                    "description": "Input integer to be logged.",
+                    "title": "Input Int",
+                    "type": "integer"
+                },
+                "input_float": {
+                    "default": 10.5,
+                    "description": "Input float to be logged.",
+                    "title": "Input Float",
+                    "type": "number"
+                },
+                "input_bool": {
+                    "default": false,
+                    "description": "Input boolean to be logged.",
+                    "title": "Input Bool",
+                    "type": "boolean"
+                },
+                "input_enum": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/InputEnum"
+                        }
+                    ],
+                    "default": "option1",
+                    "description": "Input enum to be logged."
+                },
+                "input_date": {
+                    "default": "2023-01-01",
+                    "description": "Input date to be logged.",
+                    "format": "date",
+                    "title": "Input Date",
+                    "type": "string"
+                },
+                "input_time": {
+                    "default": "16:20:00",
+                    "description": "Input time to be logged.",
+                    "format": "time",
+                    "title": "Input Time",
+                    "type": "string"
+                },
+                "input_datetime": {
+                    "default": "2023-01-01T16:20:00",
+                    "description": "Input datetime to be logged.",
+                    "format": "date-time",
+                    "title": "Input Datetime",
+                    "type": "string"
+                },
+                "input_array": {
+                    "default": [
+                        "default_1",
+                        "default_2",
+                        "default_3"
+                    ],
+                    "description": "Input array to be logged.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Input Array",
+                    "type": "array"
+                },
+                "input_code": {
+                    "default": "print('Hello world!')",
+                    "description": "Input code to be logged.",
+                    "title": "Input Code",
+                    "type": "string",
+                    "widget": "codeeditor"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "SimpleLogPiece Output Model",
+            "properties": {
+                "message": {
+                    "default": "",
+                    "description": "Output message to log.",
+                    "title": "Message",
+                    "type": "string"
+                },
+                "output_msg": {
+                    "description": "Value that was logged.",
+                    "title": "Output Msg",
+                    "type": "string"
+                },
+                "output_str": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output string to be logged.",
+                    "title": "Output Str"
+                },
+                "output_int": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output integer to be logged.",
+                    "title": "Output Int"
+                },
+                "output_float": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output float to be logged.",
+                    "title": "Output Float"
+                },
+                "output_bool": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output boolean to be logged.",
+                    "title": "Output Bool"
+                },
+                "output_date": {
+                    "description": "Output date to be logged.",
+                    "format": "date",
+                    "title": "Output Date",
+                    "type": "string"
+                },
+                "output_time": {
+                    "description": "Output time to be logged.",
+                    "format": "time",
+                    "title": "Output Time",
+                    "type": "string"
+                },
+                "output_datetime": {
+                    "description": "Output datetime to be logged.",
+                    "format": "date-time",
+                    "title": "Output Datetime",
+                    "type": "string"
+                },
+                "output_array": {
+                    "description": "Output array to be logged.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Output Array",
+                    "type": "array"
+                },
+                "output_code": {
+                    "description": "Input code to be logged.",
+                    "title": "Output Code",
+                    "type": "string",
+                    "widget": "codeeditor"
+                }
+            },
+            "required": [
+                "output_msg",
+                "output_str",
+                "output_int",
+                "output_float",
+                "output_bool",
+                "output_date",
+                "output_time",
+                "output_datetime",
+                "output_array",
+                "output_code"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
+    },
+    "ApiFetchPiece": {
+        "name": "ApiFetchPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "data",
+            "api",
+            "default"
+        ],
+        "style": {
+            "node_label": "API Fetch Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "mdi:api",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "This piece fetches data from an API",
+        "input_schema": {
+            "properties": {
+                "api_url": {
+                    "description": "Input data to be converted. Can be a file path or data as string.",
+                    "title": "Api Url",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "api_url"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "base64_bytes_data": {
+                    "description": "Output data as base64 encoded string.",
+                    "title": "Base64 Bytes Data",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "base64_bytes_data"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ApiFetchPiece"
     }
 }
