@@ -52,7 +52,9 @@ class InputModel(BaseModel):
     input_code: str = Field(
         default="print('Hello world!')",
         description='Input code to be logged.',
-        widget="codeeditor"
+        json_schema_extra={
+            'widget': "codeeditor",
+        }
     )
 
 
@@ -95,6 +97,8 @@ class OutputModel(BaseModel):
     )
     output_code: str = Field(
         description='Input code to be logged.',
-        widget="codeeditor"
+        json_schema_extra={
+            'widget': "codeeditor",
+        }
     )
 

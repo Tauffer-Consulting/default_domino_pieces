@@ -50,9 +50,9 @@ def custom_function(kwarg_1, kwarg_2):
     }
 """,
         description='Python script.',
-        widget="codeeditor",
         json_schema_extra={
-            "from_upstream": "never"
+            "from_upstream": "never",
+            'widget': "codeeditor",
         }
     )
     output_args: List[OutputModifierModel] = Field(
