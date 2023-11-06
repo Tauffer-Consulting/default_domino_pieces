@@ -21,6 +21,6 @@ def test_get_datetime_piece():
     assert piece_output['date'] == datetime.now().date().isoformat()
     dt = datetime.fromisoformat(piece_output['datetime'])
     timezone = dt.tzinfo
-    assert str(timezone) == 'UTC-03:00'
+    assert str(timezone) in ['UTC-03:00', 'UTC-04:00'] # Using list because of DST 
 
     
