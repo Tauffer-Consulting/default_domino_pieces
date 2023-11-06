@@ -328,7 +328,8 @@
                     "description": "Python script.",
                     "from_upstream": "never",
                     "title": "Script",
-                    "type": "string"
+                    "type": "string",
+                    "widget": "codeeditor"
                 },
                 "output_args": {
                     "default": [
