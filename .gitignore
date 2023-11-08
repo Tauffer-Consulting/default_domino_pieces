@@ -128,3 +128,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Dry run
+**dry_run_results**
