@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from domino.models import OutputModifierModel, OutputModifierItemType
 from typing import List, Union
+from datetime import date as dt_date, datetime as dt_datetime, time as dt_time
 
 
 class InputKwargsModel(BaseModel):
@@ -11,7 +12,7 @@ class InputKwargsModel(BaseModel):
             "from_upstream": "never"
         }
     )
-    kwarg_value: Union[str, list, int, float, bool, dict] = Field(
+    kwarg_value: Union[str, list, int, float, bool, dict, dt_date, dt_time, dt_datetime] = Field(
         default=None,
         description='Argument value.',
         json_schema_extra={
@@ -24,7 +25,6 @@ class InputModel(BaseModel):
     """
     CustomPythonPiece Input Model
     """
-    
     input_args: List[InputKwargsModel] = Field(
         default=[
             InputKwargsModel(kwarg_value="", kwarg_name="kwarg_2"),
@@ -45,7 +45,7 @@ def custom_function(kwarg_1, kwarg_2):
     # Return the output of the function as an object,
     # Matching the Output Args defined in the Form below
     return {
-        "output_1": "this is a string", 
+        "output_1": "this is a string",
         "output_2": 420
     }
 """,
