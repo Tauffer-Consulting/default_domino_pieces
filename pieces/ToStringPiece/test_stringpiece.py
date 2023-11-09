@@ -10,7 +10,7 @@ def test_stringpiece_int():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str(10) == piece_output.output_value
+    assert str(10) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_float():
@@ -21,7 +21,7 @@ def test_stringpiece_float():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str(10.5) == piece_output.output_value
+    assert str(10.5) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_bool():
@@ -32,7 +32,7 @@ def test_stringpiece_bool():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str(True) == piece_output.output_value
+    assert str(True) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_list():
@@ -43,7 +43,7 @@ def test_stringpiece_list():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str([1, 2, 3]) == piece_output.output_value
+    assert str([1, 2, 3]) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_dict():
@@ -54,7 +54,7 @@ def test_stringpiece_dict():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str({"a": 1, "b": 2}) == piece_output.output_value
+    assert str({"a": 1, "b": 2}) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_datetime():
@@ -66,7 +66,7 @@ def test_stringpiece_datetime():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str(now) == piece_output.output_value
+    assert str(now) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_date():
@@ -78,7 +78,7 @@ def test_stringpiece_date():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str(now) == piece_output.output_value
+    assert str(now) == piece_output.get("output_value", None)
 
 
 def test_stringpiece_time():
@@ -90,4 +90,4 @@ def test_stringpiece_time():
         piece_name="ToStringPiece",
         input_data=input_data
     )
-    assert str(now) == piece_output.output_value
+    assert str(now) == piece_output.get("output_value", None)
