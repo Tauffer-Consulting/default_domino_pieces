@@ -1,7 +1,5 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 from enum import Enum
-from typing import Optional
-
 
 
 class DataFormatOption(str, Enum):
@@ -22,7 +20,6 @@ class InputModel(BaseModel):
         default=DataFormatOption.json,
         description='Output data format.'
     )
-
 
 
 class OutputModel(BaseModel):

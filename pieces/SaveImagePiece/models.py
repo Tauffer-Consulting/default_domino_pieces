@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field
 
 
-
 class InputModel(BaseModel):
     base64_data: str = Field(
         description='Input data to be saved as image.'
