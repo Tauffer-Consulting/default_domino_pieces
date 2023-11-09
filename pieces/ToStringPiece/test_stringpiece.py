@@ -58,7 +58,7 @@ def test_stringpiece_dict():
 
 
 def test_stringpiece_datetime():
-    now = datetime.now()
+    now = datetime.now().isoformat()
     input_data = dict(
         input_value=now,
     )
@@ -70,7 +70,7 @@ def test_stringpiece_datetime():
 
 
 def test_stringpiece_date():
-    now = datetime.now().date()
+    now = datetime.now().date().isoformat()
     input_data = dict(
         input_value=now,
     )
@@ -82,7 +82,7 @@ def test_stringpiece_date():
 
 
 def test_stringpiece_time():
-    now = datetime.now().time()
+    now = datetime.now().time().isoformat()
     input_data = dict(
         input_value=now,
     )

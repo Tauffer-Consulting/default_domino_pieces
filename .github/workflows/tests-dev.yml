@@ -6,7 +6,7 @@ on:
       - dev
 
 jobs:
-  validate-and-organize:
+  run-tests-dev:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
