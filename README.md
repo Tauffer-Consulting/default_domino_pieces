@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/Tauffer-Consulting/default_domino_pieces/graph/badge.svg?token=DLCDR2S3B6)](https://codecov.io/gh/Tauffer-Consulting/default_domino_pieces)
+
 # Default Domino Pieces
 Default Domino Pieces that comes pre-installed:
 
