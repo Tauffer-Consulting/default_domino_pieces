@@ -1,0 +1,17 @@
+{
+    "name": "ToStringPiece",
+    "description": "A Piece that transforms any input to string.",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "Default"
+    ],
+    "style": {
+        "node_label": "To String Piece",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "solar:text-bold"
+    }
+}

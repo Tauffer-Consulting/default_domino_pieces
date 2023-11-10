@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field
 
 
-
 class InputModel(BaseModel):
     api_url: str = Field(
         description='Input data to be converted. Can be a file path or data as string.'

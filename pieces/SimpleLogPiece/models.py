@@ -9,6 +9,7 @@ class InputEnum(str, Enum):
     option2 = "option2"
     option3 = "option3"
 
+
 class InputModel(BaseModel):
     """
     SimpleLogPiece Input Model
@@ -101,4 +102,3 @@ class OutputModel(BaseModel):
             'widget': "codeeditor",
         }
     )
-

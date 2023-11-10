@@ -29,7 +29,7 @@ class TZOptions(str, Enum):
     utc_plus_11 = '(UTC+11) - Pacific/Pohnpei'
     utc_plus_12 = '(UTC+12) - Pacific/Chatham'
     utc_plus_13 = '(UTC+13) - Pacific/Tongatapu'
-    utc_plus_14 = '(UTC+14) - Pacific/Kiritimati' 
+    utc_plus_14 = '(UTC+14) - Pacific/Kiritimati'
 
 
 class InputModel(BaseModel):
