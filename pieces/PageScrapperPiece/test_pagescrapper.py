@@ -3,12 +3,16 @@ from domino.testing import piece_dry_run
 
 def test_pagescrapper():
     input_data = dict(
-        url="https://www.bobdylan.com/songs/mr-tambourine-man/",
+        url="https://en.wikipedia.org/wiki/Mr._Tambourine_Man",
         search_items=[
             dict(
                 tag="article",
                 class_name="",
-            )
+            ),
+            dict(
+                tag="main",
+                class_name="",
+            ),
         ]
     )
     piece_output = piece_dry_run(
