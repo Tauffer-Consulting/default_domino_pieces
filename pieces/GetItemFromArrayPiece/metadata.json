@@ -1,0 +1,17 @@
+{
+    "name": "GetItemFromArrayPiece",
+    "description": "Get one item from an array",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "default"
+    ],
+    "style": {
+        "node_label": "Get Item From Array Piece",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "fluent:tray-item-remove-24-filled"
+    }
+}
