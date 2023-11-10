@@ -34,7 +34,7 @@ def extract_content_with_known_tags_classes(url, search_items):
                 content.append(element.get_text(separator=' ', strip=True))
         return clean_text(' '.join(content))
     else:
-        return None
+        return ""
 
 
 class PageScrapperPiece(BasePiece):
