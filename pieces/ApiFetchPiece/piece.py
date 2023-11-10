@@ -13,12 +13,7 @@ class ApiFetchPiece(BasePiece):
         api_url = input_data.api_url
 
         response = requests.get(api_url)
-        
+
         # convert content to base64
         base64_bytes_data = base64.b64encode(response.content).decode('utf-8')
         return OutputModel(base64_bytes_data=base64_bytes_data)
-
-        
-    
-
-

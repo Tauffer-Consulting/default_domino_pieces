@@ -135,3 +135,5 @@ dmypy.json
 
 # Dry run
 **dry_run_results**
+
+**custom_script.py

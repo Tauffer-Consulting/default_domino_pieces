@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from domino.models import OutputModifierModel, OutputModifierItemType
 from typing import List, Union
 from datetime import date as dt_date, datetime as dt_datetime, time as dt_time
@@ -67,9 +67,9 @@ def custom_function(kwarg_1, kwarg_2):
     )
 
 
-class OutputModel(BaseModel, extra='allow'):
+class OutputModel(BaseModel):
     """
     CustomPythonPiece Output Model
     """
-    # ref: https://stackoverflow.com/a/75381426/11483674
-    pass
+    # ref: https://docs.pydantic.dev/latest/concepts/models/#extra-fields
+    model_config = ConfigDict(extra='allow')
