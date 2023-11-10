@@ -194,6 +194,93 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
     },
+    "PageScrapperPiece": {
+        "name": "PageScrapperPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "Default"
+        ],
+        "style": {
+            "node_label": "Page Scrapper Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "lucide:text-selection",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Scrapes text from a web page, given a URL and a list of HTML tags.",
+        "input_schema": {
+            "$defs": {
+                "ItemType": {
+                    "properties": {
+                        "tag": {
+                            "default": "p",
+                            "description": "HTML tag name.",
+                            "title": "Tag",
+                            "type": "string"
+                        },
+                        "class_name": {
+                            "default": "",
+                            "description": "HTML tag class name.",
+                            "title": "Class Name",
+                            "type": "string"
+                        }
+                    },
+                    "title": "ItemType",
+                    "type": "object"
+                }
+            },
+            "description": "PageScrapperPiece Input Model",
+            "properties": {
+                "url": {
+                    "default": "",
+                    "description": "URL to retrieve content from.",
+                    "title": "Url",
+                    "type": "string"
+                },
+                "search_items": {
+                    "default": [
+                        {
+                            "class_name": "",
+                            "tag": "p"
+                        }
+                    ],
+                    "description": "List of HTML tags and class names to search for.",
+                    "items": {
+                        "$ref": "#/$defs/ItemType"
+                    },
+                    "title": "Search Items",
+                    "type": "array"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "PageScrapperPiece Output Model",
+            "properties": {
+                "scrapped_text": {
+                    "description": "Scrapped text from the URL.",
+                    "title": "Scrapped Text",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "scrapped_text"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/PageScrapperPiece"
+    },
     "CustomPythonPiece": {
         "name": "CustomPythonPiece",
         "dependency": {
@@ -248,6 +335,18 @@
                                 },
                                 {
                                     "type": "object"
+                                },
+                                {
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                {
+                                    "format": "time",
+                                    "type": "string"
+                                },
+                                {
+                                    "format": "date-time",
+                                    "type": "string"
                                 }
                             ],
                             "default": null,
@@ -324,7 +423,7 @@
                     "type": "array"
                 },
                 "script": {
-                    "default": "# Do not modify the function definition line \ndef custom_function(kwarg_1, kwarg_2):\n    # Write your code here\n    print(f\"First argument: {kwarg_1}\")\n    print(f\"Second argument: {kwarg_2}\")\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"output_1\": \"this is a string\", \n        \"output_2\": 420\n    }\n",
+                    "default": "# Do not modify the function definition line \ndef custom_function(kwarg_1, kwarg_2):\n    # Write your code here\n    print(f\"First argument: {kwarg_1}\")\n    print(f\"Second argument: {kwarg_2}\")\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"output_1\": \"this is a string\",\n        \"output_2\": 420\n    }\n",
                     "description": "Python script.",
                     "from_upstream": "never",
                     "title": "Script",
@@ -366,6 +465,94 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
     },
+    "ToStringPiece": {
+        "name": "ToStringPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "Default"
+        ],
+        "style": {
+            "node_label": "To String Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "solar:text-bold",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that transforms any input to string.",
+        "input_schema": {
+            "description": "ToStringPiece Input Model",
+            "properties": {
+                "input_value": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "items": {},
+                            "type": "array"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "format": "time",
+                            "type": "string"
+                        },
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Input value to be turned into string.",
+                    "from_upstream": "always",
+                    "title": "Input Value"
+                }
+            },
+            "required": [
+                "input_value"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "ToStringPiece Output Model",
+            "properties": {
+                "output_value": {
+                    "description": "Input value as a string.",
+                    "title": "Output Value",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_value"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ToStringPiece"
+    },
     "SleepPiece": {
         "name": "SleepPiece",
         "dependency": {
@@ -395,7 +582,6 @@
                 "sleep_time": {
                     "default": 1,
                     "description": "Number of seconds to sleep",
-                    "required": true,
                     "title": "Sleep Time",
                     "type": "number"
                 }
@@ -407,12 +593,14 @@
             "description": "Sleep Piece Output Model",
             "properties": {
                 "message": {
-                    "default": "",
                     "description": "Sleep piece executed",
                     "title": "Message",
                     "type": "string"
                 }
             },
+            "required": [
+                "message"
+            ],
             "title": "OutputModel",
             "type": "object"
         },
@@ -755,5 +943,122 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ApiFetchPiece"
+    },
+    "GetItemFromArrayPiece": {
+        "name": "GetItemFromArrayPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default"
+        ],
+        "style": {
+            "node_label": "Get Item From Array Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fluent:tray-item-remove-24-filled",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Get one item from an array",
+        "input_schema": {
+            "$defs": {
+                "IndexType": {
+                    "enum": [
+                        "first",
+                        "last",
+                        "random",
+                        "another"
+                    ],
+                    "title": "IndexType",
+                    "type": "string"
+                }
+            },
+            "description": "GetItemFromArrayPiece Input Model",
+            "properties": {
+                "input_array": {
+                    "description": "Input array to get item from.",
+                    "from_upstream": "always",
+                    "items": {},
+                    "title": "Input Array",
+                    "type": "array"
+                },
+                "index": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/IndexType"
+                        }
+                    ],
+                    "default": "first",
+                    "description": "Index of item to get from input array."
+                },
+                "another_index": {
+                    "default": 1,
+                    "description": "Index number of item to get from input array.",
+                    "minimum": 1,
+                    "title": "Another Index",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "input_array"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "GetItemFromArrayPiece Output Model",
+            "properties": {
+                "output_value": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "items": {},
+                            "type": "array"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "format": "time",
+                            "type": "string"
+                        },
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Item from input array at specified index.",
+                    "title": "Output Value"
+                }
+            },
+            "required": [
+                "output_value"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetItemFromArrayPiece"
     }
 }
