@@ -36,7 +36,7 @@ class InputModel(BaseModel):
         }
     )
     script: str = Field(
-        default="""# Do not modify the function definition line 
+        default="""# Do not modify the function definition line
 def custom_function(kwarg_1, kwarg_2):
     # Write your code here
     print(f"First argument: {kwarg_1}")
