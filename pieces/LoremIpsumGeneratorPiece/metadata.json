@@ -1,0 +1,17 @@
+{
+    "name": "LoremIpsumGeneratorPiece",
+    "description": "A Piece that generates Lorem Ipsum text.",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "Default"
+    ],
+    "style": {
+        "node_label": "Lorem Ipsum Generator",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "carbon:character-sentence-case"
+    }
+}
