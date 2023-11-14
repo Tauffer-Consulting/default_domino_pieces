@@ -52,7 +52,7 @@ def custom_function(kwarg_1, kwarg_2):
         description='Python script.',
         json_schema_extra={
             "from_upstream": "never",
-            'widget': "codeeditor",
+            'widget': "codeeditor-python",
         }
     )
     output_args: List[OutputModifierModel] = Field(

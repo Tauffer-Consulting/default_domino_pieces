@@ -1,0 +1,19 @@
+{
+    "name": "HttpRequestPiece",
+    "description": "Makes a HTTP request to a given URL.",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "default",
+        "http",
+        "request"
+    ],
+    "style": {
+        "node_label": "HTTP Request",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "material-symbols:send"
+    }
+}
