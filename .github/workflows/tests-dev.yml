@@ -84,5 +84,5 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          domino piece delete-release --tag-name=dev
-          domino piece release --tag-name=dev --commit-sha=$commit_sha
+          domino piece delete-release --tag-name=development
+          domino piece release --tag-name=development --commit-sha=$commit_sha
