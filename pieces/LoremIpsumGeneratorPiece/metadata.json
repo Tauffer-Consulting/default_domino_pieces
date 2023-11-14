@@ -5,7 +5,8 @@
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "Default"
+        "default",
+        "text"
     ],
     "style": {
         "node_label": "Lorem Ipsum Generator",

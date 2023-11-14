@@ -1,7 +1,7 @@
 from domino.testing import piece_dry_run
 
 
-def test_simple_log_piece():
+def test_log_piece():
     input_data = dict(
         input_str='test string',
         input_int=10,
@@ -17,17 +17,16 @@ def test_simple_log_piece():
 
     piece_output = piece_dry_run(
         repository_folder_path=".",
-        piece_name="SimpleLogPiece",
+        piece_name="LogPiece",
         input_data=input_data
     )
 
     mock_output = dict(
-        message="Task successfully completed!",
-        output_msg='test',
         output_str=input_data.get("input_str"),
         output_int=input_data.get("input_int"),
         output_float=input_data.get("input_float"),
         output_bool=input_data.get("input_bool"),
+        output_enum=input_data.get("input_enum"),
         output_array=input_data.get("input_array"),
         output_date=input_data.get("input_date"),
         output_time=input_data.get("input_time"),
@@ -36,6 +35,7 @@ def test_simple_log_piece():
     )
 
     for key, value in piece_output.items():
-        if key in ['message', 'output_msg']:
+        if key in ['output_log']:
+            assert isinstance(value, str)
             continue
         assert value == mock_output[key]

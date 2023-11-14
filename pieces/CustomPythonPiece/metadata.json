@@ -1,15 +1,15 @@
 {
     "name": "CustomPythonPiece",
-    "description": "Run your custom Python code.",
+    "description": "Executes user-defined Python code.",
     "dependency": {
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "python",
-        "default"
+        "default",
+        "python"
     ],
     "style": {
-        "node_label": "Custom Python Piece",
+        "node_label": "Custom Python",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },

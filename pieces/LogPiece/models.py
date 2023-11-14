@@ -12,7 +12,7 @@ class InputEnum(str, Enum):
 
 class InputModel(BaseModel):
     """
-    SimpleLogPiece Input Model
+    LogPiece Input Model
     """
     input_str: str = Field(
         default="default value",
@@ -61,43 +61,40 @@ class InputModel(BaseModel):
 
 class OutputModel(BaseModel):
     """
-    SimpleLogPiece Output Model
+    LogPiece Output Model
     """
-    message: str = Field(
-        default="",
-        description="Output message to log."
+    output_log: str = Field(
+        description='All values logged.'
     )
-    output_msg: str = Field(
-        description='Value that was logged.'
-    )
-
-    # Outputs types
     output_str: Optional[str] = Field(
-        description='Output string to be logged.'
+        description='Output string logged.'
     )
     output_int: Optional[int] = Field(
-        description='Output integer to be logged.'
+        description='Output integer logged.'
     )
     output_float: Optional[float] = Field(
-        description='Output float to be logged.'
+        description='Output float logged.'
     )
     output_bool: Optional[bool] = Field(
-        description='Output boolean to be logged.'
+        description='Output boolean logged.'
+    )
+    output_enum: Optional[str] = Field(
+        description='Output enum logged.'
     )
     output_date: date = Field(
-        description='Output date to be logged.'
+        description='Output date logged.'
     )
     output_time: time = Field(
-        description='Output time to be logged.',
+        description='Output time logged.',
     )
     output_datetime: datetime = Field(
-        description='Output datetime to be logged.'
+        description='Output datetime logged.'
     )
     output_array: List[str] = Field(
-        description='Output array to be logged.'
+        description='Output array logged.'
     )
     output_code: str = Field(
-        description='Input code to be logged.',
+        description='Output code logged.',
         json_schema_extra={
             'widget': "codeeditor",
         }
