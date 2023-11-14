@@ -18,6 +18,6 @@
             "LoremIpsumGeneratorPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:dev-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:development-group0"
     }
 }
