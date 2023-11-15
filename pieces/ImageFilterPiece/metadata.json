@@ -1,0 +1,18 @@
+{
+    "name": "ImageFilterPiece",
+    "description": "A Piece that applies selected image filters to an image.",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "default",
+        "image"
+    ],
+    "style": {
+        "node_label": "Image Filter",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "ic:twotone-filter"
+    }
+}

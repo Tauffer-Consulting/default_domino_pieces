@@ -30,7 +30,7 @@ class LoremIpsumGeneratorPiece(BasePiece):
         md_text = "Lorem Ipsum Generator Piece\n"
         md_text += "============================\n\n"
         md_text += "**Input data:**\n"
-        md_text += f"items: {input_data.items}\n"
+        md_text += f"items: {input_data.items.value}\n"
         md_text += f"number_of_items: {input_data.number_of_items}\n\n"
         md_text += "**Output data:**\n"
         md_text += f"output_text: {output_text}\n\n"
