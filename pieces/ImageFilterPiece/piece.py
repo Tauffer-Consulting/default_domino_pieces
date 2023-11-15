@@ -5,6 +5,7 @@ from PIL import Image
 from io import BytesIO
 import numpy as np
 import base64
+import os
 
 
 filter_masks = {
@@ -61,7 +62,8 @@ class ImageFilterPiece(BasePiece):
         # Try to open image from file path or base64 encoded string
         input_image = input_data.input_image
 
-        if Path(input_image).exists() and Path(input_image).is_file():
+        max_path_size = int(os.pathconf('/', 'PC_PATH_MAX'))
+        if len(input_image) < max_path_size and Path(input_image).exists() and Path(input_image).is_file():
             image = Image.open(input_image)
         else:
             self.logger.info("Input image is not a file path, trying to decode as base64 string")
@@ -70,8 +72,10 @@ class ImageFilterPiece(BasePiece):
                 image_stream = BytesIO(decoded_data)
                 image = Image.open(image_stream)
                 image.verify()
+                image = Image.open(image_stream)
             except Exception:
                 raise ValueError("Input image is not a file path or a base64 encoded string")
+
 
         # Convert Image to NumPy array
         np_image = np.array(image, dtype=float)

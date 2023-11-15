@@ -26,5 +26,5 @@ def test_imagefilterpiece():
         input_data=input_data
     )
     assert piece_output is not None
-    assert Path(piece_output.image_file_path).is_file()
-    assert isinstance(piece_output.image_base64_string, str)
+    assert Path(piece_output.get('image_file_path')).is_file()
+    assert isinstance(piece_output.get('image_base64_string'), str)
