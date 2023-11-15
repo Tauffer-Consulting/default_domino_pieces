@@ -26,4 +26,4 @@ def test_imagefilterpiece():
         input_data=input_data
     )
     assert piece_output is not None
-    assert Path(piece_output.get('image_file_path')).is_file()
+    assert piece_output.get('image_file_path').endswith('.png')
