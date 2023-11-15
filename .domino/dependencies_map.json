@@ -11,6 +11,7 @@
             "LogPiece",
             "CustomPythonPiece",
             "ToStringPiece",
+            "ImageFilterPiece",
             "SleepPiece",
             "SaveImagePiece",
             "HttpRequestPiece",
