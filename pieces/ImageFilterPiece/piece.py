@@ -109,6 +109,13 @@ class ImageFilterPiece(BasePiece):
             modified_image.save(buffered, format="PNG")
             image_base64_string = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
+
+        self.display_result = {
+            "file_type": "png",
+            "base64_content": image_base64_string,
+            "file_path": image_file_path
+        }
+
         # Return output
         return OutputModel(
             image_base64_string=image_base64_string,
