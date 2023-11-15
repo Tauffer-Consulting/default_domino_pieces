@@ -1,15 +1,15 @@
 {
-    "name": "SimpleLogPiece",
-    "description": "A Piece that simply logs its input",
+    "name": "LogPiece",
+    "description": "A Piece that logs its inputs.",
     "dependency": {
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "log",
-        "default"
+        "default",
+        "log"
     ],
     "style": {
-        "node_label": "Simple Log Piece",
+        "node_label": "Log",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },

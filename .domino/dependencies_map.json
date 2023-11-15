@@ -8,15 +8,17 @@
             "DataConversionPiece",
             "GetDateTimePiece",
             "PageScrapperPiece",
+            "LogPiece",
             "CustomPythonPiece",
             "ToStringPiece",
+            "ImageFilterPiece",
             "SleepPiece",
             "SaveImagePiece",
-            "SimpleLogPiece",
-            "ApiFetchPiece",
-            "GetItemFromArrayPiece"
+            "HttpRequestPiece",
+            "GetItemFromArrayPiece",
+            "LoremIpsumGeneratorPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.6.0-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:development-group0"
     }
 }

@@ -37,16 +37,52 @@ jobs:
 
       - name: Run organize and build images
         run: |
-          domino piece organize --build-images --source-url=https://github.com/${{github.repository}}
+          domino piece organize --build-images --source-url=https://github.com/${{github.repository}} --tag-overwrite=development
 
       - name: Install Tests Dependencies
         run: pip install -r requirements-tests.txt
 
+      # Remember to pass any necessary secrets as env vars here
       - name: Run tests over built images
+        env:
+          PIECE_SECRET_1: ${{ secrets.PIECE_SECRET_1 }}
         run: |
           pytest --cov=pieces --cov-report=xml --cov-report=term-missing
-      
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Publish images
+        env:
+          GHCR_USERNAME: ${{ github.actor }}
+        run: domino piece publish-images --registry-token ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit files
+        id: commit_files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          GIT_STATUS=$(git status -s)
+          if [[ ! -z "$GIT_STATUS" ]]; then
+            git add .domino/* && git commit -m "auto-organize" -a
+            echo "commit_sha=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          else
+            echo "No changes to commit"
+            echo "commit_sha=${{ github.sha }}" >> $GITHUB_ENV
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Create Release
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          domino piece delete-release --tag-name=development
+          domino piece release --tag-name=development --commit-sha=$commit_sha

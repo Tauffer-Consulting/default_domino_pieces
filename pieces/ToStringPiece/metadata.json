@@ -5,10 +5,11 @@
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "Default"
+        "default",
+        "string"
     ],
     "style": {
-        "node_label": "To String Piece",
+        "node_label": "To String",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },

@@ -1,18 +1,19 @@
 {
-    "name": "GetItemFromArrayPiece",
-    "description": "Get one item from an input array.",
+    "name": "HttpRequestPiece",
+    "description": "Makes a HTTP request to a given URL.",
     "dependency": {
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
         "default",
-        "array"
+        "http",
+        "request"
     ],
     "style": {
-        "node_label": "Get Item From Array",
+        "node_label": "HTTP Request",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },
-        "icon_class_name": "fluent:tray-item-remove-24-filled"
+        "icon_class_name": "material-symbols:send"
     }
 }

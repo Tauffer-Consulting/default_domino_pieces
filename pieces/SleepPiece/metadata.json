@@ -1,15 +1,15 @@
 {
     "name": "SleepPiece",
-    "description": "A Piece that executes a Python sleep function for a user-defined duration",
+    "description": "A Piece that sleeps for a given number of seconds.",
     "dependency": {
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "Sleep",
-        "Default"
+        "default",
+        "sleep"
     ],
     "style": {
-        "node_label": "Sleep Piece",
+        "node_label": "Sleep",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },

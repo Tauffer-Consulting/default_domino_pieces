@@ -5,11 +5,11 @@
         "requirements_file": "requirements_0.txt"
     },
     "tags": [
-        "image",
-        "default"
+        "default",
+        "image"
     ],
     "style": {
-        "node_label": "Save Image Piece",
+        "node_label": "Save Image",
         "node_style": {
             "backgroundColor": "#b3cde8"
         },

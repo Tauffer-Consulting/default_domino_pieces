@@ -36,7 +36,7 @@ class InputModel(BaseModel):
         }
     )
     script: str = Field(
-        default="""# Do not modify the function definition line 
+        default="""# Do not modify the function definition line
 def custom_function(kwarg_1, kwarg_2):
     # Write your code here
     print(f"First argument: {kwarg_1}")
@@ -52,7 +52,7 @@ def custom_function(kwarg_1, kwarg_2):
         description='Python script.',
         json_schema_extra={
             "from_upstream": "never",
-            'widget': "codeeditor",
+            'widget': "codeeditor-python",
         }
     )
     output_args: List[OutputModifierModel] = Field(
