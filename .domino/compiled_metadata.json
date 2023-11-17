@@ -1,4 +1,111 @@
 {
+    "StringOperationsPiece": {
+        "name": "StringOperationsPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "string"
+        ],
+        "style": {
+            "node_label": "String Operations",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "tabler:sort-a-z",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that performs string operations",
+        "input_schema": {
+            "$defs": {
+                "OperationItem": {
+                    "properties": {
+                        "operation": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OperationsTypes"
+                                }
+                            ],
+                            "description": "Operation to perform. Options: `concatenate`, `lower_case`, `upper_case`, `split_by`, `replace_by`.",
+                            "from_upstream": "never"
+                        },
+                        "second_argument": {
+                            "default": "",
+                            "description": "Value for the second argument.",
+                            "title": "Second Argument",
+                            "type": "string"
+                        },
+                        "auxiliary_argument": {
+                            "default": "",
+                            "description": "Auxiliary argument for `split_by` and `replace_by` operations.\nIf `split_by` is selected, this argument will be used as the index of the split array.\nIf `replace_by` is selected, this argument will be used as the string to replace.\n",
+                            "title": "Auxiliary Argument",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "title": "OperationItem",
+                    "type": "object"
+                },
+                "OperationsTypes": {
+                    "enum": [
+                        "concatenate",
+                        "lower_case",
+                        "upper_case",
+                        "split_by",
+                        "replace_by",
+                        "strip_spaces"
+                    ],
+                    "title": "OperationsTypes",
+                    "type": "string"
+                }
+            },
+            "properties": {
+                "first_argument": {
+                    "description": "Value for the first argument.",
+                    "title": "First Argument",
+                    "type": "string"
+                },
+                "operations": {
+                    "description": "Sequence of operations to perform.",
+                    "items": {
+                        "$ref": "#/$defs/OperationItem"
+                    },
+                    "title": "Operations",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "first_argument",
+                "operations"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "output_string": {
+                    "description": "Output string.",
+                    "title": "Output String",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_string"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringOperationsPiece"
+    },
     "SleepPiece": {
         "name": "SleepPiece",
         "dependency": {
@@ -1320,5 +1427,125 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ImageFilterPiece"
+    },
+    "StringConditionChecksPiece": {
+        "name": "StringConditionChecksPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "string"
+        ],
+        "style": {
+            "node_label": "String Conditions Checks",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "mdi:format-letter-matches",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that checks conditions on a string",
+        "input_schema": {
+            "$defs": {
+                "ChecksTypes": {
+                    "enum": [
+                        "contains_case_sensitive",
+                        "contains_case_insensitive",
+                        "length_greater_than",
+                        "length_greater_than_or_equal_to",
+                        "length_less_than",
+                        "length_less_than_or_equal_to",
+                        "length_equal_to",
+                        "regex_match"
+                    ],
+                    "title": "ChecksTypes",
+                    "type": "string"
+                },
+                "LogicalOperators": {
+                    "enum": [
+                        "and",
+                        "or"
+                    ],
+                    "title": "LogicalOperators",
+                    "type": "string"
+                },
+                "OperationItem": {
+                    "properties": {
+                        "operation": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/ChecksTypes"
+                                }
+                            ],
+                            "description": "Operation to perform.\nOptions: `contains_case_sensitive`, `contains_case_insensitive`, `length_greater_than`, `length_greater_than_or_equal_to`, `length_less_than`, `length_less_than_or_equal_to`, `length_equal_to`, `regex_match`.\n",
+                            "from_upstream": "never"
+                        },
+                        "second_argument": {
+                            "default": "",
+                            "description": "Value for the second argument.\nIf `contains_case_sensitive` or `contains_case_insensitive` are selected, this argument will be used as the string to search for.\nIf `length_greater_than`, `length_greater_than_or_equal_to`, `length_less_than`, `length_less_than_or_equal_to` or `length_equal_to` are selected, this argument will be used as the integer value to compare with.\nIf `regex_match` is selected, this argument will be used as the string to match with the regex pattern.\n",
+                            "title": "Second Argument",
+                            "type": "string"
+                        },
+                        "next_logical_operator": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LogicalOperators"
+                                }
+                            ],
+                            "default": "and",
+                            "description": "Logical operator to use with the next operation result."
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "title": "OperationItem",
+                    "type": "object"
+                }
+            },
+            "properties": {
+                "input_string": {
+                    "description": "Input string.",
+                    "title": "Input String",
+                    "type": "string"
+                },
+                "operations": {
+                    "description": "Sequence of operations to perform.",
+                    "items": {
+                        "$ref": "#/$defs/OperationItem"
+                    },
+                    "title": "Operations",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "input_string",
+                "operations"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "check_result": {
+                    "description": "Result of the checks.",
+                    "title": "Check Result",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "check_result"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringConditionChecksPiece"
     }
 }

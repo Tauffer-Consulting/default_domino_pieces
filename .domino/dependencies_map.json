@@ -5,6 +5,7 @@
             "requirements_file": "requirements_0.txt"
         },
         "pieces": [
+            "StringOperationsPiece",
             "SleepPiece",
             "LoremIpsumGeneratorPiece",
             "SaveImagePiece",
@@ -16,7 +17,8 @@
             "HttpRequestPiece",
             "PageScrapperPiece",
             "LogPiece",
-            "ImageFilterPiece"
+            "ImageFilterPiece",
+            "StringConditionChecksPiece"
         ],
         "secrets": [],
         "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:development-group0"
