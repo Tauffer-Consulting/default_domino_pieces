@@ -10,14 +10,8 @@ class DatasetName(str, Enum):
     breast_cancer = "breast_cancer"
     linnerrud = "linnerrud"
 
-class OutputType(str, Enum):
-    file = "file"
-    object = "object"
-
 class InputModel(BaseModel):
     dataset: DatasetName = Field(default='iris', title='Dataset name')
-    output_type: OutputType = Field(default='object', title='Output type', description='Whether to return a file or an object. Use files for large data')
 
 class OutputModel(BaseModel):
-    data: Optional[List[dict]] = Field(default=None, title='Data')
     file_path: Optional[str] = Field(default=None, title='File path')
