@@ -15,6 +15,7 @@
             "DataConversionPiece",
             "ToStringPiece",
             "HttpRequestPiece",
+            "ToyDatasetsPiece",
             "PageScrapperPiece",
             "LogPiece",
             "ImageFilterPiece",
