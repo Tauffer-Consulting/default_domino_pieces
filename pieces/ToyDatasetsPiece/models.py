@@ -19,5 +19,5 @@ class InputModel(BaseModel):
     output_type: OutputType = Field(default='object', title='Output type', description='Whether to return a file or an object. Use files for large data')
 
 class OutputModel(BaseModel):
-    data: Optional[List[dict]]
-    file_path: Optional[str]
+    data: Optional[List[dict]] = Field(default=None, title='Data')
+    file_path: Optional[str] = Field(default=None, title='File path')
