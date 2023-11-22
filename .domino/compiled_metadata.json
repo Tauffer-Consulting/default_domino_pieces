@@ -1001,6 +1001,14 @@
                     ],
                     "title": "DatasetName",
                     "type": "string"
+                },
+                "OutputType": {
+                    "enum": [
+                        "file",
+                        "object"
+                    ],
+                    "title": "OutputType",
+                    "type": "string"
                 }
             },
             "properties": {
@@ -1012,6 +1020,16 @@
                     ],
                     "default": "iris",
                     "title": "Dataset name"
+                },
+                "output_type": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/OutputType"
+                        }
+                    ],
+                    "default": "object",
+                    "description": "Whether to return a file or an object. Use files for large data",
+                    "title": "Output type"
                 }
             },
             "title": "InputModel",
@@ -1020,15 +1038,34 @@
         "output_schema": {
             "properties": {
                 "data": {
-                    "items": {
-                        "type": "object"
-                    },
-                    "title": "Data",
-                    "type": "array"
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "title": "Data"
+                },
+                "file_path": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "title": "File Path"
                 }
             },
             "required": [
-                "data"
+                "data",
+                "file_path"
             ],
             "title": "OutputModel",
             "type": "object"
