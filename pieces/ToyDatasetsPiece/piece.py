@@ -2,6 +2,7 @@ from sklearn.datasets import load_iris, load_diabetes, load_digits, load_wine, l
 import pandas as pd
 from domino.base_piece import BasePiece
 from .models import InputModel, OutputModel
+from pathlib import Path
 
 class ToyDatasetsPiece(BasePiece):
 
@@ -28,7 +29,7 @@ class ToyDatasetsPiece(BasePiece):
                 data=df.to_dict(orient='records')
             )
         
-        file_path = self.results_path / f'{dataset_name}.csv'
+        file_path = str(Path(self.results_path) / f'{dataset_name}.csv')
         df.to_csv(file_path, index=False)
         return OutputModel(
             file_path=file_path
