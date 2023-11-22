@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from enum import Enum
+from typing import List
 
 class DatasetName(str, Enum):
     iris = "iris"
@@ -13,4 +14,4 @@ class InputModel(BaseModel):
     dataset: DatasetName = Field(default='iris', title='Dataset name')
 
 class OutputModel(BaseModel):
-    data: list[dict]
+    data: List[dict]
