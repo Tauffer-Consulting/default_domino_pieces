@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from enum import Enum
-from typing import List
+from typing import List, Optional
 
 class DatasetName(str, Enum):
     iris = "iris"
@@ -10,8 +10,14 @@ class DatasetName(str, Enum):
     breast_cancer = "breast_cancer"
     linnerrud = "linnerrud"
 
+class OutputType(str, Enum):
+    file = "file"
+    object = "object"
+
 class InputModel(BaseModel):
     dataset: DatasetName = Field(default='iris', title='Dataset name')
+    output_type: OutputType = Field(default='object', title='Output type', description='Whether to return a file or an object. Use files for large data')
 
 class OutputModel(BaseModel):
-    data: List[dict]
+    data: Optional[List[dict]]
+    file_path: Optional[str]

@@ -22,4 +22,14 @@ class ToyDatasetsPiece(BasePiece):
 
         df = pd.DataFrame(dataset.data, columns=dataset.feature_names)
         df['target'] = dataset.target
-        return OutputModel(data=df.to_dict(orient='records'))
+
+        if input_data.output_type != 'file':
+            return OutputModel(
+                data=df.to_dict(orient='records')
+            )
+        
+        file_path = self.results_path / f'{dataset_name}.csv'
+        df.to_csv(file_path, index=False)
+        return OutputModel(
+            file_path=file_path
+        )
