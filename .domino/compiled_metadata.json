@@ -1001,14 +1001,6 @@
                     ],
                     "title": "DatasetName",
                     "type": "string"
-                },
-                "OutputType": {
-                    "enum": [
-                        "file",
-                        "object"
-                    ],
-                    "title": "OutputType",
-                    "type": "string"
                 }
             },
             "properties": {
@@ -1020,16 +1012,6 @@
                     ],
                     "default": "iris",
                     "title": "Dataset name"
-                },
-                "output_type": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/OutputType"
-                        }
-                    ],
-                    "default": "object",
-                    "description": "Whether to return a file or an object. Use files for large data",
-                    "title": "Output type"
                 }
             },
             "title": "InputModel",
@@ -1037,21 +1019,6 @@
         },
         "output_schema": {
             "properties": {
-                "data": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "object"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Data"
-                },
                 "file_path": {
                     "anyOf": [
                         {
