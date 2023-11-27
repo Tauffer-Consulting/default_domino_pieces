@@ -12,3 +12,5 @@ Default Domino Pieces that comes pre-installed in every Domino workspace:
 - **PageScrapperPiece** - A Piece that scrapes text from a web page, given a URL and a list of HTML tags.
 - **SleepPiece** - A Piece that sleeps for a given number of seconds.
 - **ToStringPiece** - A Piece that converts any input to string.
+- **StringOperationsPiece** - A Piece that performs string operations.
+- **StringConditionChecksPiece** - A Piece that checks conditions on a string.
