@@ -5,23 +5,23 @@
             "requirements_file": "requirements_0.txt"
         },
         "pieces": [
-            "StringOperationsPiece",
-            "SleepPiece",
             "LoremIpsumGeneratorPiece",
-            "SaveImagePiece",
-            "GetDateTimePiece",
-            "CustomPythonPiece",
-            "GetItemFromArrayPiece",
-            "DataConversionPiece",
-            "ToStringPiece",
-            "HttpRequestPiece",
-            "ToyDatasetsPiece",
-            "PageScrapperPiece",
             "LogPiece",
+            "GetDateTimePiece",
             "ImageFilterPiece",
-            "StringConditionChecksPiece"
+            "CustomPythonPiece",
+            "PageScrapperPiece",
+            "HttpRequestPiece",
+            "SleepPiece",
+            "StringConditionChecksPiece",
+            "ToyDatasetsPiece",
+            "ToStringPiece",
+            "SaveImagePiece",
+            "StringOperationsPiece",
+            "DataConversionPiece",
+            "GetItemFromArrayPiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:development-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.8.0-group0"
     }
 }
