@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "Page Scrapper",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "lucide:text-selection"
     }
 }

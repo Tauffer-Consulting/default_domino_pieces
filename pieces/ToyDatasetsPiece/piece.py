@@ -26,6 +26,7 @@ class ToyDatasetsPiece(BasePiece):
 
         file_path = str(Path(self.results_path) / f'{dataset_name}.csv')
         df.to_csv(file_path, index=False)
+
         return OutputModel(
             file_path=file_path
         )

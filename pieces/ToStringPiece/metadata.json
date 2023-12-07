@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "To String",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "solar:text-bold"
     }
 }

@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "Custom Python",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "fa-brands:python"
     }
 }

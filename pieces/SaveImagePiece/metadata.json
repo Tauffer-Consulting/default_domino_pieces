@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "Save Image",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "material-symbols:image-outline"
     }
 }

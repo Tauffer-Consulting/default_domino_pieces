@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "Toy Datasets",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "lucide:toy-brick"
     }
 }
