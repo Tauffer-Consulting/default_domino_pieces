@@ -11,9 +11,6 @@
     ],
     "style": {
         "node_label": "HTTP Request",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "material-symbols:send"
     }
 }

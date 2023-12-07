@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "Get Item From Array",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "fluent:tray-item-remove-24-filled"
     }
 }

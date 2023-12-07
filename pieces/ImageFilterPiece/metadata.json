@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "Image Filter",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "ic:twotone-filter"
     }
 }

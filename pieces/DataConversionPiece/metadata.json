@@ -11,9 +11,6 @@
     ],
     "style": {
         "node_label": "Data Conversion Piece",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "icon-park-outline:file-conversion"
     }
 }

@@ -10,9 +10,6 @@
     ],
     "style": {
         "node_label": "String Conditions Checks",
-        "node_style": {
-            "backgroundColor": "#b3cde8"
-        },
         "icon_class_name": "mdi:format-letter-matches"
     }
 }
