@@ -1137,6 +1137,7 @@
             "properties": {
                 "data_path": {
                     "description": "Path to the CSV file to be profiled",
+                    "from_upstream": "always",
                     "title": "CSV file path",
                     "type": "string"
                 },
