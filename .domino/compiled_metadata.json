@@ -13,7 +13,7 @@
             "node_label": "String Operations",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "tabler:sort-a-z",
@@ -120,7 +120,7 @@
             "node_label": "Sleep",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "fa-solid:hourglass-start",
@@ -174,7 +174,7 @@
             "node_label": "Lorem Ipsum Generator",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "carbon:character-sentence-case",
@@ -248,7 +248,7 @@
             "node_label": "Save Image",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "material-symbols:image-outline",
@@ -302,7 +302,7 @@
             "node_label": "Get Datetime",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "fa:calendar-o",
@@ -414,7 +414,7 @@
             "node_label": "Custom Python",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "fa-brands:python",
@@ -600,7 +600,7 @@
             "node_label": "Get Item From Array",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "fluent:tray-item-remove-24-filled",
@@ -719,7 +719,7 @@
             "node_label": "Data Conversion Piece",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "icon-park-outline:file-conversion",
@@ -801,7 +801,7 @@
             "node_label": "To String",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "solar:text-bold",
@@ -891,7 +891,7 @@
             "node_label": "HTTP Request",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "material-symbols:send",
@@ -979,7 +979,7 @@
             "node_label": "Toy Datasets",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "lucide:toy-brick",
@@ -1052,7 +1052,7 @@
             "node_label": "Page Scrapper",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "lucide:text-selection",
@@ -1140,7 +1140,7 @@
             "node_label": "Log",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "fa-solid:file-alt",
@@ -1375,7 +1375,7 @@
             "node_label": "Image Filter",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "ic:twotone-filter",
@@ -1515,7 +1515,7 @@
             "node_label": "String Conditions Checks",
             "node_type": "default",
             "node_style": {
-                "backgroundColor": "#b3cde8"
+                "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
             "icon_class_name": "mdi:format-letter-matches",
