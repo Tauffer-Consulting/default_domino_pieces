@@ -1,0 +1,15 @@
+{
+    "name": "YDataProfilingPiece",
+    "description": "Piece that uses ydata-profiling to create fast EDA.",
+    "dependency": {
+        "requirements_file": "requirements_0.txt"
+    },
+    "tags": [
+        "default",
+        "eda"
+    ],
+    "style": {
+        "node_label": "Data Profiling",
+        "icon_class_name": "mingcute:profile-line"
+    }
+}
