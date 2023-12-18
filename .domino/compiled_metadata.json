@@ -1,165 +1,4 @@
 {
-    "StringOperationsPiece": {
-        "name": "StringOperationsPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "string"
-        ],
-        "style": {
-            "node_label": "String Operations",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "tabler:sort-a-z",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that performs string operations",
-        "input_schema": {
-            "$defs": {
-                "OperationItem": {
-                    "properties": {
-                        "operation": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/$defs/OperationsTypes"
-                                }
-                            ],
-                            "description": "Operation to perform. Options: `concatenate`, `lower_case`, `upper_case`, `split_by`, `replace_by`.",
-                            "from_upstream": "never"
-                        },
-                        "second_argument": {
-                            "default": "",
-                            "description": "Value for the second argument.",
-                            "title": "Second Argument",
-                            "type": "string"
-                        },
-                        "auxiliary_argument": {
-                            "default": "",
-                            "description": "Auxiliary argument for `split_by` and `replace_by` operations.\nIf `split_by` is selected, this argument will be used as the index of the split array.\nIf `replace_by` is selected, this argument will be used as the string to replace.\n",
-                            "title": "Auxiliary Argument",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "operation"
-                    ],
-                    "title": "OperationItem",
-                    "type": "object"
-                },
-                "OperationsTypes": {
-                    "enum": [
-                        "concatenate",
-                        "lower_case",
-                        "upper_case",
-                        "split_by",
-                        "replace_by",
-                        "strip_spaces"
-                    ],
-                    "title": "OperationsTypes",
-                    "type": "string"
-                }
-            },
-            "properties": {
-                "first_argument": {
-                    "description": "Value for the first argument.",
-                    "title": "First Argument",
-                    "type": "string"
-                },
-                "operations": {
-                    "description": "Sequence of operations to perform.",
-                    "items": {
-                        "$ref": "#/$defs/OperationItem"
-                    },
-                    "title": "Operations",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "first_argument",
-                "operations"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "output_string": {
-                    "description": "Output string.",
-                    "title": "Output String",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "output_string"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringOperationsPiece"
-    },
-    "SleepPiece": {
-        "name": "SleepPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "sleep"
-        ],
-        "style": {
-            "node_label": "Sleep",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-solid:hourglass-start",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that sleeps for a given number of seconds.",
-        "input_schema": {
-            "description": "Sleep Piece Input Model",
-            "properties": {
-                "sleep_time": {
-                    "default": 1,
-                    "description": "Number of seconds to sleep",
-                    "title": "Sleep Time",
-                    "type": "number"
-                }
-            },
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "description": "Sleep Piece Output Model",
-            "properties": {
-                "message": {
-                    "description": "Sleep piece executed",
-                    "title": "Message",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "message"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
-    },
     "LoremIpsumGeneratorPiece": {
         "name": "LoremIpsumGeneratorPiece",
         "dependency": {
@@ -234,8 +73,8 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/LoremIpsumGeneratorPiece"
     },
-    "SaveImagePiece": {
-        "name": "SaveImagePiece",
+    "ImageFilterPiece": {
+        "name": "ImageFilterPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
@@ -245,160 +84,217 @@
             "image"
         ],
         "style": {
-            "node_label": "Save Image",
+            "node_label": "Image Filter",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "material-symbols:image-outline",
+            "icon_class_name": "ic:twotone-filter",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "Save base64 as image file to results folder.",
+        "description": "A Piece that applies selected image filters to an image.",
         "input_schema": {
-            "properties": {
-                "base64_data": {
-                    "description": "Input data to be saved as image.",
-                    "title": "Base64 Data",
+            "$defs": {
+                "OutputTypeType": {
+                    "description": "Output type for the result text",
+                    "enum": [
+                        "file",
+                        "base64_string",
+                        "both"
+                    ],
+                    "title": "OutputTypeType",
                     "type": "string"
                 }
             },
+            "properties": {
+                "input_image": {
+                    "description": "Input image. It should be either a path to a file, or a base64 encoded string.",
+                    "from_upstream": "always",
+                    "title": "Input Image",
+                    "type": "string"
+                },
+                "sepia": {
+                    "default": false,
+                    "description": "Apply sepia effect.",
+                    "title": "Sepia",
+                    "type": "boolean"
+                },
+                "black_and_white": {
+                    "default": false,
+                    "description": "Apply black and white effect.",
+                    "title": "Black And White",
+                    "type": "boolean"
+                },
+                "brightness": {
+                    "default": false,
+                    "description": "Apply brightness effect.",
+                    "title": "Brightness",
+                    "type": "boolean"
+                },
+                "darkness": {
+                    "default": false,
+                    "description": "Apply darkness effect.",
+                    "title": "Darkness",
+                    "type": "boolean"
+                },
+                "contrast": {
+                    "default": false,
+                    "description": "Apply contrast effect.",
+                    "title": "Contrast",
+                    "type": "boolean"
+                },
+                "red": {
+                    "default": false,
+                    "description": "Apply red effect.",
+                    "title": "Red",
+                    "type": "boolean"
+                },
+                "green": {
+                    "default": false,
+                    "description": "Apply green effect.",
+                    "title": "Green",
+                    "type": "boolean"
+                },
+                "blue": {
+                    "default": false,
+                    "description": "Apply blue effect.",
+                    "title": "Blue",
+                    "type": "boolean"
+                },
+                "cool": {
+                    "default": false,
+                    "description": "Apply cool effect.",
+                    "title": "Cool",
+                    "type": "boolean"
+                },
+                "warm": {
+                    "default": false,
+                    "description": "Apply warm effect.",
+                    "title": "Warm",
+                    "type": "boolean"
+                },
+                "output_type": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/OutputTypeType"
+                        }
+                    ],
+                    "default": "both",
+                    "description": "Format of the output image. Options are: `file`, `base64_string`, `both`."
+                }
+            },
             "required": [
-                "base64_data"
+                "input_image"
             ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
             "properties": {
-                "output_image_path": {
-                    "description": "Output file path of the saved image.",
-                    "title": "Output Image Path",
+                "image_base64_string": {
+                    "default": "",
+                    "description": "Base64 encoded string of the output image.",
+                    "title": "Image Base64 String",
+                    "type": "string"
+                },
+                "image_file_path": {
+                    "default": "",
+                    "description": "Path to the output image file.",
+                    "title": "Image File Path",
                     "type": "string"
                 }
             },
-            "required": [
-                "output_image_path"
-            ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SaveImagePiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ImageFilterPiece"
     },
-    "GetDateTimePiece": {
-        "name": "GetDateTimePiece",
+    "DataConversionPiece": {
+        "name": "DataConversionPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
-            "default",
-            "datetime"
+            "data",
+            "conversion",
+            "default"
         ],
         "style": {
-            "node_label": "Get Datetime",
+            "node_label": "Data Conversion Piece",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "fa:calendar-o",
+            "icon_class_name": "icon-park-outline:file-conversion",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "A Piece that gets system's current date and time.",
+        "description": "Convert data from one format to another",
         "input_schema": {
             "$defs": {
-                "TZOptions": {
+                "DataFormatOption": {
                     "enum": [
-                        "(UTC-11) - Pacific/Pago_Pago",
-                        "(UTC-10) - US/Hawaii",
-                        "(UTC-09) - Pacific/Gambier",
-                        "(UTC-08) - US/Alaska",
-                        "(UTC-07) - US/Pacific",
-                        "(UTC-06) - US/Mountain",
-                        "(UTC-05) - US/Central",
-                        "(UTC-04) - US/Eastern",
-                        "(UTC-03) - Canada/Atlantic",
-                        "(UTC-02) - Atlantic/South_Georgia",
-                        "(UTC-01) - Atlantic/Cape_Verde",
-                        "(UTC+00) - UTC",
-                        "(UTC+01) - Europe/London",
-                        "(UTC+02) - Europe/Zurich",
-                        "(UTC+03) - Indian/Mayotte",
-                        "(UTC+04) - Asia/Tehran",
-                        "(UTC+05) - Asia/Kathmandu",
-                        "(UTC+06) - Indian/Cocos",
-                        "(UTC+07) - Indian/Christmas",
-                        "(UTC+08) - Australia/Eucla",
-                        "(UTC+09) - Australia/Darwin",
-                        "(UTC+10) - Australia/Lord_Howe",
-                        "(UTC+11) - Pacific/Pohnpei",
-                        "(UTC+12) - Pacific/Chatham",
-                        "(UTC+13) - Pacific/Tongatapu",
-                        "(UTC+14) - Pacific/Kiritimati"
+                        "csv",
+                        "json"
                     ],
-                    "title": "TZOptions",
+                    "title": "DataFormatOption",
                     "type": "string"
                 }
             },
-            "description": "GetDateTimePiece Input Model",
             "properties": {
-                "use_timezone": {
-                    "default": false,
-                    "description": "Whether to use a timezone for the timestamp.",
-                    "title": "Use Timezone",
-                    "type": "boolean"
+                "input_data": {
+                    "description": "Input data to be converted. Can be a file path or data as string.",
+                    "title": "Input Data",
+                    "type": "string"
                 },
-                "timezone": {
+                "input_data_format": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/TZOptions"
+                            "$ref": "#/$defs/DataFormatOption"
                         }
                     ],
-                    "default": "(UTC+00) - UTC",
-                    "description": "Timezone to use for timestamp."
+                    "default": "csv",
+                    "description": "Input data format to be converted."
+                },
+                "output_data_format": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/DataFormatOption"
+                        }
+                    ],
+                    "default": "json",
+                    "description": "Output data format."
                 }
             },
+            "required": [
+                "input_data"
+            ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
-            "description": "GetDateTimePiece Output Model",
             "properties": {
-                "date": {
-                    "description": "Date of the timestamp, in ISO format.",
-                    "format": "date",
-                    "title": "Date",
-                    "type": "string"
-                },
-                "time": {
-                    "description": "Time of the timestamp, in ISO format.",
-                    "format": "time",
-                    "title": "Time",
-                    "type": "string"
-                },
-                "datetime": {
-                    "description": "Datetime of the timestamp, in ISO format.",
-                    "format": "date-time",
-                    "title": "Datetime",
+                "output_file_path": {
+                    "description": "Path to the converted file.",
+                    "title": "Output File Path",
                     "type": "string"
                 }
             },
             "required": [
-                "date",
-                "time",
-                "datetime"
+                "output_file_path"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/DataConversionPiece"
     },
     "CustomPythonPiece": {
         "name": "CustomPythonPiece",
@@ -586,6 +482,701 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
     },
+    "LogPiece": {
+        "name": "LogPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "log"
+        ],
+        "style": {
+            "node_label": "Log",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid:file-alt",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that logs its inputs.",
+        "input_schema": {
+            "$defs": {
+                "InputEnum": {
+                    "enum": [
+                        "option1",
+                        "option2",
+                        "option3"
+                    ],
+                    "title": "InputEnum",
+                    "type": "string"
+                }
+            },
+            "description": "LogPiece Input Model",
+            "properties": {
+                "input_str": {
+                    "default": "default value",
+                    "description": "Input string to be logged.",
+                    "title": "Input Str",
+                    "type": "string"
+                },
+                "input_int": {
+                    "default": 10,
+                    "description": "Input integer to be logged.",
+                    "title": "Input Int",
+                    "type": "integer"
+                },
+                "input_float": {
+                    "default": 10.5,
+                    "description": "Input float to be logged.",
+                    "title": "Input Float",
+                    "type": "number"
+                },
+                "input_bool": {
+                    "default": false,
+                    "description": "Input boolean to be logged.",
+                    "title": "Input Bool",
+                    "type": "boolean"
+                },
+                "input_enum": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/InputEnum"
+                        }
+                    ],
+                    "default": "option1",
+                    "description": "Input enum to be logged."
+                },
+                "input_date": {
+                    "default": "2023-01-01",
+                    "description": "Input date to be logged.",
+                    "format": "date",
+                    "title": "Input Date",
+                    "type": "string"
+                },
+                "input_time": {
+                    "default": "16:20:00",
+                    "description": "Input time to be logged.",
+                    "format": "time",
+                    "title": "Input Time",
+                    "type": "string"
+                },
+                "input_datetime": {
+                    "default": "2023-01-01T16:20:00",
+                    "description": "Input datetime to be logged.",
+                    "format": "date-time",
+                    "title": "Input Datetime",
+                    "type": "string"
+                },
+                "input_array": {
+                    "default": [
+                        "default_1",
+                        "default_2",
+                        "default_3"
+                    ],
+                    "description": "Input array to be logged.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Input Array",
+                    "type": "array"
+                },
+                "input_code": {
+                    "default": "print('Hello world!')",
+                    "description": "Input code to be logged.",
+                    "title": "Input Code",
+                    "type": "string",
+                    "widget": "codeeditor"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "LogPiece Output Model",
+            "properties": {
+                "output_log": {
+                    "description": "All values logged.",
+                    "title": "Output Log",
+                    "type": "string"
+                },
+                "output_str": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output string logged.",
+                    "title": "Output Str"
+                },
+                "output_int": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output integer logged.",
+                    "title": "Output Int"
+                },
+                "output_float": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output float logged.",
+                    "title": "Output Float"
+                },
+                "output_bool": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output boolean logged.",
+                    "title": "Output Bool"
+                },
+                "output_enum": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Output enum logged.",
+                    "title": "Output Enum"
+                },
+                "output_date": {
+                    "description": "Output date logged.",
+                    "format": "date",
+                    "title": "Output Date",
+                    "type": "string"
+                },
+                "output_time": {
+                    "description": "Output time logged.",
+                    "format": "time",
+                    "title": "Output Time",
+                    "type": "string"
+                },
+                "output_datetime": {
+                    "description": "Output datetime logged.",
+                    "format": "date-time",
+                    "title": "Output Datetime",
+                    "type": "string"
+                },
+                "output_array": {
+                    "description": "Output array logged.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Output Array",
+                    "type": "array"
+                },
+                "output_code": {
+                    "description": "Output code logged.",
+                    "title": "Output Code",
+                    "type": "string",
+                    "widget": "codeeditor"
+                }
+            },
+            "required": [
+                "output_log",
+                "output_str",
+                "output_int",
+                "output_float",
+                "output_bool",
+                "output_enum",
+                "output_date",
+                "output_time",
+                "output_datetime",
+                "output_array",
+                "output_code"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/LogPiece"
+    },
+    "SleepPiece": {
+        "name": "SleepPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "sleep"
+        ],
+        "style": {
+            "node_label": "Sleep",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid:hourglass-start",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that sleeps for a given number of seconds.",
+        "input_schema": {
+            "description": "Sleep Piece Input Model",
+            "properties": {
+                "sleep_time": {
+                    "default": 1,
+                    "description": "Number of seconds to sleep",
+                    "title": "Sleep Time",
+                    "type": "number"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "Sleep Piece Output Model",
+            "properties": {
+                "message": {
+                    "description": "Sleep piece executed",
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "message"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
+    },
+    "GetDateTimePiece": {
+        "name": "GetDateTimePiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "datetime"
+        ],
+        "style": {
+            "node_label": "Get Datetime",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa:calendar-o",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that gets system's current date and time.",
+        "input_schema": {
+            "$defs": {
+                "TZOptions": {
+                    "enum": [
+                        "(UTC-11) - Pacific/Pago_Pago",
+                        "(UTC-10) - US/Hawaii",
+                        "(UTC-09) - Pacific/Gambier",
+                        "(UTC-08) - US/Alaska",
+                        "(UTC-07) - US/Pacific",
+                        "(UTC-06) - US/Mountain",
+                        "(UTC-05) - US/Central",
+                        "(UTC-04) - US/Eastern",
+                        "(UTC-03) - Canada/Atlantic",
+                        "(UTC-02) - Atlantic/South_Georgia",
+                        "(UTC-01) - Atlantic/Cape_Verde",
+                        "(UTC+00) - UTC",
+                        "(UTC+01) - Europe/London",
+                        "(UTC+02) - Europe/Zurich",
+                        "(UTC+03) - Indian/Mayotte",
+                        "(UTC+04) - Asia/Tehran",
+                        "(UTC+05) - Asia/Kathmandu",
+                        "(UTC+06) - Indian/Cocos",
+                        "(UTC+07) - Indian/Christmas",
+                        "(UTC+08) - Australia/Eucla",
+                        "(UTC+09) - Australia/Darwin",
+                        "(UTC+10) - Australia/Lord_Howe",
+                        "(UTC+11) - Pacific/Pohnpei",
+                        "(UTC+12) - Pacific/Chatham",
+                        "(UTC+13) - Pacific/Tongatapu",
+                        "(UTC+14) - Pacific/Kiritimati"
+                    ],
+                    "title": "TZOptions",
+                    "type": "string"
+                }
+            },
+            "description": "GetDateTimePiece Input Model",
+            "properties": {
+                "use_timezone": {
+                    "default": false,
+                    "description": "Whether to use a timezone for the timestamp.",
+                    "title": "Use Timezone",
+                    "type": "boolean"
+                },
+                "timezone": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/TZOptions"
+                        }
+                    ],
+                    "default": "(UTC+00) - UTC",
+                    "description": "Timezone to use for timestamp."
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "GetDateTimePiece Output Model",
+            "properties": {
+                "date": {
+                    "description": "Date of the timestamp, in ISO format.",
+                    "format": "date",
+                    "title": "Date",
+                    "type": "string"
+                },
+                "time": {
+                    "description": "Time of the timestamp, in ISO format.",
+                    "format": "time",
+                    "title": "Time",
+                    "type": "string"
+                },
+                "datetime": {
+                    "description": "Datetime of the timestamp, in ISO format.",
+                    "format": "date-time",
+                    "title": "Datetime",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "date",
+                "time",
+                "datetime"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
+    },
+    "StringOperationsPiece": {
+        "name": "StringOperationsPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "string"
+        ],
+        "style": {
+            "node_label": "String Operations",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "tabler:sort-a-z",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that performs string operations",
+        "input_schema": {
+            "$defs": {
+                "OperationItem": {
+                    "properties": {
+                        "operation": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OperationsTypes"
+                                }
+                            ],
+                            "description": "Operation to perform. Options: `concatenate`, `lower_case`, `upper_case`, `split_by`, `replace_by`.",
+                            "from_upstream": "never"
+                        },
+                        "second_argument": {
+                            "default": "",
+                            "description": "Value for the second argument.",
+                            "title": "Second Argument",
+                            "type": "string"
+                        },
+                        "auxiliary_argument": {
+                            "default": "",
+                            "description": "Auxiliary argument for `split_by` and `replace_by` operations.\nIf `split_by` is selected, this argument will be used as the index of the split array.\nIf `replace_by` is selected, this argument will be used as the string to replace.\n",
+                            "title": "Auxiliary Argument",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "title": "OperationItem",
+                    "type": "object"
+                },
+                "OperationsTypes": {
+                    "enum": [
+                        "concatenate",
+                        "lower_case",
+                        "upper_case",
+                        "split_by",
+                        "replace_by",
+                        "strip_spaces"
+                    ],
+                    "title": "OperationsTypes",
+                    "type": "string"
+                }
+            },
+            "properties": {
+                "first_argument": {
+                    "description": "Value for the first argument.",
+                    "title": "First Argument",
+                    "type": "string"
+                },
+                "operations": {
+                    "description": "Sequence of operations to perform.",
+                    "items": {
+                        "$ref": "#/$defs/OperationItem"
+                    },
+                    "title": "Operations",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "first_argument",
+                "operations"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "output_string": {
+                    "description": "Output string.",
+                    "title": "Output String",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_string"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringOperationsPiece"
+    },
+    "StringConditionChecksPiece": {
+        "name": "StringConditionChecksPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "string"
+        ],
+        "style": {
+            "node_label": "String Conditions Checks",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "mdi:format-letter-matches",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that checks conditions on a string",
+        "input_schema": {
+            "$defs": {
+                "ChecksTypes": {
+                    "enum": [
+                        "contains_case_sensitive",
+                        "contains_case_insensitive",
+                        "length_greater_than",
+                        "length_greater_than_or_equal_to",
+                        "length_less_than",
+                        "length_less_than_or_equal_to",
+                        "length_equal_to",
+                        "regex_match"
+                    ],
+                    "title": "ChecksTypes",
+                    "type": "string"
+                },
+                "LogicalOperators": {
+                    "enum": [
+                        "and",
+                        "or"
+                    ],
+                    "title": "LogicalOperators",
+                    "type": "string"
+                },
+                "OperationItem": {
+                    "properties": {
+                        "operation": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/ChecksTypes"
+                                }
+                            ],
+                            "description": "Operation to perform.\nOptions: `contains_case_sensitive`, `contains_case_insensitive`, `length_greater_than`, `length_greater_than_or_equal_to`, `length_less_than`, `length_less_than_or_equal_to`, `length_equal_to`, `regex_match`.\n",
+                            "from_upstream": "never"
+                        },
+                        "second_argument": {
+                            "default": "",
+                            "description": "Value for the second argument.\nIf `contains_case_sensitive` or `contains_case_insensitive` are selected, this argument will be used as the string to search for.\nIf `length_greater_than`, `length_greater_than_or_equal_to`, `length_less_than`, `length_less_than_or_equal_to` or `length_equal_to` are selected, this argument will be used as the integer value to compare with.\nIf `regex_match` is selected, this argument will be used as the string to match with the regex pattern.\n",
+                            "title": "Second Argument",
+                            "type": "string"
+                        },
+                        "next_logical_operator": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LogicalOperators"
+                                }
+                            ],
+                            "default": "and",
+                            "description": "Logical operator to use with the next operation result."
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "title": "OperationItem",
+                    "type": "object"
+                }
+            },
+            "properties": {
+                "input_string": {
+                    "description": "Input string.",
+                    "title": "Input String",
+                    "type": "string"
+                },
+                "operations": {
+                    "description": "Sequence of operations to perform.",
+                    "items": {
+                        "$ref": "#/$defs/OperationItem"
+                    },
+                    "title": "Operations",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "input_string",
+                "operations"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "check_result": {
+                    "description": "Result of the checks.",
+                    "title": "Check Result",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "check_result"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringConditionChecksPiece"
+    },
+    "YDataProfilingPiece": {
+        "name": "YDataProfilingPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "eda"
+        ],
+        "style": {
+            "node_label": "Data Profiling",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "mingcute:profile-line",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Piece that uses ydata-profiling to create fast EDA.",
+        "input_schema": {
+            "properties": {
+                "data_path": {
+                    "description": "Path to the CSV file to be profiled",
+                    "title": "CSV file path",
+                    "type": "string"
+                },
+                "report_tile": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "Profiling Report",
+                    "description": "Title of the report",
+                    "title": "Report title"
+                }
+            },
+            "required": [
+                "data_path"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "profile_file_path": {
+                    "description": "Path to the output file.",
+                    "title": "Output file path",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "profile_file_path"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/YDataProfilingPiece"
+    },
     "GetItemFromArrayPiece": {
         "name": "GetItemFromArrayPiece",
         "dependency": {
@@ -703,89 +1294,6 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetItemFromArrayPiece"
-    },
-    "DataConversionPiece": {
-        "name": "DataConversionPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "data",
-            "conversion",
-            "default"
-        ],
-        "style": {
-            "node_label": "Data Conversion Piece",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "icon-park-outline:file-conversion",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Convert data from one format to another",
-        "input_schema": {
-            "$defs": {
-                "DataFormatOption": {
-                    "enum": [
-                        "csv",
-                        "json"
-                    ],
-                    "title": "DataFormatOption",
-                    "type": "string"
-                }
-            },
-            "properties": {
-                "input_data": {
-                    "description": "Input data to be converted. Can be a file path or data as string.",
-                    "title": "Input Data",
-                    "type": "string"
-                },
-                "input_data_format": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/DataFormatOption"
-                        }
-                    ],
-                    "default": "csv",
-                    "description": "Input data format to be converted."
-                },
-                "output_data_format": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/DataFormatOption"
-                        }
-                    ],
-                    "default": "json",
-                    "description": "Output data format."
-                }
-            },
-            "required": [
-                "input_data"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "output_file_path": {
-                    "description": "Path to the converted file.",
-                    "title": "Output File Path",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "output_file_path"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/DataConversionPiece"
     },
     "ToStringPiece": {
         "name": "ToStringPiece",
@@ -1126,243 +1634,8 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/PageScrapperPiece"
     },
-    "LogPiece": {
-        "name": "LogPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "log"
-        ],
-        "style": {
-            "node_label": "Log",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-solid:file-alt",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that logs its inputs.",
-        "input_schema": {
-            "$defs": {
-                "InputEnum": {
-                    "enum": [
-                        "option1",
-                        "option2",
-                        "option3"
-                    ],
-                    "title": "InputEnum",
-                    "type": "string"
-                }
-            },
-            "description": "LogPiece Input Model",
-            "properties": {
-                "input_str": {
-                    "default": "default value",
-                    "description": "Input string to be logged.",
-                    "title": "Input Str",
-                    "type": "string"
-                },
-                "input_int": {
-                    "default": 10,
-                    "description": "Input integer to be logged.",
-                    "title": "Input Int",
-                    "type": "integer"
-                },
-                "input_float": {
-                    "default": 10.5,
-                    "description": "Input float to be logged.",
-                    "title": "Input Float",
-                    "type": "number"
-                },
-                "input_bool": {
-                    "default": false,
-                    "description": "Input boolean to be logged.",
-                    "title": "Input Bool",
-                    "type": "boolean"
-                },
-                "input_enum": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/InputEnum"
-                        }
-                    ],
-                    "default": "option1",
-                    "description": "Input enum to be logged."
-                },
-                "input_date": {
-                    "default": "2023-01-01",
-                    "description": "Input date to be logged.",
-                    "format": "date",
-                    "title": "Input Date",
-                    "type": "string"
-                },
-                "input_time": {
-                    "default": "16:20:00",
-                    "description": "Input time to be logged.",
-                    "format": "time",
-                    "title": "Input Time",
-                    "type": "string"
-                },
-                "input_datetime": {
-                    "default": "2023-01-01T16:20:00",
-                    "description": "Input datetime to be logged.",
-                    "format": "date-time",
-                    "title": "Input Datetime",
-                    "type": "string"
-                },
-                "input_array": {
-                    "default": [
-                        "default_1",
-                        "default_2",
-                        "default_3"
-                    ],
-                    "description": "Input array to be logged.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Input Array",
-                    "type": "array"
-                },
-                "input_code": {
-                    "default": "print('Hello world!')",
-                    "description": "Input code to be logged.",
-                    "title": "Input Code",
-                    "type": "string",
-                    "widget": "codeeditor"
-                }
-            },
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "description": "LogPiece Output Model",
-            "properties": {
-                "output_log": {
-                    "description": "All values logged.",
-                    "title": "Output Log",
-                    "type": "string"
-                },
-                "output_str": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Output string logged.",
-                    "title": "Output Str"
-                },
-                "output_int": {
-                    "anyOf": [
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Output integer logged.",
-                    "title": "Output Int"
-                },
-                "output_float": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Output float logged.",
-                    "title": "Output Float"
-                },
-                "output_bool": {
-                    "anyOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Output boolean logged.",
-                    "title": "Output Bool"
-                },
-                "output_enum": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Output enum logged.",
-                    "title": "Output Enum"
-                },
-                "output_date": {
-                    "description": "Output date logged.",
-                    "format": "date",
-                    "title": "Output Date",
-                    "type": "string"
-                },
-                "output_time": {
-                    "description": "Output time logged.",
-                    "format": "time",
-                    "title": "Output Time",
-                    "type": "string"
-                },
-                "output_datetime": {
-                    "description": "Output datetime logged.",
-                    "format": "date-time",
-                    "title": "Output Datetime",
-                    "type": "string"
-                },
-                "output_array": {
-                    "description": "Output array logged.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Output Array",
-                    "type": "array"
-                },
-                "output_code": {
-                    "description": "Output code logged.",
-                    "title": "Output Code",
-                    "type": "string",
-                    "widget": "codeeditor"
-                }
-            },
-            "required": [
-                "output_log",
-                "output_str",
-                "output_int",
-                "output_float",
-                "output_bool",
-                "output_enum",
-                "output_date",
-                "output_time",
-                "output_datetime",
-                "output_array",
-                "output_code"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/LogPiece"
-    },
-    "ImageFilterPiece": {
-        "name": "ImageFilterPiece",
+    "SaveImagePiece": {
+        "name": "SaveImagePiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
@@ -1372,253 +1645,47 @@
             "image"
         ],
         "style": {
-            "node_label": "Image Filter",
+            "node_label": "Save Image",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "ic:twotone-filter",
+            "icon_class_name": "material-symbols:image-outline",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "A Piece that applies selected image filters to an image.",
+        "description": "Save base64 as image file to results folder.",
         "input_schema": {
-            "$defs": {
-                "OutputTypeType": {
-                    "description": "Output type for the result text",
-                    "enum": [
-                        "file",
-                        "base64_string",
-                        "both"
-                    ],
-                    "title": "OutputTypeType",
-                    "type": "string"
-                }
-            },
             "properties": {
-                "input_image": {
-                    "description": "Input image. It should be either a path to a file, or a base64 encoded string.",
-                    "from_upstream": "always",
-                    "title": "Input Image",
+                "base64_data": {
+                    "description": "Input data to be saved as image.",
+                    "title": "Base64 Data",
                     "type": "string"
-                },
-                "sepia": {
-                    "default": false,
-                    "description": "Apply sepia effect.",
-                    "title": "Sepia",
-                    "type": "boolean"
-                },
-                "black_and_white": {
-                    "default": false,
-                    "description": "Apply black and white effect.",
-                    "title": "Black And White",
-                    "type": "boolean"
-                },
-                "brightness": {
-                    "default": false,
-                    "description": "Apply brightness effect.",
-                    "title": "Brightness",
-                    "type": "boolean"
-                },
-                "darkness": {
-                    "default": false,
-                    "description": "Apply darkness effect.",
-                    "title": "Darkness",
-                    "type": "boolean"
-                },
-                "contrast": {
-                    "default": false,
-                    "description": "Apply contrast effect.",
-                    "title": "Contrast",
-                    "type": "boolean"
-                },
-                "red": {
-                    "default": false,
-                    "description": "Apply red effect.",
-                    "title": "Red",
-                    "type": "boolean"
-                },
-                "green": {
-                    "default": false,
-                    "description": "Apply green effect.",
-                    "title": "Green",
-                    "type": "boolean"
-                },
-                "blue": {
-                    "default": false,
-                    "description": "Apply blue effect.",
-                    "title": "Blue",
-                    "type": "boolean"
-                },
-                "cool": {
-                    "default": false,
-                    "description": "Apply cool effect.",
-                    "title": "Cool",
-                    "type": "boolean"
-                },
-                "warm": {
-                    "default": false,
-                    "description": "Apply warm effect.",
-                    "title": "Warm",
-                    "type": "boolean"
-                },
-                "output_type": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/OutputTypeType"
-                        }
-                    ],
-                    "default": "both",
-                    "description": "Format of the output image. Options are: `file`, `base64_string`, `both`."
                 }
             },
             "required": [
-                "input_image"
+                "base64_data"
             ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
             "properties": {
-                "image_base64_string": {
-                    "default": "",
-                    "description": "Base64 encoded string of the output image.",
-                    "title": "Image Base64 String",
+                "output_image_path": {
+                    "description": "Output file path of the saved image.",
+                    "title": "Output Image Path",
                     "type": "string"
-                },
-                "image_file_path": {
-                    "default": "",
-                    "description": "Path to the output image file.",
-                    "title": "Image File Path",
-                    "type": "string"
-                }
-            },
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ImageFilterPiece"
-    },
-    "StringConditionChecksPiece": {
-        "name": "StringConditionChecksPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "string"
-        ],
-        "style": {
-            "node_label": "String Conditions Checks",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "mdi:format-letter-matches",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that checks conditions on a string",
-        "input_schema": {
-            "$defs": {
-                "ChecksTypes": {
-                    "enum": [
-                        "contains_case_sensitive",
-                        "contains_case_insensitive",
-                        "length_greater_than",
-                        "length_greater_than_or_equal_to",
-                        "length_less_than",
-                        "length_less_than_or_equal_to",
-                        "length_equal_to",
-                        "regex_match"
-                    ],
-                    "title": "ChecksTypes",
-                    "type": "string"
-                },
-                "LogicalOperators": {
-                    "enum": [
-                        "and",
-                        "or"
-                    ],
-                    "title": "LogicalOperators",
-                    "type": "string"
-                },
-                "OperationItem": {
-                    "properties": {
-                        "operation": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/$defs/ChecksTypes"
-                                }
-                            ],
-                            "description": "Operation to perform.\nOptions: `contains_case_sensitive`, `contains_case_insensitive`, `length_greater_than`, `length_greater_than_or_equal_to`, `length_less_than`, `length_less_than_or_equal_to`, `length_equal_to`, `regex_match`.\n",
-                            "from_upstream": "never"
-                        },
-                        "second_argument": {
-                            "default": "",
-                            "description": "Value for the second argument.\nIf `contains_case_sensitive` or `contains_case_insensitive` are selected, this argument will be used as the string to search for.\nIf `length_greater_than`, `length_greater_than_or_equal_to`, `length_less_than`, `length_less_than_or_equal_to` or `length_equal_to` are selected, this argument will be used as the integer value to compare with.\nIf `regex_match` is selected, this argument will be used as the string to match with the regex pattern.\n",
-                            "title": "Second Argument",
-                            "type": "string"
-                        },
-                        "next_logical_operator": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/$defs/LogicalOperators"
-                                }
-                            ],
-                            "default": "and",
-                            "description": "Logical operator to use with the next operation result."
-                        }
-                    },
-                    "required": [
-                        "operation"
-                    ],
-                    "title": "OperationItem",
-                    "type": "object"
-                }
-            },
-            "properties": {
-                "input_string": {
-                    "description": "Input string.",
-                    "title": "Input String",
-                    "type": "string"
-                },
-                "operations": {
-                    "description": "Sequence of operations to perform.",
-                    "items": {
-                        "$ref": "#/$defs/OperationItem"
-                    },
-                    "title": "Operations",
-                    "type": "array"
                 }
             },
             "required": [
-                "input_string",
-                "operations"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "check_result": {
-                    "description": "Result of the checks.",
-                    "title": "Check Result",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "check_result"
+                "output_image_path"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringConditionChecksPiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SaveImagePiece"
     }
 }
