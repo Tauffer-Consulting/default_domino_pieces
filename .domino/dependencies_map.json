@@ -23,6 +23,6 @@
             "SaveImagePiece"
         ],
         "secrets": [],
-        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.8.0-group0"
+        "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:development-group0"
     }
 }
