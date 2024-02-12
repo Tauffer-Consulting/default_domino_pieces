@@ -4,5 +4,4 @@ REGISTRY_NAME = "tauffer-consulting"
 REPOSITORY_NAME = "default_domino_pieces"
 REPOSITORY_LABEL = "Default Pieces Repository"
 
-VERSION = "0.8.0"
-
+VERSION = "0.8.1"
