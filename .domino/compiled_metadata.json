@@ -1,80 +1,6 @@
 {
-    "LoremIpsumGeneratorPiece": {
-        "name": "LoremIpsumGeneratorPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "text"
-        ],
-        "style": {
-            "node_label": "Lorem Ipsum Generator",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "carbon:character-sentence-case",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that generates Lorem Ipsum text.",
-        "input_schema": {
-            "$defs": {
-                "ItemsType": {
-                    "enum": [
-                        "words",
-                        "sentences",
-                        "paragraphs"
-                    ],
-                    "title": "ItemsType",
-                    "type": "string"
-                }
-            },
-            "description": "LoremIpsumGeneratorPiece Input Model",
-            "properties": {
-                "items": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/ItemsType"
-                        }
-                    ],
-                    "default": "words",
-                    "description": "Type of items to generate."
-                },
-                "number_of_items": {
-                    "default": 1,
-                    "description": "Number of items to generate.",
-                    "title": "Number Of Items",
-                    "type": "integer"
-                }
-            },
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "description": "LoremIpsumGeneratorPiece Output Model",
-            "properties": {
-                "output_text": {
-                    "description": "Generated text.",
-                    "title": "Output Text",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "output_text"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/LoremIpsumGeneratorPiece"
-    },
-    "ImageFilterPiece": {
-        "name": "ImageFilterPiece",
+    "SaveImagePiece": {
+        "name": "SaveImagePiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
@@ -84,217 +10,160 @@
             "image"
         ],
         "style": {
-            "node_label": "Image Filter",
+            "node_label": "Save Image",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "ic:twotone-filter",
+            "icon_class_name": "material-symbols:image-outline",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "A Piece that applies selected image filters to an image.",
+        "description": "Save base64 as image file to results folder.",
         "input_schema": {
-            "$defs": {
-                "OutputTypeType": {
-                    "description": "Output type for the result text",
-                    "enum": [
-                        "file",
-                        "base64_string",
-                        "both"
-                    ],
-                    "title": "OutputTypeType",
-                    "type": "string"
-                }
-            },
             "properties": {
-                "input_image": {
-                    "description": "Input image. It should be either a path to a file, or a base64 encoded string.",
-                    "from_upstream": "always",
-                    "title": "Input Image",
+                "base64_data": {
+                    "description": "Input data to be saved as image.",
+                    "title": "Base64 Data",
                     "type": "string"
-                },
-                "sepia": {
-                    "default": false,
-                    "description": "Apply sepia effect.",
-                    "title": "Sepia",
-                    "type": "boolean"
-                },
-                "black_and_white": {
-                    "default": false,
-                    "description": "Apply black and white effect.",
-                    "title": "Black And White",
-                    "type": "boolean"
-                },
-                "brightness": {
-                    "default": false,
-                    "description": "Apply brightness effect.",
-                    "title": "Brightness",
-                    "type": "boolean"
-                },
-                "darkness": {
-                    "default": false,
-                    "description": "Apply darkness effect.",
-                    "title": "Darkness",
-                    "type": "boolean"
-                },
-                "contrast": {
-                    "default": false,
-                    "description": "Apply contrast effect.",
-                    "title": "Contrast",
-                    "type": "boolean"
-                },
-                "red": {
-                    "default": false,
-                    "description": "Apply red effect.",
-                    "title": "Red",
-                    "type": "boolean"
-                },
-                "green": {
-                    "default": false,
-                    "description": "Apply green effect.",
-                    "title": "Green",
-                    "type": "boolean"
-                },
-                "blue": {
-                    "default": false,
-                    "description": "Apply blue effect.",
-                    "title": "Blue",
-                    "type": "boolean"
-                },
-                "cool": {
-                    "default": false,
-                    "description": "Apply cool effect.",
-                    "title": "Cool",
-                    "type": "boolean"
-                },
-                "warm": {
-                    "default": false,
-                    "description": "Apply warm effect.",
-                    "title": "Warm",
-                    "type": "boolean"
-                },
-                "output_type": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/OutputTypeType"
-                        }
-                    ],
-                    "default": "both",
-                    "description": "Format of the output image. Options are: `file`, `base64_string`, `both`."
                 }
             },
             "required": [
-                "input_image"
+                "base64_data"
             ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
             "properties": {
-                "image_base64_string": {
-                    "default": "",
-                    "description": "Base64 encoded string of the output image.",
-                    "title": "Image Base64 String",
-                    "type": "string"
-                },
-                "image_file_path": {
-                    "default": "",
-                    "description": "Path to the output image file.",
-                    "title": "Image File Path",
+                "output_image_path": {
+                    "description": "Output file path of the saved image.",
+                    "title": "Output Image Path",
                     "type": "string"
                 }
             },
+            "required": [
+                "output_image_path"
+            ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ImageFilterPiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SaveImagePiece"
     },
-    "DataConversionPiece": {
-        "name": "DataConversionPiece",
+    "GetDateTimePiece": {
+        "name": "GetDateTimePiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
-            "data",
-            "conversion",
-            "default"
+            "default",
+            "datetime"
         ],
         "style": {
-            "node_label": "Data Conversion Piece",
+            "node_label": "Get Datetime",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "icon-park-outline:file-conversion",
+            "icon_class_name": "fa:calendar-o",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "Convert data from one format to another",
+        "description": "A Piece that gets system's current date and time.",
         "input_schema": {
             "$defs": {
-                "DataFormatOption": {
+                "TZOptions": {
                     "enum": [
-                        "csv",
-                        "json"
+                        "(UTC-11) - Pacific/Pago_Pago",
+                        "(UTC-10) - US/Hawaii",
+                        "(UTC-09) - Pacific/Gambier",
+                        "(UTC-08) - US/Alaska",
+                        "(UTC-07) - US/Pacific",
+                        "(UTC-06) - US/Mountain",
+                        "(UTC-05) - US/Central",
+                        "(UTC-04) - US/Eastern",
+                        "(UTC-03) - Canada/Atlantic",
+                        "(UTC-02) - Atlantic/South_Georgia",
+                        "(UTC-01) - Atlantic/Cape_Verde",
+                        "(UTC+00) - UTC",
+                        "(UTC+01) - Europe/London",
+                        "(UTC+02) - Europe/Zurich",
+                        "(UTC+03) - Indian/Mayotte",
+                        "(UTC+04) - Asia/Tehran",
+                        "(UTC+05) - Asia/Kathmandu",
+                        "(UTC+06) - Indian/Cocos",
+                        "(UTC+07) - Indian/Christmas",
+                        "(UTC+08) - Australia/Eucla",
+                        "(UTC+09) - Australia/Darwin",
+                        "(UTC+10) - Australia/Lord_Howe",
+                        "(UTC+11) - Pacific/Pohnpei",
+                        "(UTC+12) - Pacific/Chatham",
+                        "(UTC+13) - Pacific/Tongatapu",
+                        "(UTC+14) - Pacific/Kiritimati"
                     ],
-                    "title": "DataFormatOption",
+                    "title": "TZOptions",
                     "type": "string"
                 }
             },
+            "description": "GetDateTimePiece Input Model",
             "properties": {
-                "input_data": {
-                    "description": "Input data to be converted. Can be a file path or data as string.",
-                    "title": "Input Data",
-                    "type": "string"
+                "use_timezone": {
+                    "default": false,
+                    "description": "Whether to use a timezone for the timestamp.",
+                    "title": "Use Timezone",
+                    "type": "boolean"
                 },
-                "input_data_format": {
+                "timezone": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/DataFormatOption"
+                            "$ref": "#/$defs/TZOptions"
                         }
                     ],
-                    "default": "csv",
-                    "description": "Input data format to be converted."
-                },
-                "output_data_format": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/DataFormatOption"
-                        }
-                    ],
-                    "default": "json",
-                    "description": "Output data format."
+                    "default": "(UTC+00) - UTC",
+                    "description": "Timezone to use for timestamp."
                 }
             },
-            "required": [
-                "input_data"
-            ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
+            "description": "GetDateTimePiece Output Model",
             "properties": {
-                "output_file_path": {
-                    "description": "Path to the converted file.",
-                    "title": "Output File Path",
+                "date": {
+                    "description": "Date of the timestamp, in ISO format.",
+                    "format": "date",
+                    "title": "Date",
+                    "type": "string"
+                },
+                "time": {
+                    "description": "Time of the timestamp, in ISO format.",
+                    "format": "time",
+                    "title": "Time",
+                    "type": "string"
+                },
+                "datetime": {
+                    "description": "Datetime of the timestamp, in ISO format.",
+                    "format": "date-time",
+                    "title": "Datetime",
                     "type": "string"
                 }
             },
             "required": [
-                "output_file_path"
+                "date",
+                "time",
+                "datetime"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/DataConversionPiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
     },
     "CustomPythonPiece": {
         "name": "CustomPythonPiece",
@@ -717,278 +586,296 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/LogPiece"
     },
-    "SleepPiece": {
-        "name": "SleepPiece",
+    "ImageFilterPiece": {
+        "name": "ImageFilterPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
             "default",
-            "sleep"
+            "image"
         ],
         "style": {
-            "node_label": "Sleep",
+            "node_label": "Image Filter",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "fa-solid:hourglass-start",
+            "icon_class_name": "ic:twotone-filter",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "A Piece that sleeps for a given number of seconds.",
-        "input_schema": {
-            "description": "Sleep Piece Input Model",
-            "properties": {
-                "sleep_time": {
-                    "default": 1,
-                    "description": "Number of seconds to sleep",
-                    "title": "Sleep Time",
-                    "type": "number"
-                }
-            },
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "description": "Sleep Piece Output Model",
-            "properties": {
-                "message": {
-                    "description": "Sleep piece executed",
-                    "title": "Message",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "message"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
-    },
-    "GetDateTimePiece": {
-        "name": "GetDateTimePiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "datetime"
-        ],
-        "style": {
-            "node_label": "Get Datetime",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa:calendar-o",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that gets system's current date and time.",
+        "description": "A Piece that applies selected image filters to an image.",
         "input_schema": {
             "$defs": {
-                "TZOptions": {
+                "OutputTypeType": {
+                    "description": "Output type for the result text",
                     "enum": [
-                        "(UTC-11) - Pacific/Pago_Pago",
-                        "(UTC-10) - US/Hawaii",
-                        "(UTC-09) - Pacific/Gambier",
-                        "(UTC-08) - US/Alaska",
-                        "(UTC-07) - US/Pacific",
-                        "(UTC-06) - US/Mountain",
-                        "(UTC-05) - US/Central",
-                        "(UTC-04) - US/Eastern",
-                        "(UTC-03) - Canada/Atlantic",
-                        "(UTC-02) - Atlantic/South_Georgia",
-                        "(UTC-01) - Atlantic/Cape_Verde",
-                        "(UTC+00) - UTC",
-                        "(UTC+01) - Europe/London",
-                        "(UTC+02) - Europe/Zurich",
-                        "(UTC+03) - Indian/Mayotte",
-                        "(UTC+04) - Asia/Tehran",
-                        "(UTC+05) - Asia/Kathmandu",
-                        "(UTC+06) - Indian/Cocos",
-                        "(UTC+07) - Indian/Christmas",
-                        "(UTC+08) - Australia/Eucla",
-                        "(UTC+09) - Australia/Darwin",
-                        "(UTC+10) - Australia/Lord_Howe",
-                        "(UTC+11) - Pacific/Pohnpei",
-                        "(UTC+12) - Pacific/Chatham",
-                        "(UTC+13) - Pacific/Tongatapu",
-                        "(UTC+14) - Pacific/Kiritimati"
+                        "file",
+                        "base64_string",
+                        "both"
                     ],
-                    "title": "TZOptions",
+                    "title": "OutputTypeType",
                     "type": "string"
                 }
             },
-            "description": "GetDateTimePiece Input Model",
             "properties": {
-                "use_timezone": {
+                "input_image": {
+                    "description": "Input image. It should be either a path to a file, or a base64 encoded string.",
+                    "from_upstream": "always",
+                    "title": "Input Image",
+                    "type": "string"
+                },
+                "sepia": {
                     "default": false,
-                    "description": "Whether to use a timezone for the timestamp.",
-                    "title": "Use Timezone",
+                    "description": "Apply sepia effect.",
+                    "title": "Sepia",
                     "type": "boolean"
                 },
-                "timezone": {
+                "black_and_white": {
+                    "default": false,
+                    "description": "Apply black and white effect.",
+                    "title": "Black And White",
+                    "type": "boolean"
+                },
+                "brightness": {
+                    "default": false,
+                    "description": "Apply brightness effect.",
+                    "title": "Brightness",
+                    "type": "boolean"
+                },
+                "darkness": {
+                    "default": false,
+                    "description": "Apply darkness effect.",
+                    "title": "Darkness",
+                    "type": "boolean"
+                },
+                "contrast": {
+                    "default": false,
+                    "description": "Apply contrast effect.",
+                    "title": "Contrast",
+                    "type": "boolean"
+                },
+                "red": {
+                    "default": false,
+                    "description": "Apply red effect.",
+                    "title": "Red",
+                    "type": "boolean"
+                },
+                "green": {
+                    "default": false,
+                    "description": "Apply green effect.",
+                    "title": "Green",
+                    "type": "boolean"
+                },
+                "blue": {
+                    "default": false,
+                    "description": "Apply blue effect.",
+                    "title": "Blue",
+                    "type": "boolean"
+                },
+                "cool": {
+                    "default": false,
+                    "description": "Apply cool effect.",
+                    "title": "Cool",
+                    "type": "boolean"
+                },
+                "warm": {
+                    "default": false,
+                    "description": "Apply warm effect.",
+                    "title": "Warm",
+                    "type": "boolean"
+                },
+                "output_type": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/TZOptions"
+                            "$ref": "#/$defs/OutputTypeType"
                         }
                     ],
-                    "default": "(UTC+00) - UTC",
-                    "description": "Timezone to use for timestamp."
+                    "default": "both",
+                    "description": "Format of the output image. Options are: `file`, `base64_string`, `both`."
                 }
             },
+            "required": [
+                "input_image"
+            ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
-            "description": "GetDateTimePiece Output Model",
             "properties": {
-                "date": {
-                    "description": "Date of the timestamp, in ISO format.",
-                    "format": "date",
-                    "title": "Date",
+                "image_base64_string": {
+                    "default": "",
+                    "description": "Base64 encoded string of the output image.",
+                    "title": "Image Base64 String",
                     "type": "string"
                 },
-                "time": {
-                    "description": "Time of the timestamp, in ISO format.",
-                    "format": "time",
-                    "title": "Time",
+                "image_file_path": {
+                    "default": "",
+                    "description": "Path to the output image file.",
+                    "title": "Image File Path",
+                    "type": "string"
+                }
+            },
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ImageFilterPiece"
+    },
+    "DataConversionPiece": {
+        "name": "DataConversionPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "data",
+            "conversion",
+            "default"
+        ],
+        "style": {
+            "node_label": "Data Conversion Piece",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "icon-park-outline:file-conversion",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Convert data from one format to another",
+        "input_schema": {
+            "$defs": {
+                "DataFormatOption": {
+                    "enum": [
+                        "csv",
+                        "json"
+                    ],
+                    "title": "DataFormatOption",
+                    "type": "string"
+                }
+            },
+            "properties": {
+                "input_data": {
+                    "description": "Input data to be converted. Can be a file path or data as string.",
+                    "title": "Input Data",
                     "type": "string"
                 },
-                "datetime": {
-                    "description": "Datetime of the timestamp, in ISO format.",
-                    "format": "date-time",
-                    "title": "Datetime",
+                "input_data_format": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/DataFormatOption"
+                        }
+                    ],
+                    "default": "csv",
+                    "description": "Input data format to be converted."
+                },
+                "output_data_format": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/DataFormatOption"
+                        }
+                    ],
+                    "default": "json",
+                    "description": "Output data format."
+                }
+            },
+            "required": [
+                "input_data"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "output_file_path": {
+                    "description": "Path to the converted file.",
+                    "title": "Output File Path",
                     "type": "string"
                 }
             },
             "required": [
-                "date",
-                "time",
-                "datetime"
+                "output_file_path"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/DataConversionPiece"
     },
-    "StringOperationsPiece": {
-        "name": "StringOperationsPiece",
+    "YDataProfilingPiece": {
+        "name": "YDataProfilingPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
             "default",
-            "string"
+            "eda"
         ],
         "style": {
-            "node_label": "String Operations",
+            "node_label": "Data Profiling",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "tabler:sort-a-z",
+            "icon_class_name": "mingcute:profile-line",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "A Piece that performs string operations",
+        "description": "Piece that uses ydata-profiling to create fast EDA.",
         "input_schema": {
-            "$defs": {
-                "OperationItem": {
-                    "properties": {
-                        "operation": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/$defs/OperationsTypes"
-                                }
-                            ],
-                            "description": "Operation to perform. Options: `concatenate`, `lower_case`, `upper_case`, `split_by`, `replace_by`.",
-                            "from_upstream": "never"
-                        },
-                        "second_argument": {
-                            "default": "",
-                            "description": "Value for the second argument.",
-                            "title": "Second Argument",
-                            "type": "string"
-                        },
-                        "auxiliary_argument": {
-                            "default": "",
-                            "description": "Auxiliary argument for `split_by` and `replace_by` operations.\nIf `split_by` is selected, this argument will be used as the index of the split array.\nIf `replace_by` is selected, this argument will be used as the string to replace.\n",
-                            "title": "Auxiliary Argument",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "operation"
-                    ],
-                    "title": "OperationItem",
-                    "type": "object"
-                },
-                "OperationsTypes": {
-                    "enum": [
-                        "concatenate",
-                        "lower_case",
-                        "upper_case",
-                        "split_by",
-                        "replace_by",
-                        "strip_spaces"
-                    ],
-                    "title": "OperationsTypes",
-                    "type": "string"
-                }
-            },
             "properties": {
-                "first_argument": {
-                    "description": "Value for the first argument.",
-                    "title": "First Argument",
+                "data_path": {
+                    "description": "Path to the CSV file to be profiled",
+                    "from_upstream": "always",
+                    "title": "CSV file path",
                     "type": "string"
                 },
-                "operations": {
-                    "description": "Sequence of operations to perform.",
-                    "items": {
-                        "$ref": "#/$defs/OperationItem"
-                    },
-                    "title": "Operations",
-                    "type": "array"
+                "report_tile": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "Profiling Report",
+                    "description": "Title of the report",
+                    "title": "Report title"
                 }
             },
             "required": [
-                "first_argument",
-                "operations"
+                "data_path"
             ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
             "properties": {
-                "output_string": {
-                    "description": "Output string.",
-                    "title": "Output String",
+                "profile_file_path": {
+                    "description": "Path to the output file.",
+                    "title": "Output file path",
                     "type": "string"
                 }
             },
             "required": [
-                "output_string"
+                "profile_file_path"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringOperationsPiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/YDataProfilingPiece"
     },
     "StringConditionChecksPiece": {
         "name": "StringConditionChecksPiece",
@@ -1110,38 +997,310 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringConditionChecksPiece"
     },
-    "YDataProfilingPiece": {
-        "name": "YDataProfilingPiece",
+    "PageScrapperPiece": {
+        "name": "PageScrapperPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
             "default",
-            "eda"
+            "scrapper"
         ],
         "style": {
-            "node_label": "Data Profiling",
+            "node_label": "Page Scrapper",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "mingcute:profile-line",
+            "icon_class_name": "lucide:text-selection",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "Piece that uses ydata-profiling to create fast EDA.",
+        "description": "Scrapes text from a web page, given a URL and a list of HTML tags.",
         "input_schema": {
+            "$defs": {
+                "ItemType": {
+                    "properties": {
+                        "tag": {
+                            "default": "p",
+                            "description": "HTML tag name.",
+                            "title": "Tag",
+                            "type": "string"
+                        },
+                        "class_name": {
+                            "default": "",
+                            "description": "HTML tag class name.",
+                            "title": "Class Name",
+                            "type": "string"
+                        }
+                    },
+                    "title": "ItemType",
+                    "type": "object"
+                }
+            },
+            "description": "PageScrapperPiece Input Model",
             "properties": {
-                "data_path": {
-                    "description": "Path to the CSV file to be profiled",
-                    "from_upstream": "always",
-                    "title": "CSV file path",
+                "url": {
+                    "default": "",
+                    "description": "URL to retrieve content from.",
+                    "title": "Url",
                     "type": "string"
                 },
-                "report_tile": {
+                "search_items": {
+                    "default": [
+                        {
+                            "class_name": "",
+                            "tag": "p"
+                        }
+                    ],
+                    "description": "List of HTML tags and class names to search for.",
+                    "items": {
+                        "$ref": "#/$defs/ItemType"
+                    },
+                    "title": "Search Items",
+                    "type": "array"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "PageScrapperPiece Output Model",
+            "properties": {
+                "scrapped_text": {
+                    "description": "Scrapped text from the URL.",
+                    "title": "Scrapped Text",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "scrapped_text"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/PageScrapperPiece"
+    },
+    "SleepPiece": {
+        "name": "SleepPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "sleep"
+        ],
+        "style": {
+            "node_label": "Sleep",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-solid:hourglass-start",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that sleeps for a given number of seconds.",
+        "input_schema": {
+            "description": "Sleep Piece Input Model",
+            "properties": {
+                "sleep_time": {
+                    "default": 1,
+                    "description": "Number of seconds to sleep",
+                    "title": "Sleep Time",
+                    "type": "number"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "Sleep Piece Output Model",
+            "properties": {
+                "message": {
+                    "description": "Sleep piece executed",
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "message"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
+    },
+    "StringOperationsPiece": {
+        "name": "StringOperationsPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "string"
+        ],
+        "style": {
+            "node_label": "String Operations",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "tabler:sort-a-z",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that performs string operations",
+        "input_schema": {
+            "$defs": {
+                "OperationItem": {
+                    "properties": {
+                        "operation": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OperationsTypes"
+                                }
+                            ],
+                            "description": "Operation to perform. Options: `concatenate`, `lower_case`, `upper_case`, `split_by`, `replace_by`.",
+                            "from_upstream": "never"
+                        },
+                        "second_argument": {
+                            "default": "",
+                            "description": "Value for the second argument.",
+                            "title": "Second Argument",
+                            "type": "string"
+                        },
+                        "auxiliary_argument": {
+                            "default": "",
+                            "description": "Auxiliary argument for `split_by` and `replace_by` operations.\nIf `split_by` is selected, this argument will be used as the index of the split array.\nIf `replace_by` is selected, this argument will be used as the string to replace.\n",
+                            "title": "Auxiliary Argument",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "title": "OperationItem",
+                    "type": "object"
+                },
+                "OperationsTypes": {
+                    "enum": [
+                        "concatenate",
+                        "lower_case",
+                        "upper_case",
+                        "split_by",
+                        "replace_by",
+                        "strip_spaces"
+                    ],
+                    "title": "OperationsTypes",
+                    "type": "string"
+                }
+            },
+            "properties": {
+                "first_argument": {
+                    "description": "Value for the first argument.",
+                    "title": "First Argument",
+                    "type": "string"
+                },
+                "operations": {
+                    "description": "Sequence of operations to perform.",
+                    "items": {
+                        "$ref": "#/$defs/OperationItem"
+                    },
+                    "title": "Operations",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "first_argument",
+                "operations"
+            ],
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "output_string": {
+                    "description": "Output string.",
+                    "title": "Output String",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_string"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/StringOperationsPiece"
+    },
+    "ToyDatasetsPiece": {
+        "name": "ToyDatasetsPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "datasets"
+        ],
+        "style": {
+            "node_label": "Toy Datasets",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "lucide:toy-brick",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Load toy datasets from scikit-learn",
+        "input_schema": {
+            "$defs": {
+                "DatasetName": {
+                    "enum": [
+                        "iris",
+                        "diabetes",
+                        "digits",
+                        "wine",
+                        "breast_cancer",
+                        "linnerrud"
+                    ],
+                    "title": "DatasetName",
+                    "type": "string"
+                }
+            },
+            "properties": {
+                "dataset": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/DatasetName"
+                        }
+                    ],
+                    "default": "iris",
+                    "title": "Dataset name"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "properties": {
+                "file_path": {
                     "anyOf": [
                         {
                             "type": "string"
@@ -1150,33 +1309,178 @@
                             "type": "null"
                         }
                     ],
-                    "default": "Profiling Report",
-                    "description": "Title of the report",
-                    "title": "Report title"
+                    "default": null,
+                    "title": "File path"
+                }
+            },
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ToyDatasetsPiece"
+    },
+    "ToStringPiece": {
+        "name": "ToStringPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "string"
+        ],
+        "style": {
+            "node_label": "To String",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "solar:text-bold",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that transforms any input to string.",
+        "input_schema": {
+            "description": "ToStringPiece Input Model",
+            "properties": {
+                "input_value": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "items": {},
+                            "type": "array"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "format": "time",
+                            "type": "string"
+                        },
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Input value to be turned into string.",
+                    "from_upstream": "always",
+                    "title": "Input Value"
                 }
             },
             "required": [
-                "data_path"
+                "input_value"
             ],
             "title": "InputModel",
             "type": "object"
         },
         "output_schema": {
+            "description": "ToStringPiece Output Model",
             "properties": {
-                "profile_file_path": {
-                    "description": "Path to the output file.",
-                    "title": "Output file path",
+                "output_value": {
+                    "description": "Input value as a string.",
+                    "title": "Output Value",
                     "type": "string"
                 }
             },
             "required": [
-                "profile_file_path"
+                "output_value"
             ],
             "title": "OutputModel",
             "type": "object"
         },
         "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/YDataProfilingPiece"
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ToStringPiece"
+    },
+    "LoremIpsumGeneratorPiece": {
+        "name": "LoremIpsumGeneratorPiece",
+        "dependency": {
+            "dockerfile": null,
+            "requirements_file": "requirements_0.txt"
+        },
+        "tags": [
+            "default",
+            "text"
+        ],
+        "style": {
+            "node_label": "Lorem Ipsum Generator",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "carbon:character-sentence-case",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "A Piece that generates Lorem Ipsum text.",
+        "input_schema": {
+            "$defs": {
+                "ItemsType": {
+                    "enum": [
+                        "words",
+                        "sentences",
+                        "paragraphs"
+                    ],
+                    "title": "ItemsType",
+                    "type": "string"
+                }
+            },
+            "description": "LoremIpsumGeneratorPiece Input Model",
+            "properties": {
+                "items": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ItemsType"
+                        }
+                    ],
+                    "default": "words",
+                    "description": "Type of items to generate."
+                },
+                "number_of_items": {
+                    "default": 1,
+                    "description": "Number of items to generate.",
+                    "title": "Number Of Items",
+                    "type": "integer"
+                }
+            },
+            "title": "InputModel",
+            "type": "object"
+        },
+        "output_schema": {
+            "description": "LoremIpsumGeneratorPiece Output Model",
+            "properties": {
+                "output_text": {
+                    "description": "Generated text.",
+                    "title": "Output Text",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "output_text"
+            ],
+            "title": "OutputModel",
+            "type": "object"
+        },
+        "secrets_schema": null,
+        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/LoremIpsumGeneratorPiece"
     },
     "GetItemFromArrayPiece": {
         "name": "GetItemFromArrayPiece",
@@ -1296,95 +1600,6 @@
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetItemFromArrayPiece"
     },
-    "ToStringPiece": {
-        "name": "ToStringPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "string"
-        ],
-        "style": {
-            "node_label": "To String",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "solar:text-bold",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "A Piece that transforms any input to string.",
-        "input_schema": {
-            "description": "ToStringPiece Input Model",
-            "properties": {
-                "input_value": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "items": {},
-                            "type": "array"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "object"
-                        },
-                        {
-                            "format": "date",
-                            "type": "string"
-                        },
-                        {
-                            "format": "time",
-                            "type": "string"
-                        },
-                        {
-                            "format": "date-time",
-                            "type": "string"
-                        }
-                    ],
-                    "description": "Input value to be turned into string.",
-                    "from_upstream": "always",
-                    "title": "Input Value"
-                }
-            },
-            "required": [
-                "input_value"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "description": "ToStringPiece Output Model",
-            "properties": {
-                "output_value": {
-                    "description": "Input value as a string.",
-                    "title": "Output Value",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "output_value"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ToStringPiece"
-    },
     "HttpRequestPiece": {
         "name": "HttpRequestPiece",
         "dependency": {
@@ -1473,220 +1688,5 @@
         },
         "secrets_schema": null,
         "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/HttpRequestPiece"
-    },
-    "ToyDatasetsPiece": {
-        "name": "ToyDatasetsPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "datasets"
-        ],
-        "style": {
-            "node_label": "Toy Datasets",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "lucide:toy-brick",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Load toy datasets from scikit-learn",
-        "input_schema": {
-            "$defs": {
-                "DatasetName": {
-                    "enum": [
-                        "iris",
-                        "diabetes",
-                        "digits",
-                        "wine",
-                        "breast_cancer",
-                        "linnerrud"
-                    ],
-                    "title": "DatasetName",
-                    "type": "string"
-                }
-            },
-            "properties": {
-                "dataset": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/DatasetName"
-                        }
-                    ],
-                    "default": "iris",
-                    "title": "Dataset name"
-                }
-            },
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "file_path": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "File path"
-                }
-            },
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ToyDatasetsPiece"
-    },
-    "PageScrapperPiece": {
-        "name": "PageScrapperPiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "scrapper"
-        ],
-        "style": {
-            "node_label": "Page Scrapper",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "lucide:text-selection",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Scrapes text from a web page, given a URL and a list of HTML tags.",
-        "input_schema": {
-            "$defs": {
-                "ItemType": {
-                    "properties": {
-                        "tag": {
-                            "default": "p",
-                            "description": "HTML tag name.",
-                            "title": "Tag",
-                            "type": "string"
-                        },
-                        "class_name": {
-                            "default": "",
-                            "description": "HTML tag class name.",
-                            "title": "Class Name",
-                            "type": "string"
-                        }
-                    },
-                    "title": "ItemType",
-                    "type": "object"
-                }
-            },
-            "description": "PageScrapperPiece Input Model",
-            "properties": {
-                "url": {
-                    "default": "",
-                    "description": "URL to retrieve content from.",
-                    "title": "Url",
-                    "type": "string"
-                },
-                "search_items": {
-                    "default": [
-                        {
-                            "class_name": "",
-                            "tag": "p"
-                        }
-                    ],
-                    "description": "List of HTML tags and class names to search for.",
-                    "items": {
-                        "$ref": "#/$defs/ItemType"
-                    },
-                    "title": "Search Items",
-                    "type": "array"
-                }
-            },
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "description": "PageScrapperPiece Output Model",
-            "properties": {
-                "scrapped_text": {
-                    "description": "Scrapped text from the URL.",
-                    "title": "Scrapped Text",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "scrapped_text"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/PageScrapperPiece"
-    },
-    "SaveImagePiece": {
-        "name": "SaveImagePiece",
-        "dependency": {
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "default",
-            "image"
-        ],
-        "style": {
-            "node_label": "Save Image",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "material-symbols:image-outline",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Save base64 as image file to results folder.",
-        "input_schema": {
-            "properties": {
-                "base64_data": {
-                    "description": "Input data to be saved as image.",
-                    "title": "Base64 Data",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "base64_data"
-            ],
-            "title": "InputModel",
-            "type": "object"
-        },
-        "output_schema": {
-            "properties": {
-                "output_image_path": {
-                    "description": "Output file path of the saved image.",
-                    "title": "Output Image Path",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "output_image_path"
-            ],
-            "title": "OutputModel",
-            "type": "object"
-        },
-        "secrets_schema": null,
-        "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SaveImagePiece"
     }
 }
